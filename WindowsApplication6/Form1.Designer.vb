@@ -61,31 +61,89 @@ Partial Class Form1
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.TimeFactor = New System.Windows.Forms.TextBox()
+        Me.TimeIncrement = New System.Windows.Forms.TextBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.SpeedMin = New System.Windows.Forms.TextBox()
+        Me.SpeedMax = New System.Windows.Forms.TextBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.LinearPitchOption = New System.Windows.Forms.RadioButton()
+        Me.PMpitchMax = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.PMpitchMin = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.CyclicalPitchOption = New System.Windows.Forms.RadioButton()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.PitchPeriod = New System.Windows.Forms.TextBox()
+        Me.PitchPhase = New System.Windows.Forms.TextBox()
+        Me.PitchMagnitude = New System.Windows.Forms.TextBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.LinearRollOption = New System.Windows.Forms.RadioButton()
+        Me.CyclicalRollOption = New System.Windows.Forms.RadioButton()
+        Me.PMrollMax = New System.Windows.Forms.TextBox()
+        Me.PMrollMin = New System.Windows.Forms.TextBox()
+        Me.Label102 = New System.Windows.Forms.Label()
+        Me.RollPeriod = New System.Windows.Forms.TextBox()
+        Me.Label101 = New System.Windows.Forms.Label()
+        Me.RollMagnitude = New System.Windows.Forms.TextBox()
+        Me.label100 = New System.Windows.Forms.Label()
+        Me.RollPhase = New System.Windows.Forms.TextBox()
         Me.ClearModels = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.SpeedMax = New System.Windows.Forms.TextBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.PMrollMin = New System.Windows.Forms.TextBox()
-        Me.SpeedMin = New System.Windows.Forms.TextBox()
-        Me.PMrollMax = New System.Windows.Forms.TextBox()
+        Me.DaeModelListBox = New System.Windows.Forms.ListBox()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.PMtiltMin = New System.Windows.Forms.TextBox()
-        Me.PMtiltMax = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.CyclicalHeadingOption = New System.Windows.Forms.RadioButton()
+        Me.LinearHeadingOption = New System.Windows.Forms.RadioButton()
+        Me.ExcelSeriesTextBox = New System.Windows.Forms.TextBox()
+        Me.PmReferenceTextBox = New System.Windows.Forms.TextBox()
+        Me.FromXYRadioButton = New System.Windows.Forms.RadioButton()
+        Me.FromLatLonRadioButton = New System.Windows.Forms.RadioButton()
+        Me.Label28 = New System.Windows.Forms.Label()
         Me.ClearPlacemarks = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.PmFolderListBox = New System.Windows.Forms.ListBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.PlaceMarkName2 = New System.Windows.Forms.TextBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton5 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.CreateRadiusReference = New System.Windows.Forms.Button()
+        Me.RadiusLabel = New System.Windows.Forms.TextBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Radius = New System.Windows.Forms.TextBox()
+        Me.RadiusCenter = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -133,16 +191,16 @@ Partial Class Form1
         '
         'ns1heading
         '
-        Me.ns1heading.Location = New System.Drawing.Point(636, 49)
+        Me.ns1heading.Location = New System.Drawing.Point(155, 15)
         Me.ns1heading.Name = "ns1heading"
-        Me.ns1heading.Size = New System.Drawing.Size(85, 20)
+        Me.ns1heading.Size = New System.Drawing.Size(45, 20)
         Me.ns1heading.TabIndex = 11
         Me.ns1heading.Text = "-10"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(568, 52)
+        Me.Label4.Location = New System.Drawing.Point(7, 18)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(62, 13)
         Me.Label4.TabIndex = 10
@@ -201,16 +259,16 @@ Partial Class Form1
         '
         'ns1range
         '
-        Me.ns1range.Location = New System.Drawing.Point(636, 101)
+        Me.ns1range.Location = New System.Drawing.Point(74, 92)
         Me.ns1range.Name = "ns1range"
         Me.ns1range.Size = New System.Drawing.Size(85, 20)
         Me.ns1range.TabIndex = 15
-        Me.ns1range.Text = "200"
+        Me.ns1range.Text = "7000"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(568, 104)
+        Me.Label8.Location = New System.Drawing.Point(6, 95)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(51, 13)
         Me.Label8.TabIndex = 14
@@ -218,7 +276,7 @@ Partial Class Form1
         '
         'ns1tilt
         '
-        Me.ns1tilt.Location = New System.Drawing.Point(636, 75)
+        Me.ns1tilt.Location = New System.Drawing.Point(74, 66)
         Me.ns1tilt.Name = "ns1tilt"
         Me.ns1tilt.Size = New System.Drawing.Size(85, 20)
         Me.ns1tilt.TabIndex = 13
@@ -227,7 +285,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(568, 78)
+        Me.Label9.Location = New System.Drawing.Point(6, 69)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(34, 13)
         Me.Label9.TabIndex = 12
@@ -290,7 +348,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(6, 383)
+        Me.Button2.Location = New System.Drawing.Point(6, 413)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(149, 23)
         Me.Button2.TabIndex = 27
@@ -307,25 +365,25 @@ Partial Class Form1
         '
         'ns1rangeMax
         '
-        Me.ns1rangeMax.Location = New System.Drawing.Point(727, 101)
+        Me.ns1rangeMax.Location = New System.Drawing.Point(165, 92)
         Me.ns1rangeMax.Name = "ns1rangeMax"
         Me.ns1rangeMax.Size = New System.Drawing.Size(85, 20)
         Me.ns1rangeMax.TabIndex = 32
-        Me.ns1rangeMax.Text = "500"
+        Me.ns1rangeMax.Text = "1500"
         '
         'ns1tiltMax
         '
-        Me.ns1tiltMax.Location = New System.Drawing.Point(727, 75)
+        Me.ns1tiltMax.Location = New System.Drawing.Point(165, 66)
         Me.ns1tiltMax.Name = "ns1tiltMax"
         Me.ns1tiltMax.Size = New System.Drawing.Size(85, 20)
         Me.ns1tiltMax.TabIndex = 31
-        Me.ns1tiltMax.Text = "0"
+        Me.ns1tiltMax.Text = "45"
         '
         'ns1headingMax
         '
-        Me.ns1headingMax.Location = New System.Drawing.Point(727, 49)
+        Me.ns1headingMax.Location = New System.Drawing.Point(206, 15)
         Me.ns1headingMax.Name = "ns1headingMax"
-        Me.ns1headingMax.Size = New System.Drawing.Size(85, 20)
+        Me.ns1headingMax.Size = New System.Drawing.Size(45, 20)
         Me.ns1headingMax.TabIndex = 30
         Me.ns1headingMax.Text = "90"
         '
@@ -376,6 +434,8 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Location = New System.Drawing.Point(12, 22)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -398,35 +458,341 @@ Partial Class Form1
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(161, 383)
+        Me.ProgressBar1.Location = New System.Drawing.Point(161, 413)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(675, 23)
         Me.ProgressBar1.TabIndex = 50
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.GroupBox6)
+        Me.GroupBox3.Controls.Add(Me.GroupBox5)
+        Me.GroupBox3.Controls.Add(Me.GroupBox4)
+        Me.GroupBox3.Controls.Add(Me.GroupBox2)
         Me.GroupBox3.Controls.Add(Me.ClearModels)
         Me.GroupBox3.Controls.Add(Me.Label14)
-        Me.GroupBox3.Controls.Add(Me.ListBox2)
-        Me.GroupBox3.Controls.Add(Me.Label18)
-        Me.GroupBox3.Controls.Add(Me.SpeedMax)
-        Me.GroupBox3.Controls.Add(Me.Label19)
-        Me.GroupBox3.Controls.Add(Me.PMrollMin)
-        Me.GroupBox3.Controls.Add(Me.SpeedMin)
-        Me.GroupBox3.Controls.Add(Me.PMrollMax)
+        Me.GroupBox3.Controls.Add(Me.DaeModelListBox)
         Me.GroupBox3.Controls.Add(Me.Label20)
-        Me.GroupBox3.Controls.Add(Me.PMtiltMin)
-        Me.GroupBox3.Controls.Add(Me.PMtiltMax)
         Me.GroupBox3.Location = New System.Drawing.Point(6, 185)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(830, 192)
+        Me.GroupBox3.Size = New System.Drawing.Size(830, 222)
         Me.GroupBox3.TabIndex = 44
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Model Animation"
         '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.Label25)
+        Me.GroupBox6.Controls.Add(Me.Label24)
+        Me.GroupBox6.Controls.Add(Me.TimeFactor)
+        Me.GroupBox6.Controls.Add(Me.TimeIncrement)
+        Me.GroupBox6.Location = New System.Drawing.Point(543, 140)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(281, 57)
+        Me.GroupBox6.TabIndex = 74
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "TimeIncrement"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(205, 29)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(34, 13)
+        Me.Label25.TabIndex = 74
+        Me.Label25.Text = "factor"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(62, 29)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(53, 13)
+        Me.Label24.TabIndex = 73
+        Me.Label24.Text = "step (sec)"
+        '
+        'TimeFactor
+        '
+        Me.TimeFactor.Location = New System.Drawing.Point(158, 26)
+        Me.TimeFactor.Name = "TimeFactor"
+        Me.TimeFactor.Size = New System.Drawing.Size(41, 20)
+        Me.TimeFactor.TabIndex = 40
+        Me.TimeFactor.Text = ".25"
+        '
+        'TimeIncrement
+        '
+        Me.TimeIncrement.Location = New System.Drawing.Point(6, 26)
+        Me.TimeIncrement.Name = "TimeIncrement"
+        Me.TimeIncrement.Size = New System.Drawing.Size(50, 20)
+        Me.TimeIncrement.TabIndex = 39
+        Me.TimeIncrement.Text = "1"
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.Label19)
+        Me.GroupBox5.Controls.Add(Me.Label18)
+        Me.GroupBox5.Controls.Add(Me.SpeedMin)
+        Me.GroupBox5.Controls.Add(Me.SpeedMax)
+        Me.GroupBox5.Location = New System.Drawing.Point(543, 48)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(281, 86)
+        Me.GroupBox5.TabIndex = 73
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Speed"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(137, 58)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(52, 13)
+        Me.Label19.TabIndex = 72
+        Me.Label19.Text = "m/s (end)"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(137, 29)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(60, 13)
+        Me.Label18.TabIndex = 72
+        Me.Label18.Text = "m/s (begin)"
+        '
+        'SpeedMin
+        '
+        Me.SpeedMin.Location = New System.Drawing.Point(46, 26)
+        Me.SpeedMin.Name = "SpeedMin"
+        Me.SpeedMin.Size = New System.Drawing.Size(85, 20)
+        Me.SpeedMin.TabIndex = 39
+        Me.SpeedMin.Text = "1"
+        '
+        'SpeedMax
+        '
+        Me.SpeedMax.Location = New System.Drawing.Point(46, 52)
+        Me.SpeedMax.Name = "SpeedMax"
+        Me.SpeedMax.Size = New System.Drawing.Size(85, 20)
+        Me.SpeedMax.TabIndex = 40
+        Me.SpeedMax.Text = "1"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.LinearPitchOption)
+        Me.GroupBox4.Controls.Add(Me.PMpitchMax)
+        Me.GroupBox4.Controls.Add(Me.Label23)
+        Me.GroupBox4.Controls.Add(Me.PMpitchMin)
+        Me.GroupBox4.Controls.Add(Me.Label22)
+        Me.GroupBox4.Controls.Add(Me.CyclicalPitchOption)
+        Me.GroupBox4.Controls.Add(Me.Label21)
+        Me.GroupBox4.Controls.Add(Me.PitchPeriod)
+        Me.GroupBox4.Controls.Add(Me.PitchPhase)
+        Me.GroupBox4.Controls.Add(Me.PitchMagnitude)
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 81)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(244, 133)
+        Me.GroupBox4.TabIndex = 72
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "ShipPitch"
+        '
+        'LinearPitchOption
+        '
+        Me.LinearPitchOption.AutoSize = True
+        Me.LinearPitchOption.Checked = True
+        Me.LinearPitchOption.Location = New System.Drawing.Point(6, 19)
+        Me.LinearPitchOption.Name = "LinearPitchOption"
+        Me.LinearPitchOption.Size = New System.Drawing.Size(54, 17)
+        Me.LinearPitchOption.TabIndex = 56
+        Me.LinearPitchOption.TabStop = True
+        Me.LinearPitchOption.Text = "Linear"
+        Me.LinearPitchOption.UseVisualStyleBackColor = True
+        '
+        'PMpitchMax
+        '
+        Me.PMpitchMax.Location = New System.Drawing.Point(138, 19)
+        Me.PMpitchMax.Name = "PMpitchMax"
+        Me.PMpitchMax.Size = New System.Drawing.Size(45, 20)
+        Me.PMpitchMax.TabIndex = 44
+        Me.PMpitchMax.Text = "0"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(125, 100)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(63, 13)
+        Me.Label23.TabIndex = 63
+        Me.Label23.Text = "Phase (sec)"
+        '
+        'PMpitchMin
+        '
+        Me.PMpitchMin.Location = New System.Drawing.Point(87, 19)
+        Me.PMpitchMin.Name = "PMpitchMin"
+        Me.PMpitchMin.Size = New System.Drawing.Size(45, 20)
+        Me.PMpitchMin.TabIndex = 43
+        Me.PMpitchMin.Text = "0"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(122, 74)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(63, 13)
+        Me.Label22.TabIndex = 62
+        Me.Label22.Text = "Period (sec)"
+        '
+        'CyclicalPitchOption
+        '
+        Me.CyclicalPitchOption.AutoSize = True
+        Me.CyclicalPitchOption.Location = New System.Drawing.Point(6, 46)
+        Me.CyclicalPitchOption.Name = "CyclicalPitchOption"
+        Me.CyclicalPitchOption.Size = New System.Drawing.Size(61, 17)
+        Me.CyclicalPitchOption.TabIndex = 57
+        Me.CyclicalPitchOption.Text = "Cyclical"
+        Me.CyclicalPitchOption.UseVisualStyleBackColor = True
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(122, 48)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(84, 13)
+        Me.Label21.TabIndex = 61
+        Me.Label21.Text = "Magnitude (deg)"
+        '
+        'PitchPeriod
+        '
+        Me.PitchPeriod.Location = New System.Drawing.Point(87, 71)
+        Me.PitchPeriod.Name = "PitchPeriod"
+        Me.PitchPeriod.Size = New System.Drawing.Size(29, 20)
+        Me.PitchPeriod.TabIndex = 59
+        Me.PitchPeriod.Text = "60"
+        '
+        'PitchPhase
+        '
+        Me.PitchPhase.Location = New System.Drawing.Point(88, 97)
+        Me.PitchPhase.Name = "PitchPhase"
+        Me.PitchPhase.Size = New System.Drawing.Size(29, 20)
+        Me.PitchPhase.TabIndex = 60
+        Me.PitchPhase.Text = "0"
+        '
+        'PitchMagnitude
+        '
+        Me.PitchMagnitude.Location = New System.Drawing.Point(87, 45)
+        Me.PitchMagnitude.Name = "PitchMagnitude"
+        Me.PitchMagnitude.Size = New System.Drawing.Size(29, 20)
+        Me.PitchMagnitude.TabIndex = 58
+        Me.PitchMagnitude.Text = "1"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.LinearRollOption)
+        Me.GroupBox2.Controls.Add(Me.CyclicalRollOption)
+        Me.GroupBox2.Controls.Add(Me.PMrollMax)
+        Me.GroupBox2.Controls.Add(Me.PMrollMin)
+        Me.GroupBox2.Controls.Add(Me.Label102)
+        Me.GroupBox2.Controls.Add(Me.RollPeriod)
+        Me.GroupBox2.Controls.Add(Me.Label101)
+        Me.GroupBox2.Controls.Add(Me.RollMagnitude)
+        Me.GroupBox2.Controls.Add(Me.label100)
+        Me.GroupBox2.Controls.Add(Me.RollPhase)
+        Me.GroupBox2.Location = New System.Drawing.Point(256, 81)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(272, 133)
+        Me.GroupBox2.TabIndex = 72
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "ShipRoll"
+        '
+        'LinearRollOption
+        '
+        Me.LinearRollOption.AutoSize = True
+        Me.LinearRollOption.Checked = True
+        Me.LinearRollOption.Location = New System.Drawing.Point(22, 19)
+        Me.LinearRollOption.Name = "LinearRollOption"
+        Me.LinearRollOption.Size = New System.Drawing.Size(54, 17)
+        Me.LinearRollOption.TabIndex = 70
+        Me.LinearRollOption.TabStop = True
+        Me.LinearRollOption.Text = "Linear"
+        Me.LinearRollOption.UseVisualStyleBackColor = True
+        '
+        'CyclicalRollOption
+        '
+        Me.CyclicalRollOption.AutoSize = True
+        Me.CyclicalRollOption.Location = New System.Drawing.Point(22, 46)
+        Me.CyclicalRollOption.Name = "CyclicalRollOption"
+        Me.CyclicalRollOption.Size = New System.Drawing.Size(61, 17)
+        Me.CyclicalRollOption.TabIndex = 71
+        Me.CyclicalRollOption.Text = "Cyclical"
+        Me.CyclicalRollOption.UseVisualStyleBackColor = True
+        '
+        'PMrollMax
+        '
+        Me.PMrollMax.Location = New System.Drawing.Point(148, 18)
+        Me.PMrollMax.Name = "PMrollMax"
+        Me.PMrollMax.Size = New System.Drawing.Size(45, 20)
+        Me.PMrollMax.TabIndex = 42
+        Me.PMrollMax.Text = "0"
+        '
+        'PMrollMin
+        '
+        Me.PMrollMin.Location = New System.Drawing.Point(97, 18)
+        Me.PMrollMin.Name = "PMrollMin"
+        Me.PMrollMin.Size = New System.Drawing.Size(45, 20)
+        Me.PMrollMin.TabIndex = 41
+        Me.PMrollMin.Text = "0"
+        '
+        'Label102
+        '
+        Me.Label102.AutoSize = True
+        Me.Label102.Location = New System.Drawing.Point(135, 99)
+        Me.Label102.Name = "Label102"
+        Me.Label102.Size = New System.Drawing.Size(63, 13)
+        Me.Label102.TabIndex = 69
+        Me.Label102.Text = "Phase (sec)"
+        '
+        'RollPeriod
+        '
+        Me.RollPeriod.Location = New System.Drawing.Point(97, 70)
+        Me.RollPeriod.Name = "RollPeriod"
+        Me.RollPeriod.Size = New System.Drawing.Size(29, 20)
+        Me.RollPeriod.TabIndex = 65
+        Me.RollPeriod.Text = "30"
+        '
+        'Label101
+        '
+        Me.Label101.AutoSize = True
+        Me.Label101.Location = New System.Drawing.Point(132, 73)
+        Me.Label101.Name = "Label101"
+        Me.Label101.Size = New System.Drawing.Size(63, 13)
+        Me.Label101.TabIndex = 68
+        Me.Label101.Text = "Period (sec)"
+        '
+        'RollMagnitude
+        '
+        Me.RollMagnitude.Location = New System.Drawing.Point(97, 44)
+        Me.RollMagnitude.Name = "RollMagnitude"
+        Me.RollMagnitude.Size = New System.Drawing.Size(29, 20)
+        Me.RollMagnitude.TabIndex = 64
+        Me.RollMagnitude.Text = "3"
+        '
+        'label100
+        '
+        Me.label100.AutoSize = True
+        Me.label100.Location = New System.Drawing.Point(132, 47)
+        Me.label100.Name = "label100"
+        Me.label100.Size = New System.Drawing.Size(84, 13)
+        Me.label100.TabIndex = 67
+        Me.label100.Text = "Magnitude (deg)"
+        '
+        'RollPhase
+        '
+        Me.RollPhase.Location = New System.Drawing.Point(98, 96)
+        Me.RollPhase.Name = "RollPhase"
+        Me.RollPhase.Size = New System.Drawing.Size(29, 20)
+        Me.RollPhase.TabIndex = 66
+        Me.RollPhase.Text = "0"
+        '
         'ClearModels
         '
-        Me.ClearModels.Location = New System.Drawing.Point(468, 161)
+        Me.ClearModels.Location = New System.Drawing.Point(543, 19)
         Me.ClearModels.Name = "ClearModels"
         Me.ClearModels.Size = New System.Drawing.Size(75, 23)
         Me.ClearModels.TabIndex = 49
@@ -436,111 +802,41 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(6, 30)
+        Me.Label14.Location = New System.Drawing.Point(0, 16)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(271, 13)
         Me.Label14.TabIndex = 42
         Me.Label14.Text = "Drag and Drop up to eight DAE models in the box below"
         '
-        'ListBox2
+        'DaeModelListBox
         '
-        Me.ListBox2.AllowDrop = True
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\taxi.dae"})
-        Me.ListBox2.Location = New System.Drawing.Point(6, 46)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(537, 95)
-        Me.ListBox2.TabIndex = 42
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(566, 51)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(38, 13)
-        Me.Label18.TabIndex = 45
-        Me.Label18.Text = "Speed"
-        '
-        'SpeedMax
-        '
-        Me.SpeedMax.Location = New System.Drawing.Point(725, 48)
-        Me.SpeedMax.Name = "SpeedMax"
-        Me.SpeedMax.Size = New System.Drawing.Size(85, 20)
-        Me.SpeedMax.TabIndex = 40
-        Me.SpeedMax.Text = "1"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(566, 77)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(33, 13)
-        Me.Label19.TabIndex = 46
-        Me.Label19.Text = "PMtilt"
-        '
-        'PMrollMin
-        '
-        Me.PMrollMin.Location = New System.Drawing.Point(634, 100)
-        Me.PMrollMin.Name = "PMrollMin"
-        Me.PMrollMin.Size = New System.Drawing.Size(85, 20)
-        Me.PMrollMin.TabIndex = 43
-        Me.PMrollMin.Text = "0"
-        '
-        'SpeedMin
-        '
-        Me.SpeedMin.Location = New System.Drawing.Point(634, 48)
-        Me.SpeedMin.Name = "SpeedMin"
-        Me.SpeedMin.Size = New System.Drawing.Size(85, 20)
-        Me.SpeedMin.TabIndex = 39
-        Me.SpeedMin.Text = "1"
-        '
-        'PMrollMax
-        '
-        Me.PMrollMax.Location = New System.Drawing.Point(725, 100)
-        Me.PMrollMax.Name = "PMrollMax"
-        Me.PMrollMax.Size = New System.Drawing.Size(85, 20)
-        Me.PMrollMax.TabIndex = 44
-        Me.PMrollMax.Text = "0"
+        Me.DaeModelListBox.AllowDrop = True
+        Me.DaeModelListBox.FormattingEnabled = True
+        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\MV Queen of the Coast.dae"})
+        Me.DaeModelListBox.Location = New System.Drawing.Point(0, 32)
+        Me.DaeModelListBox.Name = "DaeModelListBox"
+        Me.DaeModelListBox.Size = New System.Drawing.Size(537, 43)
+        Me.DaeModelListBox.TabIndex = 42
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(566, 103)
+        Me.Label20.Location = New System.Drawing.Point(3, 87)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(36, 13)
+        Me.Label20.Size = New System.Drawing.Size(0, 13)
         Me.Label20.TabIndex = 47
-        Me.Label20.Text = "PMroll"
-        '
-        'PMtiltMin
-        '
-        Me.PMtiltMin.Location = New System.Drawing.Point(634, 74)
-        Me.PMtiltMin.Name = "PMtiltMin"
-        Me.PMtiltMin.Size = New System.Drawing.Size(85, 20)
-        Me.PMtiltMin.TabIndex = 41
-        Me.PMtiltMin.Text = "0"
-        '
-        'PMtiltMax
-        '
-        Me.PMtiltMax.Location = New System.Drawing.Point(725, 74)
-        Me.PMtiltMax.Name = "PMtiltMax"
-        Me.PMtiltMax.Size = New System.Drawing.Size(85, 20)
-        Me.PMtiltMax.TabIndex = 42
-        Me.PMtiltMax.Text = "0"
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.GroupBox9)
+        Me.GroupBox1.Controls.Add(Me.ExcelSeriesTextBox)
+        Me.GroupBox1.Controls.Add(Me.PmReferenceTextBox)
+        Me.GroupBox1.Controls.Add(Me.FromXYRadioButton)
+        Me.GroupBox1.Controls.Add(Me.FromLatLonRadioButton)
+        Me.GroupBox1.Controls.Add(Me.Label28)
         Me.GroupBox1.Controls.Add(Me.ClearPlacemarks)
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label15)
-        Me.GroupBox1.Controls.Add(Me.Label9)
-        Me.GroupBox1.Controls.Add(Me.ns1range)
-        Me.GroupBox1.Controls.Add(Me.ListBox1)
-        Me.GroupBox1.Controls.Add(Me.ns1heading)
-        Me.GroupBox1.Controls.Add(Me.ns1rangeMax)
-        Me.GroupBox1.Controls.Add(Me.ns1headingMax)
-        Me.GroupBox1.Controls.Add(Me.ns1tilt)
-        Me.GroupBox1.Controls.Add(Me.ns1tiltMax)
+        Me.GroupBox1.Controls.Add(Me.PmFolderListBox)
         Me.GroupBox1.Location = New System.Drawing.Point(3, 6)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(833, 173)
@@ -548,9 +844,100 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Path"
         '
+        'GroupBox9
+        '
+        Me.GroupBox9.Controls.Add(Me.Label4)
+        Me.GroupBox9.Controls.Add(Me.ns1tiltMax)
+        Me.GroupBox9.Controls.Add(Me.ns1tilt)
+        Me.GroupBox9.Controls.Add(Me.ns1headingMax)
+        Me.GroupBox9.Controls.Add(Me.ns1rangeMax)
+        Me.GroupBox9.Controls.Add(Me.ns1heading)
+        Me.GroupBox9.Controls.Add(Me.CyclicalHeadingOption)
+        Me.GroupBox9.Controls.Add(Me.ns1range)
+        Me.GroupBox9.Controls.Add(Me.LinearHeadingOption)
+        Me.GroupBox9.Controls.Add(Me.Label9)
+        Me.GroupBox9.Controls.Add(Me.Label8)
+        Me.GroupBox9.Location = New System.Drawing.Point(552, 9)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(275, 158)
+        Me.GroupBox9.TabIndex = 60
+        Me.GroupBox9.TabStop = False
+        Me.GroupBox9.Text = "View Parameters"
+        '
+        'CyclicalHeadingOption
+        '
+        Me.CyclicalHeadingOption.AutoSize = True
+        Me.CyclicalHeadingOption.Location = New System.Drawing.Point(95, 41)
+        Me.CyclicalHeadingOption.Name = "CyclicalHeadingOption"
+        Me.CyclicalHeadingOption.Size = New System.Drawing.Size(61, 17)
+        Me.CyclicalHeadingOption.TabIndex = 52
+        Me.CyclicalHeadingOption.Text = "Cyclical"
+        Me.CyclicalHeadingOption.UseVisualStyleBackColor = True
+        '
+        'LinearHeadingOption
+        '
+        Me.LinearHeadingOption.AutoSize = True
+        Me.LinearHeadingOption.Checked = True
+        Me.LinearHeadingOption.Location = New System.Drawing.Point(95, 18)
+        Me.LinearHeadingOption.Name = "LinearHeadingOption"
+        Me.LinearHeadingOption.Size = New System.Drawing.Size(54, 17)
+        Me.LinearHeadingOption.TabIndex = 49
+        Me.LinearHeadingOption.TabStop = True
+        Me.LinearHeadingOption.Text = "Linear"
+        Me.LinearHeadingOption.UseVisualStyleBackColor = True
+        '
+        'ExcelSeriesTextBox
+        '
+        Me.ExcelSeriesTextBox.AllowDrop = True
+        Me.ExcelSeriesTextBox.Location = New System.Drawing.Point(108, 147)
+        Me.ExcelSeriesTextBox.Name = "ExcelSeriesTextBox"
+        Me.ExcelSeriesTextBox.Size = New System.Drawing.Size(438, 20)
+        Me.ExcelSeriesTextBox.TabIndex = 59
+        Me.ExcelSeriesTextBox.Text = "C:\Google Earth Tour\XYCoord.xlsx"
+        '
+        'PmReferenceTextBox
+        '
+        Me.PmReferenceTextBox.AllowDrop = True
+        Me.PmReferenceTextBox.Location = New System.Drawing.Point(108, 121)
+        Me.PmReferenceTextBox.Name = "PmReferenceTextBox"
+        Me.PmReferenceTextBox.Size = New System.Drawing.Size(438, 20)
+        Me.PmReferenceTextBox.TabIndex = 58
+        Me.PmReferenceTextBox.Text = "C:\Google Earth Tour\CentrePlacemark.kml"
+        '
+        'FromXYRadioButton
+        '
+        Me.FromXYRadioButton.AutoSize = True
+        Me.FromXYRadioButton.Location = New System.Drawing.Point(15, 120)
+        Me.FromXYRadioButton.Name = "FromXYRadioButton"
+        Me.FromXYRadioButton.Size = New System.Drawing.Size(62, 17)
+        Me.FromXYRadioButton.TabIndex = 57
+        Me.FromXYRadioButton.Text = "FromXY"
+        Me.FromXYRadioButton.UseVisualStyleBackColor = True
+        '
+        'FromLatLonRadioButton
+        '
+        Me.FromLatLonRadioButton.AutoSize = True
+        Me.FromLatLonRadioButton.Checked = True
+        Me.FromLatLonRadioButton.Location = New System.Drawing.Point(15, 43)
+        Me.FromLatLonRadioButton.Name = "FromLatLonRadioButton"
+        Me.FromLatLonRadioButton.Size = New System.Drawing.Size(81, 17)
+        Me.FromLatLonRadioButton.TabIndex = 56
+        Me.FromLatLonRadioButton.TabStop = True
+        Me.FromLatLonRadioButton.Text = "FromLatLon"
+        Me.FromLatLonRadioButton.UseVisualStyleBackColor = True
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(6, 104)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(231, 13)
+        Me.Label28.TabIndex = 54
+        Me.Label28.Text = "Drag and Drop an Excel File of X-Y Coordinates"
+        '
         'ClearPlacemarks
         '
-        Me.ClearPlacemarks.Location = New System.Drawing.Point(471, 144)
+        Me.ClearPlacemarks.Location = New System.Drawing.Point(471, 92)
         Me.ClearPlacemarks.Name = "ClearPlacemarks"
         Me.ClearPlacemarks.Size = New System.Drawing.Size(75, 23)
         Me.ClearPlacemarks.TabIndex = 48
@@ -566,15 +953,15 @@ Partial Class Form1
         Me.Label15.TabIndex = 41
         Me.Label15.Text = "Drag and Drop up to ten KML Placemarks (or one KML folder) in the box below"
         '
-        'ListBox1
+        'PmFolderListBox
         '
-        Me.ListBox1.AllowDrop = True
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Items.AddRange(New Object() {"C:\Google Earth Tour\here.kml"})
-        Me.ListBox1.Location = New System.Drawing.Point(9, 43)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(537, 95)
-        Me.ListBox1.TabIndex = 39
+        Me.PmFolderListBox.AllowDrop = True
+        Me.PmFolderListBox.FormattingEnabled = True
+        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\folder1.kml"})
+        Me.PmFolderListBox.Location = New System.Drawing.Point(108, 43)
+        Me.PmFolderListBox.Name = "PmFolderListBox"
+        Me.PmFolderListBox.Size = New System.Drawing.Size(438, 43)
+        Me.PmFolderListBox.TabIndex = 39
         '
         'TabPage3
         '
@@ -627,6 +1014,184 @@ Partial Class Form1
         Me.PlaceMarkName2.Size = New System.Drawing.Size(208, 20)
         Me.PlaceMarkName2.TabIndex = 37
         '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.GroupBox8)
+        Me.TabPage2.Controls.Add(Me.GroupBox7)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(851, 442)
+        Me.TabPage2.TabIndex = 3
+        Me.TabPage2.Text = "Track Maker"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.RadioButton5)
+        Me.GroupBox8.Controls.Add(Me.RadioButton4)
+        Me.GroupBox8.Location = New System.Drawing.Point(6, 244)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(839, 192)
+        Me.GroupBox8.TabIndex = 61
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "Time"
+        '
+        'RadioButton5
+        '
+        Me.RadioButton5.AutoSize = True
+        Me.RadioButton5.Location = New System.Drawing.Point(10, 66)
+        Me.RadioButton5.Name = "RadioButton5"
+        Me.RadioButton5.Size = New System.Drawing.Size(116, 17)
+        Me.RadioButton5.TabIndex = 62
+        Me.RadioButton5.TabStop = True
+        Me.RadioButton5.Text = "Start Time + Speed"
+        Me.RadioButton5.UseVisualStyleBackColor = True
+        '
+        'RadioButton4
+        '
+        Me.RadioButton4.AutoSize = True
+        Me.RadioButton4.Location = New System.Drawing.Point(10, 19)
+        Me.RadioButton4.Name = "RadioButton4"
+        Me.RadioButton4.Size = New System.Drawing.Size(107, 17)
+        Me.RadioButton4.TabIndex = 61
+        Me.RadioButton4.TabStop = True
+        Me.RadioButton4.Text = "Start + Stop Time"
+        Me.RadioButton4.UseVisualStyleBackColor = True
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.Controls.Add(Me.RadioButton3)
+        Me.GroupBox7.Controls.Add(Me.RadioButton2)
+        Me.GroupBox7.Controls.Add(Me.RadioButton1)
+        Me.GroupBox7.Controls.Add(Me.ListBox3)
+        Me.GroupBox7.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(839, 232)
+        Me.GroupBox7.TabIndex = 60
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Shape"
+        '
+        'RadioButton3
+        '
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Location = New System.Drawing.Point(6, 161)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(94, 17)
+        Me.RadioButton3.TabIndex = 60
+        Me.RadioButton3.TabStop = True
+        Me.RadioButton3.Text = "Measured Mile"
+        Me.RadioButton3.UseVisualStyleBackColor = True
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(6, 107)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(90, 17)
+        Me.RadioButton2.TabIndex = 59
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Turning Circle"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Checked = True
+        Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(148, 17)
+        Me.RadioButton1.TabIndex = 58
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "Ordered Placemark Folder"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'ListBox3
+        '
+        Me.ListBox3.FormattingEnabled = True
+        Me.ListBox3.Items.AddRange(New Object() {"ns1:name" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:begin" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:end" & Global.Microsoft.VisualBasic.ChrW(9) & "id" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:altitudeMode" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:longitude" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:latitude" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:alt" & _
+                "itude" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:heading" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:tilt" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:roll" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:x" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:y" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:z" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:href"})
+        Me.ListBox3.Location = New System.Drawing.Point(180, 19)
+        Me.ListBox3.Name = "ListBox3"
+        Me.ListBox3.Size = New System.Drawing.Size(653, 69)
+        Me.ListBox3.TabIndex = 57
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.CreateRadiusReference)
+        Me.TabPage4.Controls.Add(Me.RadiusLabel)
+        Me.TabPage4.Controls.Add(Me.Label27)
+        Me.TabPage4.Controls.Add(Me.Label26)
+        Me.TabPage4.Controls.Add(Me.Label16)
+        Me.TabPage4.Controls.Add(Me.Radius)
+        Me.TabPage4.Controls.Add(Me.RadiusCenter)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(851, 442)
+        Me.TabPage4.TabIndex = 4
+        Me.TabPage4.Text = "Radius Maker"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'CreateRadiusReference
+        '
+        Me.CreateRadiusReference.Location = New System.Drawing.Point(421, 163)
+        Me.CreateRadiusReference.Name = "CreateRadiusReference"
+        Me.CreateRadiusReference.Size = New System.Drawing.Size(75, 23)
+        Me.CreateRadiusReference.TabIndex = 6
+        Me.CreateRadiusReference.Text = "Create"
+        Me.CreateRadiusReference.UseVisualStyleBackColor = True
+        '
+        'RadiusLabel
+        '
+        Me.RadiusLabel.Location = New System.Drawing.Point(133, 137)
+        Me.RadiusLabel.Name = "RadiusLabel"
+        Me.RadiusLabel.Size = New System.Drawing.Size(363, 20)
+        Me.RadiusLabel.TabIndex = 5
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.Location = New System.Drawing.Point(21, 140)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(66, 13)
+        Me.Label27.TabIndex = 4
+        Me.Label27.Text = "RadiusLabel"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(21, 114)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(40, 13)
+        Me.Label26.TabIndex = 3
+        Me.Label26.Text = "Radius"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(21, 88)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(106, 13)
+        Me.Label16.TabIndex = 2
+        Me.Label16.Text = "Placemark for Centre"
+        '
+        'Radius
+        '
+        Me.Radius.Location = New System.Drawing.Point(133, 111)
+        Me.Radius.Name = "Radius"
+        Me.Radius.Size = New System.Drawing.Size(363, 20)
+        Me.Radius.TabIndex = 1
+        '
+        'RadiusCenter
+        '
+        Me.RadiusCenter.AllowDrop = True
+        Me.RadiusCenter.Location = New System.Drawing.Point(133, 85)
+        Me.RadiusCenter.Name = "RadiusCenter"
+        Me.RadiusCenter.Size = New System.Drawing.Size(363, 20)
+        Me.RadiusCenter.TabIndex = 0
+        Me.RadiusCenter.Text = "C:\Google Earth Tour\CentrePlacemark.kml"
+        '
         'OpenFileDialog3
         '
         Me.OpenFileDialog3.FileName = "OpenFileDialog3"
@@ -643,10 +1208,27 @@ Partial Class Form1
         Me.TabPage1.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.GroupBox8.ResumeLayout(False)
+        Me.GroupBox8.PerformLayout()
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -692,22 +1274,71 @@ Partial Class Form1
     Friend WithEvents OpenFileDialog3 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents SpeedMax As System.Windows.Forms.TextBox
     Friend WithEvents SpeedMin As System.Windows.Forms.TextBox
+    Friend WithEvents PMpitchMax As System.Windows.Forms.TextBox
+    Friend WithEvents PMpitchMin As System.Windows.Forms.TextBox
     Friend WithEvents PMrollMax As System.Windows.Forms.TextBox
     Friend WithEvents PMrollMin As System.Windows.Forms.TextBox
-    Friend WithEvents PMtiltMax As System.Windows.Forms.TextBox
-    Friend WithEvents PMtiltMin As System.Windows.Forms.TextBox
-    Friend WithEvents Label18 As System.Windows.Forms.Label
-    Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents PmFolderListBox As System.Windows.Forms.ListBox
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents ListBox2 As System.Windows.Forms.ListBox
+    Friend WithEvents DaeModelListBox As System.Windows.Forms.ListBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents ClearPlacemarks As System.Windows.Forms.Button
     Friend WithEvents ClearModels As System.Windows.Forms.Button
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+    Friend WithEvents CyclicalHeadingOption As System.Windows.Forms.RadioButton
+    Friend WithEvents LinearHeadingOption As System.Windows.Forms.RadioButton
+    Friend WithEvents PitchMagnitude As System.Windows.Forms.TextBox
+    Friend WithEvents PitchPeriod As System.Windows.Forms.TextBox
+    Friend WithEvents CyclicalPitchOption As System.Windows.Forms.RadioButton
+    Friend WithEvents LinearPitchOption As System.Windows.Forms.RadioButton
+    Friend WithEvents Label23 As System.Windows.Forms.Label
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents PitchPhase As System.Windows.Forms.TextBox
+    Friend WithEvents CyclicalRollOption As System.Windows.Forms.RadioButton
+    Friend WithEvents LinearRollOption As System.Windows.Forms.RadioButton
+    Friend WithEvents Label102 As System.Windows.Forms.Label
+    Friend WithEvents Label101 As System.Windows.Forms.Label
+    Friend WithEvents label100 As System.Windows.Forms.Label
+    Friend WithEvents RollPhase As System.Windows.Forms.TextBox
+    Friend WithEvents RollMagnitude As System.Windows.Forms.TextBox
+    Friend WithEvents RollPeriod As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
+    Friend WithEvents TimeIncrement As System.Windows.Forms.TextBox
+    Friend WithEvents Label25 As System.Windows.Forms.Label
+    Friend WithEvents Label24 As System.Windows.Forms.Label
+    Friend WithEvents TimeFactor As System.Windows.Forms.TextBox
+    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents ListBox3 As System.Windows.Forms.ListBox
+    Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
+    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
+    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
+    Friend WithEvents RadioButton5 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton4 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
+    Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
+    Friend WithEvents Radius As System.Windows.Forms.TextBox
+    Friend WithEvents RadiusCenter As System.Windows.Forms.TextBox
+    Friend WithEvents RadiusLabel As System.Windows.Forms.TextBox
+    Friend WithEvents Label27 As System.Windows.Forms.Label
+    Friend WithEvents Label26 As System.Windows.Forms.Label
+    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents CreateRadiusReference As System.Windows.Forms.Button
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents FromXYRadioButton As System.Windows.Forms.RadioButton
+    Friend WithEvents FromLatLonRadioButton As System.Windows.Forms.RadioButton
+    Friend WithEvents ExcelSeriesTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents PmReferenceTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
 
 End Class
