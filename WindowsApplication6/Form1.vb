@@ -37,114 +37,10 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim mystring As String = ""
-        ' Load Placemarks
-
-        NPlacemarks = PmFolderListBox.Items.Count - 1
-
-        Dim LonLatAlt
-        Dim longitudes(10) As Double
-        Dim latitudes(10) As Double
-        Dim altitudes(10) As Double
-
-        For pm = 0 To NPlacemarks
-            LonLatAlt = LoadPlacemarks(PmFolderListBox.Items(pm))
-            longitudes = LonLatAlt(0)
-            latitudes = LonLatAlt(1)
-            altitudes = LonLatAlt(2)
-        Next
-
-        LoadModel()
-
-        ' Write to Excel
-
-        Dim oXL As Excel.Application = Nothing
-        Dim oWBs As Excel.Workbooks = Nothing
-        Dim oWB As Excel.Workbook = Nothing
-        Dim oWB1 As Excel.Workbook = Nothing
-
-        Dim oCells As Excel.Range = Nothing
-        oXL = New Excel.Application
-        oXL.Visible = False
-        oWBs = oXL.Workbooks
-
-        oWB = oWBs.Open("C:\Google Earth Tour\Template2.xlsx")
-        Dim Document As Excel.Worksheet = oWB.Worksheets(1)
-
-        Dim Folder As Excel.Worksheet = oWB.Worksheets(2)
-
-        Dim PlaceMark As Excel.Worksheet = oWB.Worksheets(3)
-        Dim Tour As Excel.Worksheet = oWB.Worksheets(4)
-        Dim FlyTo As Excel.Worksheet = oWB.Worksheets(5)
-
-        oWB1 = oWBs.Open("C:\Google Earth Tour\Template for Track.xlsx")
-
-        Dim PlaceMark1 As Excel.Worksheet = oWB1.Worksheets(1)
-        Dim When1 As Excel.Worksheet = oWB1.Worksheets(2)
-        Dim Coord1 As Excel.Worksheet = oWB1.Worksheets(3)
-
-        'Tour.Range("a1").Value = TourName.Text
-
-        Dim m2 As Date = ns1when.Value
-        Dim m3 As Date = m2
-
-        Dim DistanceArray(10) As Double
-
-        DistanceArray = DistBetweenPlacemarks(latitudes, longitudes)
-        Dim GlobalBearingArray(10) As Double
-
-        GlobalBearingArray = GlobalBearingBetweenPlacemarks(latitudes, longitudes)
-
-        Dim XArray(10) As Double
-        Dim YArray(10) As Double
-
-        XArray = xarrayfromdistbearing(DistanceArray, GlobalBearingArray)
-        YArray = yarrayfromdistbearing(DistanceArray, GlobalBearingArray)
-
-        Dim LocalBearingArray(10) As Double
-
-        LocalBearingArray = LocalBearingBetweenPlacemarks(XArray, YArray)
-
-        Dim SpeedMinText As Double = SpeedMin.Text
-        Dim SpeedMaxText As Double = SpeedMax.Text
-
-        Dim SpeedArray(10) As Double
-
-        For speedindex = 0 To NPlacemarks
-            SpeedArray(speedindex) = SpeedMinText + (SpeedMaxText - SpeedMinText) / NPlacemarks * speedindex
-        Next
-
-        Dim TimeArray(10) As Integer
-
-        TimeArray = TimeArrayfromDistanceArray(DistanceArray, SpeedArray)
-
-        Dim VxArray(10) As Double
-
-        VxArray = VxArrayfromLocalBearingAndSpeed(LocalBearingArray, SpeedArray)
-
-        Dim VyArray(10) As Double
-
-        VyArray = VyArrayfromLocalBearingAndSpeed(LocalBearingArray, SpeedArray)
-
-        Dim AxArray(10) As Double
-
-        AxArray = AArrayfromPositionTimeSpeed(XArray, TimeArray, VxArray)
-
-        Dim BxArray(10) As Double
-
-        BxArray = BArrayfromPositionTimeSpeed(XArray, TimeArray, VxArray)
-
-        Dim AyArray(10) As Double
-
-        AyArray = AArrayfromPositionTimeSpeed(YArray, TimeArray, VyArray)
-
-        Dim ByArray(10) As Double
-
-        ByArray = BArrayfromPositionTimeSpeed(YArray, TimeArray, VyArray)
 
         ' Set view properties
 
         Dim horizFov As String = ns2horizFov.Text
-
         Dim heading As Double = ns1heading.Text
         Dim headingMax As Double = ns1headingMax.Text
         Dim tilt As Double = ns1tilt.Text
@@ -156,28 +52,156 @@ Public Class Form1
 
         Dim PMheading As Double = SpeedMin.Text
         Dim PMheadingMax1 As Double = SpeedMax.Text
-
         Dim PMtilt As Double = PMrollMin.Text
         Dim PMtiltMax1 As Double = PMrollMax.Text
-
         Dim PMroll As Double = PMpitchMin.Text
         Dim PMrollMax1 As Double = PMpitchMax.Text
-
         Dim altitudeMode As String = ns2altitudeMode.Text
         Dim duration As Double = ns2duration.Text 'this is a percentage of the total length of tour, to the total duration.
         Dim flyToMode As String = ns2flyToMode.Text
-        Dim j As Integer
-        j = 0
 
-        Dim xPosition As Double = 0
-        Dim yPosition As Double = 0
+        ' Load Placemarks
+
+        Dim LonLatAlt
+        Dim longitudes(10) As Double
+        Dim latitudes(10) As Double
+        Dim altitudes(10) As Double
+
+        If FromLatLonRadioButton.Checked = True Then
+            LonLatAlt = LoadPlacemarks(PmFolderListBox.Items(0))
+        Else
+            LonLatAlt = LoadPlacemarks(PmReferenceTextBox.Text)
+        End If
+
+        longitudes = LonLatAlt(0)
+        latitudes = LonLatAlt(1)
+        altitudes = LonLatAlt(2)
+
+        LoadModel()
+
+        ' Write to Excel
+
+        Dim oXL As Excel.Application = Nothing
+        Dim oWBs As Excel.Workbooks = Nothing
+        Dim oWB As Excel.Workbook = Nothing
+        Dim oWB1 As Excel.Workbook = Nothing
+        Dim oWB2 As Excel.Workbook = Nothing
+        Dim oWB3 As Excel.Workbook = Nothing
+
+        oXL = New Excel.Application
+        oXL.Visible = False
+        oWBs = oXL.Workbooks
+
+        oWB = oWBs.Open("C:\Google Earth Tour\Template of Model.xlsx")
+        Dim Document As Excel.Worksheet = oWB.Worksheets(1)
+
+        Dim Folder As Excel.Worksheet = oWB.Worksheets(2)
+
+        Dim PlaceMark As Excel.Worksheet = oWB.Worksheets(3)
+        Dim Tour As Excel.Worksheet = oWB.Worksheets(4)
+        Dim FlyTo As Excel.Worksheet = oWB.Worksheets(5)
+
+        oWB1 = oWBs.Open("C:\Google Earth Tour\Template for Track.xlsx")
+
+        oWB3 = oWBs.Open("C:\Google Earth Tour\Template for Placemark Data.xlsx")
+
+        Dim PlaceMark1 As Excel.Worksheet = oWB1.Worksheets(1)
+        Dim When1 As Excel.Worksheet = oWB1.Worksheets(2)
+        Dim Coord1 As Excel.Worksheet = oWB1.Worksheets(3)
+
+        Dim Sheet1 As Excel.Worksheet
+
+        Dim PMDataHeader As Excel.Worksheet = oWB3.Worksheets(1)
+        Dim PMDataTable As Excel.Worksheet = oWB3.Worksheets(2)
+
+        Dim m2 As Date = ns1when.Value
+        Dim m3 As Date = m2
+
+        Dim DistanceArray(10) As Double
+        Dim GlobalBearingArray(10) As Double
+        Dim XArray(10) As Double
+        Dim YArray(10) As Double
+        Dim LocalBearingArray(10) As Double
+        Dim OrientationArray(10) As Double
+        Dim SpeedMinText As Double = SpeedMin.Text
+        Dim SpeedMaxText As Double = SpeedMax.Text
+        Dim SpeedArray(10) As Double
+        Dim TimeArray(10) As Integer
+        Dim VxArray(10) As Double
+        Dim VyArray(10) As Double
+        Dim AxArray(10) As Double
+        Dim BxArray(10) As Double
+        Dim AyArray(10) As Double
+        Dim ByArray(10) As Double
+        Dim j As Integer = 0
+        Dim xPosition As Double
+        Dim yPosition As Double
         Dim DistanceBetweenXY As Double = 0
         Dim BearingBetweenXY As Double = 0
+        Dim OutputLatDeg As Double
+        Dim OutputLongDeg As Double
 
-        Dim OutputLatDeg As Double = latitudes(0) * 180 / pi
-        Dim OutputLongDeg As Double = longitudes(0) * 180 / pi
+        If FromLatLonRadioButton.Checked = True Then
+            For speedindex = 0 To NPlacemarks
+                SpeedArray(speedindex) = SpeedMinText + (SpeedMaxText - SpeedMinText) / NPlacemarks * speedindex
+            Next
+            DistanceArray = DistBetweenPlacemarks(latitudes, longitudes)
+            GlobalBearingArray = GlobalBearingBetweenPlacemarks(latitudes, longitudes)
+            XArray = xarrayfromdistbearing(DistanceArray, GlobalBearingArray)
+            YArray = yarrayfromdistbearing(DistanceArray, GlobalBearingArray)
+            LocalBearingArray = LocalBearingBetweenPlacemarks(XArray, YArray)
+            OutputLatDeg = latitudes(0) * 180 / pi
+            OutputLongDeg = longitudes(0) * 180 / pi
+            xPosition = 0
+            yPosition = 0
+        Else
+            oWB2 = oWBs.Open(ExcelSeriesTextBox.Text)
 
-        'Dim RowCount1
+            Sheet1 = oWB2.Worksheets(1)
+            NPlacemarks = 10
+            XArray(0) = Sheet1.Range("a2").Offset(0, 0).Value
+            YArray(0) = Sheet1.Range("b2").Offset(0, 0).Value
+            For n = 1 To NPlacemarks
+                For speedindex = 0 To NPlacemarks
+                    SpeedArray(speedindex) = SpeedMinText + (SpeedMaxText - SpeedMinText) / NPlacemarks * speedindex
+                Next
+                XArray(n) = Sheet1.Range("a2").Offset(n, 0).Value ' xarrayfromdistbearing(DistanceArray, GlobalBearingArray)
+                YArray(n) = Sheet1.Range("b2").Offset(n, 0).Value
+                DistanceArray(n) = ((XArray(n) - XArray(0)) ^ 2 + (YArray(n) - YArray(0)) ^ 2) ^ 0.5
+                GlobalBearingArray(n) = Math.Atan2(YArray(n) - YArray(0), XArray(n) - XArray(0))
+                LocalBearingArray(n) = Math.Atan2(YArray(n) - YArray(n - 1), XArray(n) - XArray(n - 1))
+
+            Next
+
+            xPosition = XArray(0)
+            xPosition = YArray(0)
+
+            DistanceBetweenXY = (XArray(0) ^ 2 + YArray(0) ^ 2) ^ 0.5
+            BearingBetweenXY = Math.Atan2(yPosition, xPosition) - 90 * pi / 180
+
+            'MsgBox(DistanceBetweenXY & " " & BearingBetweenXY)
+
+            OutputLatDeg = (Math.Asin(Math.Sin(latitudes(0)) * Math.Cos(DistanceBetweenXY / 1000 / 6378.1) + Math.Cos(latitudes(0)) * Math.Sin(DistanceBetweenXY / 1000 / 6378.1) * Math.Cos(BearingBetweenXY))) * 180 / pi
+            OutputLongDeg = (longitudes(0) + Math.Atan2(Math.Cos(DistanceBetweenXY / EarthRadius) - Math.Sin(latitudes(0)) * Math.Sin(OutputLatDeg * pi / 180), Math.Sin(BearingBetweenXY) * Math.Sin(DistanceBetweenXY / EarthRadius) * Math.Cos(latitudes(0)))) * 180 / pi - 90
+
+            oWB2.Close(False)
+        End If
+
+        For p = 0 To LocalBearingArray.Length - 2
+            OrientationArray(p) = LocalBearingArray(p) / 2 + LocalBearingArray(p + 1) / 2
+        Next
+
+        OrientationArray(0) = LocalBearingArray(1)
+
+        OrientationArray(NPlacemarks) = LocalBearingArray(NPlacemarks)
+
+        TimeArray = TimeArrayfromDistanceArray(DistanceArray, SpeedArray)
+        VxArray = VxArrayfromLocalBearingAndSpeed(OrientationArray, SpeedArray)
+        VyArray = VyArrayfromLocalBearingAndSpeed(OrientationArray, SpeedArray)
+        AxArray = AArrayfromPositionTimeSpeed(XArray, TimeArray, VxArray)
+        BxArray = BArrayfromPositionTimeSpeed(XArray, TimeArray, VxArray)
+        AyArray = AArrayfromPositionTimeSpeed(YArray, TimeArray, VyArray)
+        ByArray = BArrayfromPositionTimeSpeed(YArray, TimeArray, VyArray)
 
         Dim ModelX As Double
         Dim ModelY As Double
@@ -185,6 +209,7 @@ Public Class Form1
 
         Dim OutputLatDegPrevious As Double
         Dim OutputLongDegPrevious As Double
+        'Dim ModelBearingPrevious As Double
 
         ProgressBar1.Minimum = 0
         ProgressBar1.Maximum = TimeArray(NPlacemarks)
@@ -195,6 +220,12 @@ Public Class Form1
         Dim i As Double = 0
         Dim index As Integer = 0
         Dim TimeIncrementText As Integer = TimeIncrement.Text
+
+        Dim HeadingString As String
+        Dim SpeedString As String
+        Dim HeelString As String
+        Dim TrimString As String
+        Dim DraftString As String
 
         For h = 1 To NPlacemarks
 
@@ -235,16 +266,25 @@ Public Class Form1
                 FlyTo.Range("l2").Offset(index, 0).Value = flyToMode
 
 
+
                 'Set the model
 
                 PlaceMark.Range("b2").Offset(index, 0).Value = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
+
+                PMDataTable.Range("f2").Offset(index, 0).Value = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
+
+
                 m3 = CDate(Date.FromOADate(CDbl(m3.ToOADate()) + TimeIncrementText / 60 / 60 / 24))
+
                 PlaceMark.Range("c2").Offset(index, 0).Value = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
+                PMDataTable.Range("g2").Offset(index, 0).Value = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
+
                 PlaceMark.Range("e2").Offset(index, 0).Value = altitudeMode
                 PlaceMark.Range("f2").Offset(index, 0).Value = OutputLongDeg 'longitude + (longitudeMax - longitude) / RowCount1 * i
                 PlaceMark.Range("g2").Offset(index, 0).Value = OutputLatDeg 'latitude + (latitudeMax - latitude) / RowCount1 * i
                 PlaceMark.Range("h2").Offset(index, 0).Value = altitudes(0) '+ (altitudeMax - altitude) / RowCount1 * i
 
+                PMDataTable.Range("j2").Offset(index, 0).Value = OutputLongDeg & "," & OutputLatDeg & "," & altitudes(0)
 
                 ModelY = Math.Sin((OutputLongDeg - OutputLongDegPrevious) * pi / 180) * Math.Cos(OutputLatDeg * pi / 180)
                 ModelX = Math.Cos(OutputLatDegPrevious * pi / 180) * Math.Sin(OutputLatDeg * pi / 180) - Math.Sin(OutputLatDegPrevious * pi / 180) * Math.Cos(OutputLatDeg * pi / 180) * Math.Cos((OutputLongDeg - OutputLongDegPrevious) * pi / 180)
@@ -252,22 +292,36 @@ Public Class Form1
 
                 PlaceMark.Range("i2").Offset(index, 0).Value = ModelBearing 'PMheading '+ (PMheadingMax1 - PMheading) / RowCount1 * i
 
-
                 If LinearRollOption.Checked = True Then
                     PlaceMark.Range("j2").Offset(index, 0).Value = PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
+                    TrimString = "Trim: " & Math.Round(PlaceMark.Range("j2").Offset(index, 0).Value, 1) & "°; "
                 Else
                     PlaceMark.Range("j2").Offset(index, 0).Value = RollMagnitude.Text * Math.Sin(2 * pi / RollPeriod.Text * i + RollPhase.Text * pi / 180)
+                    TrimString = "Trim: " & Math.Round(PlaceMark.Range("j2").Offset(index, 0).Value, 1) & "°; "
                 End If
 
 
                 If LinearPitchOption.Checked = True Then
                     PlaceMark.Range("k2").Offset(index, 0).Value = PMroll + (PMrollMax1 - PMroll) / TimeArray(NPlacemarks) * i
+                    HeelString = "Heel: " & Math.Round(PlaceMark.Range("k2").Offset(index, 0).Value, 1) & "°; "
                 Else
                     PlaceMark.Range("k2").Offset(index, 0).Value = PitchMagnitude.Text * Math.Sin(2 * pi / PitchPeriod.Text * i + PitchPhase.Text * pi / 180)
+                    HeelString = "Heel: " & Math.Round(PlaceMark.Range("k2").Offset(index, 0).Value, 1) & "°; "
                 End If
 
                 PlaceMark.Range("o2").Offset(index, 0).Value = DaeName(j)
                 If j = DaeNameSteps Then j = 0 Else j = j + 1
+
+                HeadingString = "Heading: " & Math.Round(ModelBearing + 90, 1) & "°; "
+                SpeedString = "Speed: " & Math.Round(DistanceBetweenXY / TimeIncrementText, 1) & "m/s; "
+                DraftString = "Draft: " & Math.Round(altitudes(0), 1) & "m ; "
+
+
+
+
+                PMDataTable.Range("b2").Offset(index, 0).Value = HeadingString & SpeedString & DraftString & TrimString & HeelString
+
+                PMDataTable.Range("h2").Offset(index, 0).Value = "#Style_5"
 
                 i = i + TimeIncrementText
                 index = index + 1
@@ -279,8 +333,8 @@ Public Class Form1
 
         'Dim MyPath As String = "C:\Resource Documents\Resources\Simulation\Google Earth Animation\"
         Dim MyPath As String = "C:\Google Earth Tour\"
-        Dim MyFile As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & ".xml"
-        Dim NewName As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & ".kml"
+        Dim MyFile As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "model.xml"
+        Dim NewName As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "model.kml"
 
         Dim zz As Excel.XmlMap = oWB.XmlMaps("kml_Map")
 
@@ -310,6 +364,24 @@ Public Class Form1
         Else
             MsgBox("File not found")
         End If
+
+
+        Dim MyFile2 As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "data.xml"
+        Dim NewName2 As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "data.kml"
+
+        Dim xx As Excel.XmlMap = oWB3.XmlMaps("kml_Map")
+
+        oWB3.SaveAsXMLData(MyPath & MyFile2, xx)
+
+        oWB3.Close(False)
+
+        If Dir(MyPath & MyFile2) <> "" Then
+            My.Computer.FileSystem.RenameFile(MyPath & MyFile2, NewName2)
+            'Name MyPath & MyFile As MyPath & NewName
+        Else
+            MsgBox("File not found")
+        End If
+
 
         ProgressBar1.Value = ProgressBar1.Minimum
 
@@ -457,10 +529,10 @@ Public Class Form1
                 coordinates(pm) = (XPlaceMark(0).Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(pm).Elements(k + "Point").Elements(k + "coordinates").FirstOrDefault)
                 'MsgBox(coordinates(pm))
             Next
-            'Else
-            '    For pm = 0 To NPlacemarks
-            '        coordinates(pm) = (XPlaceMark(pm).Elements(k + "Document").Elements(k + "Placemark").Elements(k + "Point").Elements(k + "coordinates").FirstOrDefault)
-            '    Next
+        Else
+            NPlacemarks = 0
+            coordinates(0) = (XPlaceMark(0).Elements(k + "Document").Elements(k + "Placemark").Elements(k + "Point").Elements(k + "coordinates").FirstOrDefault)
+
         End If
 
         Dim firstcomma(10) As Integer

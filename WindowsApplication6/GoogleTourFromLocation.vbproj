@@ -155,6 +155,10 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="Template for Placemark Data.xlsx" />
+    <None Include="Template for Radius.xlsx" />
+    <None Include="Template of Model.xlsx" />
+    <None Include="XYCoord.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
