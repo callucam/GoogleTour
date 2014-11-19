@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ns1:Document>
+		<ns1:name>Data</ns1:name>
+		<ns1:Style id="Style_5">
+			<ns1:IconStyle>
+				<ns1:scale>0.4</ns1:scale>
+				<ns1:Icon>
+					<ns1:href>http://maps.google.com/mapfiles/kml/shapes/star.png</ns1:href>
+				</ns1:Icon>
+			</ns1:IconStyle>
+			<ns1:LabelStyle>
+				<ns1:color>9900ffff</ns1:color>
+			</ns1:LabelStyle>
+			<ns1:LineStyle>
+				<ns1:color>990000ff</ns1:color>
+				<ns1:width>2</ns1:width>
+			</ns1:LineStyle>
+			<ns1:PolyStyle>
+				<ns1:color>997f7fff</ns1:color>
+			</ns1:PolyStyle>
+		</ns1:Style>
+		<ns1:Folder>
+			<ns1:name>Folder</ns1:name>
+			<ns1:open>0</ns1:open>
+			<ns1:Placemark id="pm267">
+				<ns1:name>Canada</ns1:name>
+				<ns1:Snippet maxLines="0">empty</ns1:Snippet>
+				<ns1:description>hello</ns1:description>
+				<ns1:TimeSpan>
+					<ns1:begin>1867</ns1:begin>
+					<ns1:end>1870</ns1:end>
+				</ns1:TimeSpan>
+				<ns1:styleUrl>#Style_5</ns1:styleUrl>
+				<ns1:Point>
+					<ns2:drawOrder>1</ns2:drawOrder>
+					<ns1:coordinates>-123.3732959386146,49.42239575237469,0</ns1:coordinates>
+				</ns1:Point>
+			</ns1:Placemark>
+			<ns1:Placemark>
+				<ns1:TimeSpan/>
+				<ns1:Point/>
+			</ns1:Placemark>
+		</ns1:Folder>
+	</ns1:Document>
+</ns1:kml>
