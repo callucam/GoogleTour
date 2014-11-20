@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ns1:Document>
+	
+	<ns1:name>Track.kml</ns1:name>
+	
+	<ns1:StyleMap id="failed">
+
+		<ns1:Pair><ns1:key>normal</ns1:key>
+<ns1:styleUrl>#failed1</ns1:styleUrl></ns1:Pair>
+		<ns1:Pair>
+<ns1:key>highlight</ns1:key>
+<ns1:styleUrl>#failed0</ns1:styleUrl>
+</ns1:Pair>
+
+	</ns1:StyleMap>
+	
+	<ns1:Style id="failed0">
+<ns1:IconStyle>
+	<ns1:Icon>
+</ns1:Icon>
+</ns1:IconStyle>
+<ns1:ListStyle>
+</ns1:ListStyle>
+</ns1:Style>
+	
+	<ns1:Style id="failed1">
+<ns1:IconStyle>
+	<ns1:Icon>
+</ns1:Icon>
+</ns1:IconStyle><ns1:ListStyle>
+</ns1:ListStyle>
+</ns1:Style>
+
 	<ns1:Placemark>
 		<ns1:name>Track</ns1:name>
 		<ns1:styleUrl>#msn_red-circle</ns1:styleUrl>
 		<ns2:balloonVisibility>1</ns2:balloonVisibility>
 		<ns2:Track>
-			<ns1:when>2012-12-07T07:31:44Z</ns1:when>
-			<ns1:when>1900-01-03T00:00:00.000</ns1:when>
-			<ns2:coord>-123.146537523118 48.9928508189925 0</ns2:coord>
-			<ns2:coord>-123.146537523118 48.9928508189925 0</ns2:coord>
+			<ns1:when></ns1:when>
+			<ns2:coord></ns2:coord>
 		</ns2:Track>
 	</ns1:Placemark>
+</ns1:Document>
 </ns1:kml>

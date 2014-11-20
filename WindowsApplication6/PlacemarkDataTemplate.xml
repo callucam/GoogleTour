@@ -28,13 +28,13 @@
 				<ns1:Snippet maxLines="0">empty</ns1:Snippet>
 				<ns1:description>hello</ns1:description>
 				<ns1:TimeSpan>
-					<ns1:begin>1867</ns1:begin>
-					<ns1:end>1870</ns1:end>
+					<ns1:begin></ns1:begin>
+					<ns1:end></ns1:end>
 				</ns1:TimeSpan>
 				<ns1:styleUrl>#Style_5</ns1:styleUrl>
 				<ns1:Point>
 					<ns2:drawOrder>1</ns2:drawOrder>
-					<ns1:coordinates>-123.3732959386146,49.42239575237469,0</ns1:coordinates>
+					<ns1:coordinates></ns1:coordinates>
 				</ns1:Point>
 			</ns1:Placemark>
 			<ns1:Placemark>

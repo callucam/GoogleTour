@@ -28,7 +28,6 @@ Public Class Form1
     Dim XPlacemark_Data As XElement = XElement.Load("C:\Google Earth Tour\PlacemarkDataTemplate.xml")
     Dim XAnimateModel As XElement = XElement.Load("C:\Google Earth Tour\AnimateModelTemplate.xml")
     Dim XTrack As XElement = XElement.Load("C:\Google Earth Tour\TrackTemplate.xml")
-    'Dim XModel As XElement
     Dim DaeName(8) As String
     Dim DaeNameSteps As Integer
     Dim pi = 3.14159265358979
@@ -84,37 +83,16 @@ Public Class Form1
         ' Write to Excel
 
         Dim oXL As Excel.Application = Nothing
+        oXL = New Excel.Application
+        oXL.Visible = True
+
         Dim oWBs As Excel.Workbooks = Nothing
-        'Dim oWB As Excel.Workbook = Nothing
-        'Dim oWB1 As Excel.Workbook = Nothing
+
+        oWBs = oXL.Workbooks
+
         Dim oWB2 As Excel.Workbook = Nothing
-        'Dim oWB3 As Excel.Workbook = Nothing
-
-        'oXL = New Excel.Application
-        'oXL.Visible = False
-        'oWBs = oXL.Workbooks
-
-        'oWB = oWBs.Open("C:\Google Earth Tour\Template of Model.xlsx")
-        'Dim Document As Excel.Worksheet = oWB.Worksheets(1)
-
-        'Dim Folder As Excel.Worksheet = oWB.Worksheets(2)
-
-        'Dim PlaceMark As Excel.Worksheet = oWB.Worksheets(3)
-        'Dim Tour As Excel.Worksheet = oWB.Worksheets(4)
-        'Dim FlyTo As Excel.Worksheet = oWB.Worksheets(5)
-
-        'oWB1 = oWBs.Open("C:\Google Earth Tour\Template for Track.xlsx")
-
-        ''oWB3 = oWBs.Open("C:\Google Earth Tour\Template for Placemark Data.xlsx")
-
-        'Dim PlaceMark1 As Excel.Worksheet = oWB1.Worksheets(1)
-        'Dim When1 As Excel.Worksheet = oWB1.Worksheets(2)
-        'Dim Coord1 As Excel.Worksheet = oWB1.Worksheets(3)
 
         Dim Sheet1 As Excel.Worksheet
-
-        ''Dim PMDataHeader As Excel.Worksheet = oWB3.Worksheets(1)
-        ''Dim PMDataTable As Excel.Worksheet = oWB3.Worksheets(2)
 
         Dim m2 As Date = ns1when.Value
         Dim m3 As Date = m2
@@ -181,8 +159,6 @@ Public Class Form1
             DistanceBetweenXY = (XArray(0) ^ 2 + YArray(0) ^ 2) ^ 0.5
             BearingBetweenXY = Math.Atan2(yPosition, xPosition) - 90 * pi / 180
 
-            'MsgBox(DistanceBetweenXY & " " & BearingBetweenXY)
-
             OutputLatDeg = (Math.Asin(Math.Sin(latitudes(0)) * Math.Cos(DistanceBetweenXY / 1000 / 6378.1) + Math.Cos(latitudes(0)) * Math.Sin(DistanceBetweenXY / 1000 / 6378.1) * Math.Cos(BearingBetweenXY))) * 180 / pi
             OutputLongDeg = (longitudes(0) + Math.Atan2(Math.Cos(DistanceBetweenXY / EarthRadius) - Math.Sin(latitudes(0)) * Math.Sin(OutputLatDeg * pi / 180), Math.Sin(BearingBetweenXY) * Math.Sin(DistanceBetweenXY / EarthRadius) * Math.Cos(latitudes(0)))) * 180 / pi - 90
 
@@ -238,6 +214,10 @@ Public Class Form1
         Dim TiltString As String
         Dim RangeString As String
 
+        Dim TrimData As Double
+        Dim HeelData As Double
+        Dim SpeedData As Double
+
 
         For h = 1 To NPlacemarks
 
@@ -256,30 +236,9 @@ Public Class Form1
 
                 'Set the view
 
-
-                'FlyTo.Range("a2").Offset(index, 0).Value = altitudeMode
-                'FlyTo.Range("b2").Offset(index, 0).Value = horizFov
-
                 BeginTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
                 
-                'FlyTo.Range("c2").Offset(index, 0).Value = BeginTime
-                'FlyTo.Range("d2").Offset(index, 0).Value = BeginTime
-
-                'When1.Range("a2").Offset(index, 0).Value = BeginTime
-
-                'FlyTo.Range("e2").Offset(index, 0).Value = OutputLongDeg 'longitude + (longitudeMax - longitude) / RowCount1 * i
-                'FlyTo.Range("f2").Offset(index, 0).Value = OutputLatDeg 'latitude + (latitudeMax - latitude) / RowCount1 * i
-                'FlyTo.Range("g2").Offset(index, 0).Value = altitudes(0) '+ (altitudeMax - altitude) / RowCount1 * i
-
                 CoordinateString = OutputLongDeg & " " & OutputLatDeg & " " & altitudes(0)
-
-                'Coord1.Range("a2").Offset(index, 0).Value = CoordinateString
-
-                'If LinearHeadingOption.Checked = True Then
-                '    FlyTo.Range("h2").Offset(index, 0).Value = heading + (headingMax - heading) / TimeArray(NPlacemarks) * i
-                'Else
-                '    FlyTo.Range("h2").Offset(index, 0).Value = i Mod 360
-                'End If
 
                 If LinearHeadingOption.Checked = True Then
                     OrientationString = heading + (headingMax - heading) / TimeArray(NPlacemarks) * i
@@ -290,74 +249,48 @@ Public Class Form1
                 TiltString = tilt + (tiltMax - tilt) / TimeArray(NPlacemarks) * i
                 RangeString = range + (rangeMax - range) / TimeArray(NPlacemarks) * i
 
-                'FlyTo.Range("i2").Offset(index, 0).Value = TiltString
-                'FlyTo.Range("j2").Offset(index, 0).Value = RangeString
-                'FlyTo.Range("k2").Offset(index, 0).Value = duration
-                'FlyTo.Range("l2").Offset(index, 0).Value = flyToMode
-
                 'Set the model
-
-                'PlaceMark.Range("b2").Offset(index, 0).Value = BeginTime
-                'PMDataTable.Range("f2").Offset(index, 0).Value = BeginTime
 
                 m3 = CDate(Date.FromOADate(CDbl(m3.ToOADate()) + TimeIncrementText / 60 / 60 / 24))
 
                 EndTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
 
-                'PlaceMark.Range("c2").Offset(index, 0).Value = EndTime
-                'PMDataTable.Range("g2").Offset(index, 0).Value = EndTime
-
-                'XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark").Elements(k + "end")(index).Value = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
-
-                'PlaceMark.Range("e2").Offset(index, 0).Value = altitudeMode
-                'PlaceMark.Range("f2").Offset(index, 0).Value = OutputLongDeg 'longitude + (longitudeMax - longitude) / RowCount1 * i
-                'PlaceMark.Range("g2").Offset(index, 0).Value = OutputLatDeg 'latitude + (latitudeMax - latitude) / RowCount1 * i
-                'PlaceMark.Range("h2").Offset(index, 0).Value = altitudes(0) '+ (altitudeMax - altitude) / RowCount1 * i
-
-
-
                 OutputString = OutputLongDeg & "," & OutputLatDeg & "," & altitudes(0)
-
-                'PMDataTable.Range("j2").Offset(index, 0).Value = OutputString
 
                 ModelY = Math.Sin((OutputLongDeg - OutputLongDegPrevious) * pi / 180) * Math.Cos(OutputLatDeg * pi / 180)
                 ModelX = Math.Cos(OutputLatDegPrevious * pi / 180) * Math.Sin(OutputLatDeg * pi / 180) - Math.Sin(OutputLatDegPrevious * pi / 180) * Math.Cos(OutputLatDeg * pi / 180) * Math.Cos((OutputLongDeg - OutputLongDegPrevious) * pi / 180)
                 ModelBearing = Math.Atan2(ModelY, ModelX) * 180 / pi - 90
 
-                'PlaceMark.Range("i2").Offset(index, 0).Value = ModelBearing 'PMheading '+ (PMheadingMax1 - PMheading) / RowCount1 * i
+                If LinearRollOption.Checked = True Then
+                    TrimData = PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
+                Else
+                    TrimData = RollMagnitude.Text * Math.Sin(2 * pi / RollPeriod.Text * i + RollPhase.Text * pi / 180)
+                End If
 
-                'If LinearRollOption.Checked = True Then
-                '    PlaceMark.Range("j2").Offset(index, 0).Value = PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
-                '    TrimString = "Trim: " & Math.Round(PlaceMark.Range("j2").Offset(index, 0).Value, 1) & "°; "
-                'Else
-                '    PlaceMark.Range("j2").Offset(index, 0).Value = RollMagnitude.Text * Math.Sin(2 * pi / RollPeriod.Text * i + RollPhase.Text * pi / 180)
-                '    TrimString = "Trim: " & Math.Round(PlaceMark.Range("j2").Offset(index, 0).Value, 1) & "°; "
-                'End If
+                TrimString = "Trim: " & Math.Round(TrimData, 1) & "°; "
 
+                If LinearPitchOption.Checked = True Then
+                    HeelData = PMroll + (PMrollMax1 - PMroll) / TimeArray(NPlacemarks) * i
 
-                'If LinearPitchOption.Checked = True Then
-                '    PlaceMark.Range("k2").Offset(index, 0).Value = PMroll + (PMrollMax1 - PMroll) / TimeArray(NPlacemarks) * i
-                '    HeelString = "Heel: " & Math.Round(PlaceMark.Range("k2").Offset(index, 0).Value, 1) & "°; "
-                'Else
-                '    PlaceMark.Range("k2").Offset(index, 0).Value = PitchMagnitude.Text * Math.Sin(2 * pi / PitchPeriod.Text * i + PitchPhase.Text * pi / 180)
-                '    HeelString = "Heel: " & Math.Round(PlaceMark.Range("k2").Offset(index, 0).Value, 1) & "°; "
-                'End If
+                Else
+                    HeelData = PitchMagnitude.Text * Math.Sin(2 * pi / PitchPeriod.Text * i + PitchPhase.Text * pi / 180)
+                End If
 
-                'PlaceMark.Range("o2").Offset(index, 0).Value = DaeName(j)
+                HeelString = "Heel: " & Math.Round(HeelData, 1) & "°; "
+
                 If j = DaeNameSteps Then j = 0 Else j = j + 1
 
+                'MsgBox((ModelX ^ 2 + ModelY ^ 2) ^ 0.5)
+
                 HeadingString = "Heading: " & Math.Round(ModelBearing + 90, 1) & "°; "
-                SpeedString = "Speed: " & Math.Round(DistanceBetweenXY / TimeIncrementText, 1) & "m/s; "
+
+                SpeedData = Math.Acos(Math.Sin(OutputLatDegPrevious * pi / 180) * Math.Sin(OutputLatDeg * pi / 180) + Math.Cos(OutputLatDegPrevious * pi / 180) * Math.Cos(OutputLatDeg * pi / 180) * Math.Cos(OutputLongDeg * pi / 180 - OutputLongDegPrevious * pi / 180)) * EarthRadius
+
+                SpeedString = "Speed: " & Math.Round(SpeedData / TimeIncrementText, 1) & "m/s; "
                 DraftString = "Draft: " & Math.Round(altitudes(0), 1) & "m ; "
 
-                'PMDataTable.Range("b2").Offset(index, 0).Value = HeadingString & SpeedString & DraftString & TrimString & HeelString
-                'PMDataTable.Range("h2").Offset(index, 0).Value = "#Style_5"
-                'XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark").Elements(k + "styleUrl")(index).Value = "#Style_5"
-
-                'HeadingString & SpeedString & DraftString & TrimString & HeelString
-
-                AddToPlacemarkData(HeadingString & SpeedString & DraftString, BeginTime, EndTime, OutputString, index)
-                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), index)
+                AddToPlacemarkData(HeadingString & SpeedString & DraftString & TrimString & HeelString, BeginTime, EndTime, OutputString, index)
+                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), TrimData, HeelData, index)
                 AddToTrack(BeginTime, CoordinateString, index)
 
                 i = i + TimeIncrementText
@@ -369,61 +302,6 @@ Public Class Form1
         XPlacemark_Data.Save("C:\Google Earth Tour\PlacemarkData" & Hour(Now) & Minute(Now) & Second(Now) & ".kml")
         XTrack.Save("C:\Google Earth Tour\Track" & Hour(Now) & Minute(Now) & Second(Now) & ".kml")
         XAnimateModel.Save("C:\Google Earth Tour\Model" & Hour(Now) & Minute(Now) & Second(Now) & ".kml")
-
-
-        'Next
-
-        ''Dim MyPath As String = "C:\Resource Documents\Resources\Simulation\Google Earth Animation\"
-        'Dim MyPath As String = "C:\Google Earth Tour\"
-        'Dim MyFile As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "model.xml"
-        'Dim NewName As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "model.kml"
-
-        'Dim zz As Excel.XmlMap = oWB.XmlMaps("kml_Map")
-
-        'oWB.SaveAsXMLData(MyPath & MyFile, zz)
-
-        'oWB.Close(False)
-
-        'If Dir(MyPath & MyFile) <> "" Then
-        '    My.Computer.FileSystem.RenameFile(MyPath & MyFile, NewName)
-        '    'Name MyPath & MyFile As MyPath & NewName
-        'Else
-        '    MsgBox("File not found")
-        'End If
-
-        'Dim MyFile1 As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "track.xml"
-        'Dim NewName1 As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "track.kml"
-
-        'Dim yy As Excel.XmlMap = oWB1.XmlMaps("kml_Map")
-
-        'oWB1.SaveAsXMLData(MyPath & MyFile1, yy)
-
-        'oWB1.Close(False)
-
-        'If Dir(MyPath & MyFile1) <> "" Then
-        '    My.Computer.FileSystem.RenameFile(MyPath & MyFile1, NewName1)
-        '    'Name MyPath & MyFile As MyPath & NewName
-        'Else
-        '    MsgBox("File not found")
-        'End If
-
-
-        'Dim MyFile2 As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "data.xml"
-        'Dim NewName2 As String = TourName.Text & " " & Year(m2) & Format(Month(m2), "00") & Format(Day(m2), "00") & " " & Format(Hour(m2), "00") & Format(Minute(m2), "00") & Format(Second(m2), "00") & "data.kml"
-
-        'Dim xx As Excel.XmlMap = oWB3.XmlMaps("kml_Map")
-
-        'oWB3.SaveAsXMLData(MyPath & MyFile2, xx)
-
-        'oWB3.Close(False)
-
-        'If Dir(MyPath & MyFile2) <> "" Then
-        '    My.Computer.FileSystem.RenameFile(MyPath & MyFile2, NewName2)
-        '    'Name MyPath & MyFile As MyPath & NewName
-        'Else
-        '    MsgBox("File not found")
-        'End If
-
 
         ProgressBar1.Value = ProgressBar1.Minimum
 
@@ -774,10 +652,15 @@ Public Class Form1
                    </ns1:Point>
                </ns1:Placemark>
 
-        XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index).AddAfterSelf(xAdd)
+        If index = 0 Then
+            XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index).ReplaceWith(xAdd)
+        Else
+            XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index - 1).AddAfterSelf(xAdd)
+        End If
+
     End Sub
 
-    Private Sub AddToAnimateModel(altitudeMode As String, horizFov As String, BeginTime As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, duration As Double, flyToMode As String, EndTime As String, ModelBearing As Double, DaeName As String, index As Integer)
+    Private Sub AddToAnimateModel(altitudeMode As String, horizFov As String, BeginTime As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, duration As Double, flyToMode As String, EndTime As String, ModelBearing As Double, DaeName As String, TrimData As Double, HeelData As Double, index As Integer)
         Dim xPlacemarkTable As XElement
         Dim xFlytoTable As XElement
 
@@ -816,8 +699,8 @@ Public Class Form1
                                       </ns1:Location>
                                       <ns1:Orientation>
                                           <ns1:heading><%= ModelBearing %></ns1:heading>
-                                          <ns1:tilt>0</ns1:tilt>
-                                          <ns1:roll>0</ns1:roll>
+                                          <ns1:tilt><%= TrimData %></ns1:tilt>
+                                          <ns1:roll><%= HeelData %></ns1:roll>
                                       </ns1:Orientation>
                                       <ns1:Scale>
                                           <ns1:x>1</ns1:x>
@@ -831,18 +714,35 @@ Public Class Form1
                               </ns1:MultiGeometry>
                           </ns1:Placemark>
 
-        XAnimateModel.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index).AddAfterSelf(xPlacemarkTable)
-        XAnimateModel.Elements(k + "Document").Elements(kk + "Tour").Elements(kk + "Playlist").Elements(kk + "FlyTo")(index).AddAfterSelf(xFlytoTable)
+        If index = 0 Then
+            XAnimateModel.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index).ReplaceWith(xPlacemarkTable)
+            XAnimateModel.Elements(k + "Document").Elements(kk + "Tour").Elements(kk + "Playlist").Elements(kk + "FlyTo")(index).ReplaceWith(xFlytoTable)
+
+        Else
+            XAnimateModel.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index - 1).AddAfterSelf(xPlacemarkTable)
+            XAnimateModel.Elements(k + "Document").Elements(kk + "Tour").Elements(kk + "Playlist").Elements(kk + "FlyTo")(index - 1).AddAfterSelf(xFlytoTable)
+
+        End If
+
 
     End Sub
+
+
 
     Private Sub AddToTrack(BeginTime As String, CoordinateString As String, index As Integer)
         Dim xAddTime As XElement
         Dim xAddCoord As XElement
         xAddTime = <ns1:when xmlns:ns1="http://www.opengis.net/kml/2.2"><%= BeginTime %></ns1:when>
         xAddCoord = <ns2:coord xmlns:ns2="http://www.google.com/kml/ext/2.2"><%= CoordinateString %></ns2:coord>
-        XTrack.Elements(k + "Placemark").Elements(kk + "Track").Elements(k + "when")(index).AddAfterSelf(xAddTime)
-        XTrack.Elements(k + "Placemark").Elements(kk + "Track").Elements(kk + "coord")(index).AddAfterSelf(xAddCoord)
+
+        If index = 0 Then
+            XTrack.Elements(k + "Document").Elements(k + "Placemark").Elements(kk + "Track").Elements(k + "when")(index).ReplaceWith(xAddTime)
+            XTrack.Elements(k + "Document").Elements(k + "Placemark").Elements(kk + "Track").Elements(kk + "coord")(index).ReplaceWith(xAddCoord)
+        Else
+            XTrack.Elements(k + "Document").Elements(k + "Placemark").Elements(kk + "Track").Elements(k + "when")(index - 1).AddAfterSelf(xAddTime)
+            XTrack.Elements(k + "Document").Elements(k + "Placemark").Elements(kk + "Track").Elements(kk + "coord")(index - 1).AddAfterSelf(xAddCoord)
+        End If
+
     End Sub
 
 End Class
