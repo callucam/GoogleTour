@@ -113,14 +113,9 @@ Partial Class Form1
         Me.Label17 = New System.Windows.Forms.Label()
         Me.PlaceMarkName2 = New System.Windows.Forms.TextBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton5 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
-        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.TrackAndHeadingButton = New System.Windows.Forms.Button()
+        Me.ExcelReaderTextbox = New System.Windows.Forms.TextBox()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.CreateRadiusReference = New System.Windows.Forms.Button()
         Me.RadiusLabel = New System.Windows.Forms.TextBox()
@@ -130,6 +125,8 @@ Partial Class Form1
         Me.Radius = New System.Windows.Forms.TextBox()
         Me.RadiusCenter = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
+        Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
+        Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -141,8 +138,6 @@ Partial Class Form1
         Me.GroupBox9.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        Me.GroupBox8.SuspendLayout()
-        Me.GroupBox7.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -263,7 +258,7 @@ Partial Class Form1
         Me.ns1range.Name = "ns1range"
         Me.ns1range.Size = New System.Drawing.Size(85, 20)
         Me.ns1range.TabIndex = 15
-        Me.ns1range.Text = "7000"
+        Me.ns1range.Text = "1500"
         '
         'Label8
         '
@@ -280,7 +275,7 @@ Partial Class Form1
         Me.ns1tilt.Name = "ns1tilt"
         Me.ns1tilt.Size = New System.Drawing.Size(85, 20)
         Me.ns1tilt.TabIndex = 13
-        Me.ns1tilt.Text = "45"
+        Me.ns1tilt.Text = "80"
         '
         'Label9
         '
@@ -369,7 +364,7 @@ Partial Class Form1
         Me.ns1rangeMax.Name = "ns1rangeMax"
         Me.ns1rangeMax.Size = New System.Drawing.Size(85, 20)
         Me.ns1rangeMax.TabIndex = 32
-        Me.ns1rangeMax.Text = "1500"
+        Me.ns1rangeMax.Text = "300"
         '
         'ns1tiltMax
         '
@@ -453,7 +448,7 @@ Partial Class Form1
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(851, 442)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Placemarks"
+        Me.TabPage1.Text = "Animate from Placemarks"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'ProgressBar1
@@ -812,7 +807,7 @@ Partial Class Form1
         '
         Me.DaeModelListBox.AllowDrop = True
         Me.DaeModelListBox.FormattingEnabled = True
-        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\MV Queen of the Coast.dae"})
+        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\Container-ship-1.dae"})
         Me.DaeModelListBox.Location = New System.Drawing.Point(0, 32)
         Me.DaeModelListBox.Name = "DaeModelListBox"
         Me.DaeModelListBox.Size = New System.Drawing.Size(537, 43)
@@ -828,6 +823,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.HeadingInfoCheck)
+        Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
         Me.GroupBox1.Controls.Add(Me.GroupBox9)
         Me.GroupBox1.Controls.Add(Me.ExcelSeriesTextBox)
         Me.GroupBox1.Controls.Add(Me.PmReferenceTextBox)
@@ -857,9 +854,9 @@ Partial Class Form1
         Me.GroupBox9.Controls.Add(Me.LinearHeadingOption)
         Me.GroupBox9.Controls.Add(Me.Label9)
         Me.GroupBox9.Controls.Add(Me.Label8)
-        Me.GroupBox9.Location = New System.Drawing.Point(552, 9)
+        Me.GroupBox9.Location = New System.Drawing.Point(552, 43)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(275, 158)
+        Me.GroupBox9.Size = New System.Drawing.Size(275, 124)
         Me.GroupBox9.TabIndex = 60
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "View Parameters"
@@ -957,7 +954,7 @@ Partial Class Form1
         '
         Me.PmFolderListBox.AllowDrop = True
         Me.PmFolderListBox.FormattingEnabled = True
-        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\folder1.kml"})
+        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Under Lions Gate.kml"})
         Me.PmFolderListBox.Location = New System.Drawing.Point(108, 43)
         Me.PmFolderListBox.Name = "PmFolderListBox"
         Me.PmFolderListBox.Size = New System.Drawing.Size(438, 43)
@@ -1016,105 +1013,43 @@ Partial Class Form1
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.GroupBox8)
-        Me.TabPage2.Controls.Add(Me.GroupBox7)
+        Me.TabPage2.Controls.Add(Me.TrackAndHeadingButton)
+        Me.TabPage2.Controls.Add(Me.ExcelReaderTextbox)
+        Me.TabPage2.Controls.Add(Me.Label29)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(851, 442)
         Me.TabPage2.TabIndex = 3
-        Me.TabPage2.Text = "Track Maker"
+        Me.TabPage2.Text = "Track Reader"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'GroupBox8
+        'TrackAndHeadingButton
         '
-        Me.GroupBox8.Controls.Add(Me.RadioButton5)
-        Me.GroupBox8.Controls.Add(Me.RadioButton4)
-        Me.GroupBox8.Location = New System.Drawing.Point(6, 244)
-        Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(839, 192)
-        Me.GroupBox8.TabIndex = 61
-        Me.GroupBox8.TabStop = False
-        Me.GroupBox8.Text = "Time"
+        Me.TrackAndHeadingButton.Location = New System.Drawing.Point(490, 45)
+        Me.TrackAndHeadingButton.Name = "TrackAndHeadingButton"
+        Me.TrackAndHeadingButton.Size = New System.Drawing.Size(112, 23)
+        Me.TrackAndHeadingButton.TabIndex = 61
+        Me.TrackAndHeadingButton.Text = "ReadTrackLogger"
+        Me.TrackAndHeadingButton.UseVisualStyleBackColor = True
         '
-        'RadioButton5
+        'ExcelReaderTextbox
         '
-        Me.RadioButton5.AutoSize = True
-        Me.RadioButton5.Location = New System.Drawing.Point(10, 66)
-        Me.RadioButton5.Name = "RadioButton5"
-        Me.RadioButton5.Size = New System.Drawing.Size(116, 17)
-        Me.RadioButton5.TabIndex = 62
-        Me.RadioButton5.TabStop = True
-        Me.RadioButton5.Text = "Start Time + Speed"
-        Me.RadioButton5.UseVisualStyleBackColor = True
+        Me.ExcelReaderTextbox.AllowDrop = True
+        Me.ExcelReaderTextbox.Location = New System.Drawing.Point(46, 47)
+        Me.ExcelReaderTextbox.Name = "ExcelReaderTextbox"
+        Me.ExcelReaderTextbox.Size = New System.Drawing.Size(438, 20)
+        Me.ExcelReaderTextbox.TabIndex = 60
+        Me.ExcelReaderTextbox.Text = "C:\Google Earth Tour\Log Files\logRun.txt"
         '
-        'RadioButton4
+        'Label29
         '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Location = New System.Drawing.Point(10, 19)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(107, 17)
-        Me.RadioButton4.TabIndex = 61
-        Me.RadioButton4.TabStop = True
-        Me.RadioButton4.Text = "Start + Stop Time"
-        Me.RadioButton4.UseVisualStyleBackColor = True
-        '
-        'GroupBox7
-        '
-        Me.GroupBox7.Controls.Add(Me.RadioButton3)
-        Me.GroupBox7.Controls.Add(Me.RadioButton2)
-        Me.GroupBox7.Controls.Add(Me.RadioButton1)
-        Me.GroupBox7.Controls.Add(Me.ListBox3)
-        Me.GroupBox7.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(839, 232)
-        Me.GroupBox7.TabIndex = 60
-        Me.GroupBox7.TabStop = False
-        Me.GroupBox7.Text = "Shape"
-        '
-        'RadioButton3
-        '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(6, 161)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(94, 17)
-        Me.RadioButton3.TabIndex = 60
-        Me.RadioButton3.TabStop = True
-        Me.RadioButton3.Text = "Measured Mile"
-        Me.RadioButton3.UseVisualStyleBackColor = True
-        '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(6, 107)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(90, 17)
-        Me.RadioButton2.TabIndex = 59
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Turning Circle"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Checked = True
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(148, 17)
-        Me.RadioButton1.TabIndex = 58
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Ordered Placemark Folder"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'ListBox3
-        '
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Items.AddRange(New Object() {"ns1:name" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:begin" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:end" & Global.Microsoft.VisualBasic.ChrW(9) & "id" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:altitudeMode" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:longitude" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:latitude" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:alt" & _
-                "itude" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:heading" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:tilt" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:roll" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:x" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:y" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:z" & Global.Microsoft.VisualBasic.ChrW(9) & "ns1:href"})
-        Me.ListBox3.Location = New System.Drawing.Point(180, 19)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(653, 69)
-        Me.ListBox3.TabIndex = 57
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(43, 31)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(117, 13)
+        Me.Label29.TabIndex = 50
+        Me.Label29.Text = "Drag and Drop Log File"
         '
         'TabPage4
         '
@@ -1196,6 +1131,26 @@ Partial Class Form1
         '
         Me.OpenFileDialog3.FileName = "OpenFileDialog3"
         '
+        'TimeInfoCheck
+        '
+        Me.TimeInfoCheck.AutoSize = True
+        Me.TimeInfoCheck.Location = New System.Drawing.Point(552, 19)
+        Me.TimeInfoCheck.Name = "TimeInfoCheck"
+        Me.TimeInfoCheck.Size = New System.Drawing.Size(98, 17)
+        Me.TimeInfoCheck.TabIndex = 61
+        Me.TimeInfoCheck.Text = "TimeInfoCheck"
+        Me.TimeInfoCheck.UseVisualStyleBackColor = True
+        '
+        'HeadingInfoCheck
+        '
+        Me.HeadingInfoCheck.AutoSize = True
+        Me.HeadingInfoCheck.Location = New System.Drawing.Point(654, 19)
+        Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
+        Me.HeadingInfoCheck.Size = New System.Drawing.Size(115, 17)
+        Me.HeadingInfoCheck.TabIndex = 62
+        Me.HeadingInfoCheck.Text = "HeadingInfoCheck"
+        Me.HeadingInfoCheck.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1223,10 +1178,7 @@ Partial Class Form1
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
-        Me.GroupBox8.ResumeLayout(False)
-        Me.GroupBox8.PerformLayout()
-        Me.GroupBox7.ResumeLayout(False)
-        Me.GroupBox7.PerformLayout()
+        Me.TabPage2.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
         Me.ResumeLayout(False)
@@ -1318,14 +1270,6 @@ Partial Class Form1
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
-    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
-    Friend WithEvents ListBox3 As System.Windows.Forms.ListBox
-    Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
-    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
-    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
-    Friend WithEvents RadioButton5 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton4 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
     Friend WithEvents Radius As System.Windows.Forms.TextBox
     Friend WithEvents RadiusCenter As System.Windows.Forms.TextBox
@@ -1340,5 +1284,10 @@ Partial Class Form1
     Friend WithEvents ExcelSeriesTextBox As System.Windows.Forms.TextBox
     Friend WithEvents PmReferenceTextBox As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
+    Friend WithEvents ExcelReaderTextbox As System.Windows.Forms.TextBox
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents TrackAndHeadingButton As System.Windows.Forms.Button
+    Friend WithEvents HeadingInfoCheck As System.Windows.Forms.CheckBox
+    Friend WithEvents TimeInfoCheck As System.Windows.Forms.CheckBox
 
 End Class
