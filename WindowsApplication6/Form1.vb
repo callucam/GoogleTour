@@ -182,9 +182,15 @@ Public Class Form1
 
         If TimeInfoCheck.Checked = True Then
             
-            'TimeArray = LonLatAlt(3)
-            m3 = ns1when.Value
-            TimeArray = TimeArrayfromDistanceArray(DistanceArray, SpeedArray)
+
+            m3 = DateAdd(DateInterval.Hour, 8, DateTime.Parse(LonLatAlt(3)(0))) '2014-11-29T01:18:27.759Z
+            'MsgBox(m3)
+            For q = 0 To NPlacemarks
+                TimeArray(q) = DateDiff(DateInterval.Second, m3, DateAdd(DateInterval.Hour, 8, DateTime.Parse(LonLatAlt(3)(q))))
+                'MsgBox(TimeArray(q))
+            Next
+
+
         Else
             m3 = ns1when.Value
             TimeArray = TimeArrayfromDistanceArray(DistanceArray, SpeedArray)
@@ -205,7 +211,7 @@ Public Class Form1
 
             Dim OutputLatDegPrevious As Double
             Dim OutputLongDegPrevious As Double
-            'Dim ModelBearingPrevious As Double
+        Dim ModelBearingPrevious(20) As Double
 
             ProgressBar1.Minimum = 0
             ProgressBar1.Maximum = TimeArray(NPlacemarks)
@@ -215,7 +221,7 @@ Public Class Form1
 
             Dim i As Double = 0
             Dim index As Integer = 0
-            Dim TimeIncrementText As Integer = TimeIncrement.Text
+        Dim TimeIncrementText As Double = TimeIncrement.Text
 
             Dim HeadingString As String
             Dim SpeedString As String
@@ -230,41 +236,71 @@ Public Class Form1
             Dim CoordinateString As String
             Dim OrientationString As String
             Dim TiltString As String
-            Dim RangeString As String
+        Dim RangeString As String
+        Dim mb As Integer = 0
 
             Dim TrimData As Double
             Dim HeelData As Double
-            Dim SpeedData As Double
-
+        Dim SpeedData As Double
+        Dim PreviousxPosition As Double
+        Dim PreviousyPosition As Double
+        Dim indexForPlacemarkData As Integer = 0
+        Dim m4 As Date = DateAdd(DateInterval.Hour, 8, DateTime.Parse(LonLatAlt(3)(NPlacemarks)))
+        Dim VeryEndTime As String = kmlDate(m4)
 
             For h = 1 To NPlacemarks
-
+            'MsgBox(i & " " & LonLatAlt(4)(h))
                 While i < TimeArray(h)
 
-                    xPosition = 1 / 6 * AxArray(h) * (i - TimeArray(h - 1)) ^ 3 + 1 / 2 * BxArray(h) * (i - TimeArray(h - 1)) ^ 2 + VxArray(h - 1) * (i - TimeArray(h - 1)) + XArray(h - 1) '+XArray(0) 
-                    yPosition = 1 / 6 * AyArray(h) * (i - TimeArray(h - 1)) ^ 3 + 1 / 2 * ByArray(h) * (i - TimeArray(h - 1)) ^ 2 + VyArray(h - 1) * (i - TimeArray(h - 1)) + YArray(h - 1) '+ YArray(0)
-                    DistanceBetweenXY = (xPosition ^ 2 + yPosition ^ 2) ^ 0.5
+                'xPosition = 1 / 6 * AxArray(h) * (i - TimeArray(h - 1)) ^ 3 + 1 / 2 * BxArray(h) * (i - TimeArray(h - 1)) ^ 2 + VxArray(h - 1) * (i - TimeArray(h - 1)) + XArray(h - 1) '+XArray(0) 
+                'yPosition = 1 / 6 * AyArray(h) * (i - TimeArray(h - 1)) ^ 3 + 1 / 2 * ByArray(h) * (i - TimeArray(h - 1)) ^ 2 + VyArray(h - 1) * (i - TimeArray(h - 1)) + YArray(h - 1) '+ YArray(0)
+
+                xPosition = (Bezier(i, TimeArray, XArray))
+                yPosition = (Bezier(i, TimeArray, YArray))
+
+                If IsNumeric(Math.Abs(xPosition) < 1000000.0) And (Math.Abs(yPosition) < 1000000.0) Then
+                    PreviousxPosition = xPosition
+                    PreviousyPosition = yPosition
+                Else
+                    xPosition = PreviousxPosition
+                    yPosition = PreviousyPosition
+                    'MsgBox("here")
+                End If
+
+                DistanceBetweenXY = (xPosition ^ 2 + yPosition ^ 2) ^ 0.5
 
                     BearingBetweenXY = Math.Atan2(yPosition, xPosition) - 90 * pi / 180
-                    OutputLatDegPrevious = OutputLatDeg
-                    OutputLatDeg = (Math.Asin(Math.Sin(latitudes(0)) * Math.Cos(DistanceBetweenXY / 1000 / 6378.1) + Math.Cos(latitudes(0)) * Math.Sin(DistanceBetweenXY / 1000 / 6378.1) * Math.Cos(BearingBetweenXY))) * 180 / pi
-                    OutputLongDegPrevious = OutputLongDeg
-                    OutputLongDeg = (longitudes(0) + Math.Atan2(Math.Cos(DistanceBetweenXY / EarthRadius) - Math.Sin(latitudes(0)) * Math.Sin(OutputLatDeg * pi / 180), Math.Sin(BearingBetweenXY) * Math.Sin(DistanceBetweenXY / EarthRadius) * Math.Cos(latitudes(0)))) * 180 / pi - 90
-                    ProgressBar1.Value = i
 
-                    'Set the view
+                    OutputLatDeg = (Math.Asin(Math.Sin(latitudes(0)) * Math.Cos(DistanceBetweenXY / 1000 / 6378.1) + Math.Cos(latitudes(0)) * Math.Sin(DistanceBetweenXY / 1000 / 6378.1) * Math.Cos(BearingBetweenXY))) * 180 / pi
+
+                    OutputLongDeg = (longitudes(0) + Math.Atan2(Math.Cos(DistanceBetweenXY / EarthRadius) - Math.Sin(latitudes(0)) * Math.Sin(OutputLatDeg * pi / 180), Math.Sin(BearingBetweenXY) * Math.Sin(DistanceBetweenXY / EarthRadius) * Math.Cos(latitudes(0)))) * 180 / pi - 90
+
+                If IsNumeric(OutputLatDeg) And IsNumeric(OutputLongDeg) Then
+
+                Else
+                    OutputLatDeg = OutputLatDegPrevious
+                    OutputLongDeg = OutputLongDegPrevious
+                    MsgBox("here2")
+                End If
+
+
+
+                ProgressBar1.Value = i
+
+                'Set the view
 
                 ' m3 = DateAdd(DateInterval.Second, TimeArray(n) / 1000, m3)
 
                 'BeginTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
                 BeginTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00")
-                BeginTime = BeginTime & "Z"
+                BeginTime = BeginTime & "." & m3.Millisecond & "Z"
+
                 'BeginTime = BeginTime & "." & Microsoft.VisualBasic.Right(TimeArray(n), 3) & "Z"
 
+                'MsgBox(BeginTime)
+                'BeginTime = BeginTime & "." & Microsoft.VisualBasic.Right(TimeArray(n), 3) & "Z"
 
-
-
-                    CoordinateString = OutputLongDeg & " " & OutputLatDeg & " " & altitudes(0)
+                CoordinateString = OutputLongDeg & " " & OutputLatDeg & " " & altitudes(0)
 
                     If LinearHeadingOption.Checked = True Then
                         OrientationString = heading + (headingMax - heading) / TimeArray(NPlacemarks) * i
@@ -277,21 +313,43 @@ Public Class Form1
 
                     'Set the model
 
-                    m3 = CDate(Date.FromOADate(CDbl(m3.ToOADate()) + TimeIncrementText / 60 / 60 / 24))
+                'm3 = CDate(Date.FromOADate(CDbl(m3.ToOADate()) + TimeIncrementText / 60 / 60 / 24))
 
-                    EndTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
+                m3 = m3.AddMilliseconds(TimeIncrementText * 1000)
+
+                'MsgBox("hello" & m3.Millisecond)
+
+                EndTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00")
+                EndTime = EndTime & "." & m3.Millisecond & "Z"
+
+                'MsgBox(EndTime)
 
                     OutputString = OutputLongDeg & "," & OutputLatDeg & "," & 20 'altitudes(0)
 
                 If HeadingInfoCheck.Checked = True And XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(0).Elements(k + "heading").Count > 0 Then
-                    ModelBearing = (LonLatAlt(4)(h) + 90) Mod 360
-                    'MsgBox(ModelBearing)
+
+                    ModelBearing = (Bezier(i, TimeArray, LonLatAlt(4)))
+                    'MsgBox(i & " " & ModelBearing)
+
                 Else
 
                     ModelY = Math.Sin((OutputLongDeg - OutputLongDegPrevious) * pi / 180) * Math.Cos(OutputLatDeg * pi / 180)
                     ModelX = Math.Cos(OutputLatDegPrevious * pi / 180) * Math.Sin(OutputLatDeg * pi / 180) - Math.Sin(OutputLatDegPrevious * pi / 180) * Math.Cos(OutputLatDeg * pi / 180) * Math.Cos((OutputLongDeg - OutputLongDegPrevious) * pi / 180)
                     ModelBearing = Math.Atan2(ModelY, ModelX) * 180 / pi - 90
+
+                    'If mb = 20 Then mb = 0 Else mb = mb + 1
+                    'ModelBearingPrevious(mb) = ModelBearing
+
+                    'For mbi = 0 To 20
+                    '    ModelBearing = ModelBearing + ModelBearingPrevious(mbi) / 21
+                    'Next
+                    
+
+                    'MsgBox(ModelBearing)
                 End If
+
+                OutputLatDegPrevious = OutputLatDeg
+                OutputLongDegPrevious = OutputLongDeg
 
                 If LinearRollOption.Checked = True Then
                     TrimData = PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
@@ -322,8 +380,14 @@ Public Class Form1
 
                 '& SpeedString & DraftString & TrimString  & HeelString
 
-                AddToPlacemarkData(HeadingString, BeginTime, EndTime, OutputString, index)
-                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), TrimData, HeelData, index)
+                If index Mod 30 = 0 Then
+                    'AddToPlacemarkData(HeadingString, BeginTime, VeryEndTime, OutputString, indexForPlacemarkData)
+                    AddToPlacemarkData(HeadingString, BeginTime, EndTime, OutputString, indexForPlacemarkData)
+                    indexForPlacemarkData = indexForPlacemarkData + 1
+                End If
+
+                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing + FixedYawTextBox.Text, DaeName(j), TrimData, HeelData, index)
+
                 AddToTrack(BeginTime, CoordinateString, index)
 
                 i = i + TimeIncrementText
@@ -492,7 +556,7 @@ Public Class Form1
             End If
 
             If HeadingInfoCheck.Checked = True And XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(pm).Elements(k + "heading").Count > 0 Then
-                HeadingDataArray(pm) = (XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(pm).Elements(k + "heading").FirstOrDefault)
+                HeadingDataArray(pm) = CDbl(XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(pm).Elements(k + "heading").FirstOrDefault) Mod 360
             End If
 
             'MsgBox(coordinates(pm))
@@ -957,7 +1021,7 @@ Public Class Form1
             'MsgBox(BeginTime & " " & EndTime)
 
 
-            XTrackAdd = MakeKML(BeginTime, EndTime, LongLatAltString, HeadingArray(n) + 180 Mod 360)
+            XTrackAdd = MakeKML(BeginTime, EndTime, LongLatAltString, HeadingArray(n) + 180 Mod 360, n)
 
             If n = 0 Then
                 XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document")(n).ReplaceWith(XTrackAdd)
@@ -974,7 +1038,7 @@ Public Class Form1
 
     End Sub
 
-    Private Function MakeKML(TimeArray1 As String, TimeArray2 As String, LongLatAltString As String, HeadingArray As Double) As XElement
+    Private Function MakeKML(TimeArray1 As String, TimeArray2 As String, LongLatAltString As String, HeadingArray As Double, n As Integer) As XElement
 
         Dim XElementAdd As XElement
 
@@ -983,7 +1047,7 @@ Public Class Form1
 
 
         XElementAdd = <ns1:Document xmlns:ns1="http://www.opengis.net/kml/2.2">
-                          <ns1:name>1</ns1:name>
+                          <ns1:name><%= n %></ns1:name>
                           <ns1:open>1</ns1:open>
                           <ns1:StyleMap id="s_ylw-pushpin">
                               <ns1:Pair>
@@ -1016,7 +1080,7 @@ Public Class Form1
                               </ns1:IconStyle>
                           </ns1:Style>
                           <ns1:Placemark>
-                              <ns1:name></ns1:name>
+                              <ns1:name><%= n %></ns1:name>
                               <ns1:open>1</ns1:open>
                               <ns1:styleUrl>#s_ylw-pushpin</ns1:styleUrl>
                               <ns1:TimeSpan>
@@ -1109,6 +1173,67 @@ Public Class Form1
             min = last_swap + 1
         Loop
     End Sub
+
+
+    Private Function Bezier(x As Double, XVector() As Double, YVector() As Double)
+        Dim y As Double
+        Dim VectorCount As Integer = XVector.Length
+        Dim index As Integer = 0
+
+        While x >= XVector(index)
+            index = index + 1
+        End While
+
+        Dim xk1 As Double = XVector(index - 1)
+        Dim xk2 As Double = XVector(index)
+        Dim xk3 As Double = XVector(Math.Min(index + 1, VectorCount))
+        Dim xk4 As Double
+
+        Dim t As Double = (x - xk1) / (xk2 - xk1)
+        Dim pk1 As Double = YVector(index - 1)
+        Dim pk2 As Double = YVector(index)
+        Dim pk3 As Double = YVector(Math.Min(index + 1, VectorCount))
+        Dim pk4 As Double
+
+
+        Dim mk1 As Double = (pk2 - pk1) / (xk2 - xk1)
+        Dim mk2 As Double = (pk3 - pk2) / (xk3 - xk2)
+        Dim mk3 As Double
+
+        'If index + 2 <> VectorCount Then
+        '    xk4 = XVector(Math.Min(index + 2, VectorCount))
+        '    pk4 = YVector(Math.Min(index + 2, VectorCount))
+        '    mk3 = (pk4 - pk3) / (xk4 - xk3)
+        '    mk1 = mk1 / 2 + mk2 / 2
+        '    mk2 = mk2 / 2 + mk3 / 2
+        'End If
+
+        y = h00(t) * pk1 + h10(t) * (xk2 - xk1) * mk1 + h01(t) * pk2 + h11(t) * (xk2 - xk1) * mk2
+
+        'MsgBox(index & "," & x & "," & xk1 & "," & xk2 & "," & t & "," & pk1 & "," & mk1 & "," & y)
+
+        Return y
+    End Function
+
+    Private Function h00(t As Double) As Double
+        Return (2 * t ^ 3 - 3 * t ^ 2 + 1)
+    End Function
+
+    Private Function h10(t As Double) As Double
+        Return (t ^ 3 - 2 * t ^ 2 + t)
+    End Function
+
+    Private Function h01(t As Double) As Double
+        Return (-2 * t ^ 3 + 3 * t ^ 2)
+    End Function
+
+    Private Function h11(t As Double) As Double
+        Return (t ^ 3 - t ^ 2)
+    End Function
+
+    Private Function kmlDate(m4 As Date) As String
+        Throw New NotImplementedException
+    End Function
 
 
 End Class

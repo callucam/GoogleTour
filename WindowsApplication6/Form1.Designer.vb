@@ -98,6 +98,8 @@ Partial Class Form1
         Me.DaeModelListBox = New System.Windows.Forms.ListBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
+        Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.CyclicalHeadingOption = New System.Windows.Forms.RadioButton()
         Me.LinearHeadingOption = New System.Windows.Forms.RadioButton()
@@ -125,8 +127,8 @@ Partial Class Form1
         Me.Radius = New System.Windows.Forms.TextBox()
         Me.RadiusCenter = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
-        Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
-        Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.FixedYawTextBox = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -190,7 +192,7 @@ Partial Class Form1
         Me.ns1heading.Name = "ns1heading"
         Me.ns1heading.Size = New System.Drawing.Size(45, 20)
         Me.ns1heading.TabIndex = 11
-        Me.ns1heading.Text = "-10"
+        Me.ns1heading.Text = "270"
         '
         'Label4
         '
@@ -258,7 +260,7 @@ Partial Class Form1
         Me.ns1range.Name = "ns1range"
         Me.ns1range.Size = New System.Drawing.Size(85, 20)
         Me.ns1range.TabIndex = 15
-        Me.ns1range.Text = "1500"
+        Me.ns1range.Text = "300"
         '
         'Label8
         '
@@ -364,7 +366,7 @@ Partial Class Form1
         Me.ns1rangeMax.Name = "ns1rangeMax"
         Me.ns1rangeMax.Size = New System.Drawing.Size(85, 20)
         Me.ns1rangeMax.TabIndex = 32
-        Me.ns1rangeMax.Text = "300"
+        Me.ns1rangeMax.Text = "3000"
         '
         'ns1tiltMax
         '
@@ -460,6 +462,8 @@ Partial Class Form1
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.FixedYawTextBox)
+        Me.GroupBox3.Controls.Add(Me.Label30)
         Me.GroupBox3.Controls.Add(Me.GroupBox6)
         Me.GroupBox3.Controls.Add(Me.GroupBox5)
         Me.GroupBox3.Controls.Add(Me.GroupBox4)
@@ -807,7 +811,7 @@ Partial Class Form1
         '
         Me.DaeModelListBox.AllowDrop = True
         Me.DaeModelListBox.FormattingEnabled = True
-        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\Container-ship-1.dae"})
+        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\coastal renaissance.dae"})
         Me.DaeModelListBox.Location = New System.Drawing.Point(0, 32)
         Me.DaeModelListBox.Name = "DaeModelListBox"
         Me.DaeModelListBox.Size = New System.Drawing.Size(537, 43)
@@ -840,6 +844,26 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 42
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Path"
+        '
+        'HeadingInfoCheck
+        '
+        Me.HeadingInfoCheck.AutoSize = True
+        Me.HeadingInfoCheck.Location = New System.Drawing.Point(654, 19)
+        Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
+        Me.HeadingInfoCheck.Size = New System.Drawing.Size(115, 17)
+        Me.HeadingInfoCheck.TabIndex = 62
+        Me.HeadingInfoCheck.Text = "HeadingInfoCheck"
+        Me.HeadingInfoCheck.UseVisualStyleBackColor = True
+        '
+        'TimeInfoCheck
+        '
+        Me.TimeInfoCheck.AutoSize = True
+        Me.TimeInfoCheck.Location = New System.Drawing.Point(552, 19)
+        Me.TimeInfoCheck.Name = "TimeInfoCheck"
+        Me.TimeInfoCheck.Size = New System.Drawing.Size(98, 17)
+        Me.TimeInfoCheck.TabIndex = 61
+        Me.TimeInfoCheck.Text = "TimeInfoCheck"
+        Me.TimeInfoCheck.UseVisualStyleBackColor = True
         '
         'GroupBox9
         '
@@ -954,7 +978,7 @@ Partial Class Form1
         '
         Me.PmFolderListBox.AllowDrop = True
         Me.PmFolderListBox.FormattingEnabled = True
-        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Under Lions Gate.kml"})
+        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\ActivePassExtract.kml"})
         Me.PmFolderListBox.Location = New System.Drawing.Point(108, 43)
         Me.PmFolderListBox.Name = "PmFolderListBox"
         Me.PmFolderListBox.Size = New System.Drawing.Size(438, 43)
@@ -1040,7 +1064,7 @@ Partial Class Form1
         Me.ExcelReaderTextbox.Name = "ExcelReaderTextbox"
         Me.ExcelReaderTextbox.Size = New System.Drawing.Size(438, 20)
         Me.ExcelReaderTextbox.TabIndex = 60
-        Me.ExcelReaderTextbox.Text = "C:\Google Earth Tour\Log Files\logRun.txt"
+        Me.ExcelReaderTextbox.Text = "C:\Google Earth Tour\Log Files\logRun (11).txt"
         '
         'Label29
         '
@@ -1131,25 +1155,22 @@ Partial Class Form1
         '
         Me.OpenFileDialog3.FileName = "OpenFileDialog3"
         '
-        'TimeInfoCheck
+        'Label30
         '
-        Me.TimeInfoCheck.AutoSize = True
-        Me.TimeInfoCheck.Location = New System.Drawing.Point(552, 19)
-        Me.TimeInfoCheck.Name = "TimeInfoCheck"
-        Me.TimeInfoCheck.Size = New System.Drawing.Size(98, 17)
-        Me.TimeInfoCheck.TabIndex = 61
-        Me.TimeInfoCheck.Text = "TimeInfoCheck"
-        Me.TimeInfoCheck.UseVisualStyleBackColor = True
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(641, 16)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(53, 13)
+        Me.Label30.TabIndex = 75
+        Me.Label30.Text = "FixedYaw"
         '
-        'HeadingInfoCheck
+        'FixedYawTextBox
         '
-        Me.HeadingInfoCheck.AutoSize = True
-        Me.HeadingInfoCheck.Location = New System.Drawing.Point(654, 19)
-        Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
-        Me.HeadingInfoCheck.Size = New System.Drawing.Size(115, 17)
-        Me.HeadingInfoCheck.TabIndex = 62
-        Me.HeadingInfoCheck.Text = "HeadingInfoCheck"
-        Me.HeadingInfoCheck.UseVisualStyleBackColor = True
+        Me.FixedYawTextBox.Location = New System.Drawing.Point(704, 13)
+        Me.FixedYawTextBox.Name = "FixedYawTextBox"
+        Me.FixedYawTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.FixedYawTextBox.TabIndex = 76
+        Me.FixedYawTextBox.Text = "0"
         '
         'Form1
         '
@@ -1289,5 +1310,7 @@ Partial Class Form1
     Friend WithEvents TrackAndHeadingButton As System.Windows.Forms.Button
     Friend WithEvents HeadingInfoCheck As System.Windows.Forms.CheckBox
     Friend WithEvents TimeInfoCheck As System.Windows.Forms.CheckBox
+    Friend WithEvents FixedYawTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label30 As System.Windows.Forms.Label
 
 End Class
