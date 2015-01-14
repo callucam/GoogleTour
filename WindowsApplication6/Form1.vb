@@ -18,6 +18,8 @@ Imports System.IO
 Imports Excel = Microsoft.Office.Interop.Excel
 Imports System.Runtime.InteropServices
 Imports Microsoft.VisualBasic
+Imports System.Drawing
+Imports System.Drawing.Imaging
 
 #End Region
 
@@ -98,6 +100,8 @@ Public Class Form1
         'Dim m2 As Date = ns1when.Value
         Dim m3 As Date
 
+        Dim m7 As Date
+
 
 
             Dim DistanceArray(500) As Double
@@ -118,11 +122,13 @@ Public Class Form1
             Dim ByArray(500) As Double
             Dim j As Integer = 0
             Dim xPosition As Double
-            Dim yPosition As Double
+        Dim yPosition As Double
+        Dim SpeedPosition As Double
             Dim DistanceBetweenXY As Double = 0
             Dim BearingBetweenXY As Double = 0
             Dim OutputLatDeg As Double
-            Dim OutputLongDeg As Double
+        Dim OutputLongDeg As Double
+        Dim m4 As Date
 
             If FromLatLonRadioButton.Checked = True Then
                 For speedindex = 0 To NPlacemarks
@@ -180,8 +186,8 @@ Public Class Form1
 
             OrientationArray(NPlacemarks) = LocalBearingArray(NPlacemarks)
 
-        If TimeInfoCheck.Checked = True Then
-            
+        If TimeInfoCheck.Checked = True And Not IsNothing(LonLatAlt(3)(0)) Then
+
 
             m3 = DateAdd(DateInterval.Hour, 8, DateTime.Parse(LonLatAlt(3)(0))) '2014-11-29T01:18:27.759Z
             'MsgBox(m3)
@@ -194,9 +200,13 @@ Public Class Form1
         Else
             m3 = ns1when.Value
             TimeArray = TimeArrayfromDistanceArray(DistanceArray, SpeedArray)
+
+
         End If
 
+        m4 = DateAdd(DateInterval.Second, TimeArray(NPlacemarks), m3)
 
+        Dim VeryEndTime As String = kmlDate(m4)
         'TimeArray = TimeArrayfromDistanceArray(DistanceArray, SpeedArray)
             VxArray = VxArrayfromLocalBearingAndSpeed(OrientationArray, SpeedArray)
             VyArray = VyArrayfromLocalBearingAndSpeed(OrientationArray, SpeedArray)
@@ -245,8 +255,8 @@ Public Class Form1
         Dim PreviousxPosition As Double
         Dim PreviousyPosition As Double
         Dim indexForPlacemarkData As Integer = 0
-        Dim m4 As Date = DateAdd(DateInterval.Hour, 8, DateTime.Parse(LonLatAlt(3)(NPlacemarks)))
-        Dim VeryEndTime As String = kmlDate(m4)
+        Dim ReadoutString As String
+
 
             For h = 1 To NPlacemarks
             'MsgBox(i & " " & LonLatAlt(4)(h))
@@ -257,6 +267,10 @@ Public Class Form1
 
                 xPosition = (Bezier(i, TimeArray, XArray))
                 yPosition = (Bezier(i, TimeArray, YArray))
+
+                SpeedPosition = (Bezier(i, TimeArray, SpeedArray))
+
+                SpeedData = ((PreviousxPosition - xPosition) ^ 2 + (PreviousyPosition - yPosition) ^ 2) ^ 0.5 / TimeIncrementText * TimeFactor.Text * SpeedPosition
 
                 If IsNumeric(Math.Abs(xPosition) < 1000000.0) And (Math.Abs(yPosition) < 1000000.0) Then
                     PreviousxPosition = xPosition
@@ -292,8 +306,9 @@ Public Class Form1
                 ' m3 = DateAdd(DateInterval.Second, TimeArray(n) / 1000, m3)
 
                 'BeginTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
-                BeginTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00")
-                BeginTime = BeginTime & "." & m3.Millisecond & "Z"
+                BeginTime = kmlDate(m3)
+                'Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00")
+                'BeginTime = BeginTime & "." & m3.Millisecond & "Z"
 
                 'BeginTime = BeginTime & "." & Microsoft.VisualBasic.Right(TimeArray(n), 3) & "Z"
 
@@ -316,15 +331,19 @@ Public Class Form1
                 'm3 = CDate(Date.FromOADate(CDbl(m3.ToOADate()) + TimeIncrementText / 60 / 60 / 24))
 
                 m3 = m3.AddMilliseconds(TimeIncrementText * 1000)
+                'm7 = m3.AddMilliseconds(TimeIncrementText * -1)
 
                 'MsgBox("hello" & m3.Millisecond)
 
-                EndTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00")
-                EndTime = EndTime & "." & m3.Millisecond & "Z"
+                EndTime = kmlDate(m3)
+                'EndTime = kmlDate(m7)
+
+                '= Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00")
+                'EndTime = EndTime & "." & m3.Millisecond & "Z"
 
                 'MsgBox(EndTime)
 
-                    OutputString = OutputLongDeg & "," & OutputLatDeg & "," & 20 'altitudes(0)
+                OutputString = OutputLongDeg & "," & OutputLatDeg & "," & ReadoutHeightTextbox.Text 'altitudes(0)
 
                 If HeadingInfoCheck.Checked = True And XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(0).Elements(k + "heading").Count > 0 Then
 
@@ -352,17 +371,17 @@ Public Class Form1
                 OutputLongDegPrevious = OutputLongDeg
 
                 If LinearRollOption.Checked = True Then
-                    TrimData = PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
+                    HeelData = PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
                 Else
-                    TrimData = RollMagnitude.Text * Math.Sin(2 * pi / RollPeriod.Text * i + RollPhase.Text * pi / 180)
+                    HeelData = RollMagnitude.Text * Math.Sin(2 * pi / RollPeriod.Text * i + RollPhase.Text * pi / 180)
                 End If
 
                 TrimString = "Trim: " & Math.Round(TrimData, 1) & "°; "
 
                 If LinearPitchOption.Checked = True Then
-                    HeelData = PMroll + (PMrollMax1 - PMroll) / TimeArray(NPlacemarks) * i
+                    TrimData = PMroll + (PMrollMax1 - PMroll) / TimeArray(NPlacemarks) * i
                 Else
-                    HeelData = PitchMagnitude.Text * Math.Sin(2 * pi / PitchPeriod.Text * i + PitchPhase.Text * pi / 180)
+                    TrimData = PitchMagnitude.Text * Math.Sin(2 * pi / PitchPeriod.Text * i + PitchPhase.Text * pi / 180)
                 End If
 
                 HeelString = "Heel: " & Math.Round(HeelData, 1) & "°; "
@@ -373,22 +392,44 @@ Public Class Form1
 
                 HeadingString = "Heading: " & Math.Round(ModelBearing + 90, 1) & "°; "
 
-                SpeedData = Math.Acos(Math.Sin(OutputLatDegPrevious * pi / 180) * Math.Sin(OutputLatDeg * pi / 180) + Math.Cos(OutputLatDegPrevious * pi / 180) * Math.Cos(OutputLatDeg * pi / 180) * Math.Cos(OutputLongDeg * pi / 180 - OutputLongDegPrevious * pi / 180)) * EarthRadius
+                SpeedString = "Speed: " & Math.Round(SpeedData, 2) & " m/s (" & Math.Round(SpeedData * 1.94384, 1) & " knots); "
 
-                SpeedString = "Speed: " & Math.Round(SpeedData / TimeIncrementText, 1) & "m/s; "
-                DraftString = "Draft: " & Math.Round(altitudes(0), 1) & "m ; "
+                DraftString = "Draft: " & Math.Round(altitudes(0), 1) & " m; "
 
-                '& SpeedString & DraftString & TrimString  & HeelString
+                ReadoutString = ""
 
-                If index Mod 30 = 0 Then
-                    'AddToPlacemarkData(HeadingString, BeginTime, VeryEndTime, OutputString, indexForPlacemarkData)
-                    AddToPlacemarkData(HeadingString, BeginTime, EndTime, OutputString, indexForPlacemarkData)
-                    indexForPlacemarkData = indexForPlacemarkData + 1
+                If ReeadoutCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
+                    ReadoutString = ReadoutString & HeadingString
+                End If
+                If ReeadoutCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
+                    ReadoutString = ReadoutString & SpeedString
+                End If
+                If ReeadoutCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
+                    ReadoutString = ReadoutString & DraftString
+                End If
+                If ReeadoutCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
+                    ReadoutString = ReadoutString & TrimString
+                End If
+                If ReeadoutCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
+                    ReadoutString = ReadoutString & HeelString
                 End If
 
-                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing + FixedYawTextBox.Text, DaeName(j), TrimData, HeelData, index)
 
-                AddToTrack(BeginTime, CoordinateString, index)
+
+                'If index Mod ReadoutFrequencyTextbox.Text = 0 Then
+                CreateImageReadout(BeginTime, VeryEndTime, OutputLongDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData, TrimString, HeelString, HeadingString, SpeedString, DraftString)
+
+                AddToPlacemarkData(ReadoutString, BeginTime, EndTime, OutputString, OutputLongDeg, OutputLatDeg, ReadoutHeightTextbox.Text, OrientationString, TiltString, RangeString, indexForPlacemarkData)
+                'AddToPlacemarkData(HeadingString, BeginTime, EndTime, OutputString, indexForPlacemarkData)
+
+
+                indexForPlacemarkData = indexForPlacemarkData + 1
+
+                'End If
+
+                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing + FixedYawTextBox.Text, DaeName(j), HeelData, TrimData, index)
+
+                AddToTrack(BeginTime, CoordinateString, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, index)
 
                 i = i + TimeIncrementText
                 index = index + 1
@@ -555,7 +596,8 @@ Public Class Form1
                 TimeDataArray(pm) = (XPlaceMark(0).Descendants(k + "Placemark")(pm).Elements(k + "TimeSpan").Elements(k + "begin").FirstOrDefault)
             End If
 
-            If HeadingInfoCheck.Checked = True And XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(pm).Elements(k + "heading").Count > 0 Then
+            'If HeadingInfoCheck.Checked = True And XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(pm).Elements(k + "heading").Count > 0 Then
+            If HeadingInfoCheck.Checked = True Then
                 HeadingDataArray(pm) = CDbl(XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(pm).Elements(k + "heading").FirstOrDefault) Mod 360
             End If
 
@@ -750,10 +792,29 @@ Public Class Form1
     '    yfromdistbearing = Math.Cos(bearing * pi / 180) * dist
     'End Function
 
-    Private Sub AddToPlacemarkData(HeadingString As String, BeginTime As String, EndTime As String, OutputString As String, index As Integer)
+    Private Sub AddToPlacemarkData(HeadingString As String, BeginTime As String, EndTime As String, OutputString As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, index As Integer)
+
+
         Dim xAdd As XElement
+        Dim xAddScreenOverlay As XElement
+        Dim OverlayFilename As String
+
+
+        Dim xInitialLookAt As XElement
+        xInitialLookAt = <ns1:LookAt xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
+                             <ns2:TimeStamp>
+                                 <ns1:when><%= BeginTime %></ns1:when>
+                             </ns2:TimeStamp>
+                             <ns1:longitude><%= OutputLongDeg %></ns1:longitude>
+                             <ns1:latitude><%= OutputLatDeg %></ns1:latitude>
+                             <ns1:altitude><%= altitudes %></ns1:altitude>
+                             <ns1:heading><%= OrientationString %></ns1:heading>
+                             <ns1:tilt><%= TiltString %></ns1:tilt>
+                             <ns1:range><%= RangeString %></ns1:range>
+                             <ns2:altitudeMode>relativeToGround</ns2:altitudeMode>
+                         </ns1:LookAt>
         xAdd = <ns1:Placemark id="pm267" xmlns:ns1="http://www.opengis.net/kml/2.2">
-                   <ns1:name><%= HeadingString %></ns1:name>
+                   <ns1:name><%= index %></ns1:name>
                    <ns1:Snippet maxLines="0">empty</ns1:Snippet>
                    <ns1:description>hello</ns1:description>
                    <ns1:TimeSpan>
@@ -762,21 +823,59 @@ Public Class Form1
                    </ns1:TimeSpan>
                    <ns1:styleUrl>#Style_5</ns1:styleUrl>
                    <ns1:Point>
+                       <ns1:altitudeMode>relativeToGround</ns1:altitudeMode>
                        <ns1:coordinates><%= OutputString %></ns1:coordinates>
                    </ns1:Point>
                </ns1:Placemark>
 
+        OverlayFilename = "C:\Google Earth Tour\OverlayImages\MyImage" & index & ".png"
+
+        xAddScreenOverlay = <ns1:ScreenOverlay xmlns:ns1="http://www.opengis.net/kml/2.2">
+                                <ns1:name><%= BeginTime %></ns1:name>
+                                <ns1:Icon>
+                                    <ns1:href><%= OverlayFilename %></ns1:href>
+                                </ns1:Icon>
+                                <ns1:overlayXY x="0" y="-1" xunits="fraction" yunits="fraction"/>
+                                <ns1:screenXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                <ns1:rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                <ns1:size x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                <ns1:TimeSpan>
+                                    <ns1:begin><%= BeginTime %></ns1:begin>
+                                    <ns1:end><%= EndTime %></ns1:end>
+                                </ns1:TimeSpan>
+                            </ns1:ScreenOverlay>
+
+
+
         If index = 0 Then
-            XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index).ReplaceWith(xAdd)
+            'XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index).ReplaceWith(xAdd)
+            XPlacemark_Data.Elements(k + "Document").Elements(k + "LookAt")(index).ReplaceWith(xInitialLookAt)
+            XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "ScreenOverlay")(index).ReplaceWith(xAddScreenOverlay)
         Else
-            XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index - 1).AddAfterSelf(xAdd)
+            'XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index - 1).AddAfterSelf(xAdd)
+            XPlacemark_Data.Elements(k + "Document").Elements(k + "Folder").Elements(k + "ScreenOverlay")(index - 1).AddAfterSelf(xAddScreenOverlay)
         End If
 
     End Sub
 
     Private Sub AddToAnimateModel(altitudeMode As String, horizFov As String, BeginTime As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, duration As Double, flyToMode As String, EndTime As String, ModelBearing As Double, DaeName As String, TrimData As Double, HeelData As Double, index As Integer)
+
         Dim xPlacemarkTable As XElement
         Dim xFlytoTable As XElement
+
+        Dim xInitialLookAt As XElement
+        xInitialLookAt = <ns1:LookAt xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
+                             <ns2:TimeStamp>
+                                 <ns1:when><%= BeginTime %></ns1:when>
+                             </ns2:TimeStamp>
+                             <ns1:longitude><%= OutputLongDeg %></ns1:longitude>
+                             <ns1:latitude><%= OutputLatDeg %></ns1:latitude>
+                             <ns1:altitude><%= altitudes %></ns1:altitude>
+                             <ns1:heading><%= OrientationString %></ns1:heading>
+                             <ns1:tilt><%= TiltString %></ns1:tilt>
+                             <ns1:range><%= RangeString %></ns1:range>
+                             <ns2:altitudeMode>relativeToSeaFloor</ns2:altitudeMode>
+                         </ns1:LookAt>
 
         xFlytoTable = <ns2:FlyTo xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
                           <ns1:LookAt>
@@ -784,7 +883,7 @@ Public Class Form1
                               <ns2:horizFov><%= horizFov %></ns2:horizFov>
                               <ns2:TimeSpan>
                                   <ns1:begin><%= BeginTime %></ns1:begin>
-                                  <ns1:end><%= EndTime %></ns1:end>
+                                  <ns1:end><%= BeginTime %></ns1:end>
                               </ns2:TimeSpan>
                               <ns1:longitude><%= OutputLongDeg %></ns1:longitude>
                               <ns1:latitude><%= OutputLatDeg %></ns1:latitude>
@@ -829,6 +928,7 @@ Public Class Form1
                           </ns1:Placemark>
 
         If index = 0 Then
+            XAnimateModel.Elements(k + "Document").Elements(k + "LookAt")(index).ReplaceWith(xInitialLookAt)
             XAnimateModel.Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark")(index).ReplaceWith(xPlacemarkTable)
             XAnimateModel.Elements(k + "Document").Elements(kk + "Tour").Elements(kk + "Playlist").Elements(kk + "FlyTo")(index).ReplaceWith(xFlytoTable)
 
@@ -843,13 +943,28 @@ Public Class Form1
 
 
 
-    Private Sub AddToTrack(BeginTime As String, CoordinateString As String, index As Integer)
+    Private Sub AddToTrack(BeginTime As String, CoordinateString As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, index As Integer)
         Dim xAddTime As XElement
         Dim xAddCoord As XElement
+        Dim xInitialLookAt As XElement
+        xInitialLookAt = <ns1:LookAt xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
+                             <ns2:TimeStamp>
+                                 <ns1:when><%= BeginTime %></ns1:when>
+                             </ns2:TimeStamp>
+                             <ns1:longitude><%= OutputLongDeg %></ns1:longitude>
+                             <ns1:latitude><%= OutputLatDeg %></ns1:latitude>
+                             <ns1:altitude><%= altitudes %></ns1:altitude>
+                             <ns1:heading><%= OrientationString %></ns1:heading>
+                             <ns1:tilt><%= TiltString %></ns1:tilt>
+                             <ns1:range><%= RangeString %></ns1:range>
+                             <ns2:altitudeMode>relativeToSeaFloor</ns2:altitudeMode>
+                         </ns1:LookAt>
+
         xAddTime = <ns1:when xmlns:ns1="http://www.opengis.net/kml/2.2"><%= BeginTime %></ns1:when>
         xAddCoord = <ns2:coord xmlns:ns2="http://www.google.com/kml/ext/2.2"><%= CoordinateString %></ns2:coord>
 
         If index = 0 Then
+            XTrack.Elements(k + "Document").Elements(k + "LookAt")(index).ReplaceWith(xInitialLookAt)
             XTrack.Elements(k + "Document").Elements(k + "Placemark").Elements(kk + "Track").Elements(k + "when")(index).ReplaceWith(xAddTime)
             XTrack.Elements(k + "Document").Elements(k + "Placemark").Elements(kk + "Track").Elements(kk + "coord")(index).ReplaceWith(xAddCoord)
         Else
@@ -907,7 +1022,7 @@ Public Class Form1
         Dim EndTime As String
         Dim Flag As Integer
 
-
+        Dim xInitialLookAt As XElement
         i = 0
 
         HeadingValue = 0
@@ -1023,8 +1138,27 @@ Public Class Form1
 
             XTrackAdd = MakeKML(BeginTime, EndTime, LongLatAltString, HeadingArray(n) + 180 Mod 360, n)
 
+
+
             If n = 0 Then
                 XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document")(n).ReplaceWith(XTrackAdd)
+
+
+
+                xInitialLookAt = <ns1:LookAt xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
+                                     <ns2:TimeStamp>
+                                         <ns1:when><%= BeginTime %></ns1:when>
+                                     </ns2:TimeStamp>
+                                     <ns1:longitude><%= LongArray(n) %></ns1:longitude>
+                                     <ns1:latitude><%= LatArray(n) %></ns1:latitude>
+                                     <ns1:altitude><%= 0 %></ns1:altitude>
+                                     <ns1:heading><%= 10 %></ns1:heading>
+                                     <ns1:tilt><%= 10 %></ns1:tilt>
+                                     <ns1:range><%= 10 %></ns1:range>
+                                     <ns2:altitudeMode>relativeToSeaFloor</ns2:altitudeMode>
+                                 </ns1:LookAt>
+
+                XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Elements(k + "LookAt")(n).ReplaceWith(xInitialLookAt)
                 'MsgBox(XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Count)
             Else
                 XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document")(n - 1).AddAfterSelf(XTrackAdd)
@@ -1179,7 +1313,7 @@ Public Class Form1
         Dim y As Double
         Dim VectorCount As Integer = XVector.Length
         Dim index As Integer = 0
-
+        'MsgBox(XVector(0))
         While x >= XVector(index)
             index = index + 1
         End While
@@ -1232,8 +1366,127 @@ Public Class Form1
     End Function
 
     Private Function kmlDate(m4 As Date) As String
-        Throw New NotImplementedException
+        Return Year(m4) & "-" & Format(Month(m4), "00") & "-" & Format(Day(m4), "00") & "T" & Format(Hour(m4), "00") & ":" & Format(Minute(m4), "00") & ":" & Format(Second(m4), "00") & "." & m4.Millisecond & "Z"
+
     End Function
+
+    Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, TrimString As String, HeelString As String, HeadingString As String, SpeedString As String, DraftString As String)
+
+        Dim FontColor As Color = Color.OrangeRed
+        Dim BackColor As Color = Color.Transparent
+        Dim FontName As String = "courier"
+        Dim FontSize As Integer = 12
+        Dim Height As Integer = 250
+        Dim Width As Integer = 400
+        Dim objBitmap As New Bitmap(Width, Height)
+
+        'Dim myBitmap As New Bitmap("C:\Google Earth Tour\callum logo transparent background.png")
+        Dim myBitmap As Bitmap '("C:\Google Earth Tour\callum logo transparent background.png")
+
+
+        Dim FileName As String = "MyImage"
+        Dim objGraphics As Graphics = Graphics.FromImage(objBitmap)
+        Dim objFont As New Font(FontName, FontSize)
+        Dim objFont1 As New Font(FontName, 18)
+
+        Dim obj0 As New PointF(10.0F, 20.0F)
+        Dim obj1 As New PointF(10.0F, 20.0F)
+        Dim obj2 As New PointF(10.0F, 20.0F)
+        Dim obj3 As New PointF(10.0F, 20.0F)
+        Dim obj4 As New PointF(10.0F, 20.0F)
+        Dim obj5 As New PointF(10.0F, 20.0F)
+        Dim obj6 As New PointF(10.0F, 20.0F)
+        Dim obj7 As New PointF(10.0F, 20.0F)
+        Dim obj8 As New PointF(10.0F, 20.0F)
+        Dim obj9 As New PointF(10.0F, 20.0F)
+
+
+        Dim objBrushForeColor As New SolidBrush(FontColor)
+
+        Dim objBrushForeColor1 As New SolidBrush(Color.DarkOrange)
+
+        Dim objBrushBackColor As New SolidBrush(BackColor)
+
+        'objBitmap.MakeTransparent()
+        ''objGraphics.FillRectangle(objBrushBackColor, 0, 0, Width, Height)
+        'objGraphics.DrawString("Time: " & BeginTime, objFont, objBrushForeColor, objPoint)
+        'objGraphics.DrawString("Lat: " & OutputLatDeg, objFont, objBrushForeColor, objPoint1)
+
+        'objBitmap.Save("C:\Google Earth Tour\" & FileName & indexForPlacemarkData.ToString & ".bmp", ImageFormat.Bmp)
+
+        ' Create a Bitmap object from an image file. 
+
+        Dim myRectangle As New Rectangle
+
+        ' Draw myBitmap to the screen.
+
+        obj0.X = 5
+        obj1.X = 15
+        obj2.X = 15
+        obj3.X = 15
+        obj4.X = 15
+        obj5.X = 15
+        obj6.X = 15
+        obj7.X = 15
+        obj8.X = 15
+        obj9.X = 15
+
+        Dim constpix As Integer = 30
+
+        obj0.Y = 10  'myBitmap.Height + 20
+        obj1.Y = 20 + constpix 'myBitmap.Height + 20
+        obj2.Y = 40 + constpix ' myBitmap.Height + 50
+        obj3.Y = 60 + constpix 'myBitmap.Height + 80
+        obj4.Y = 80 + constpix 'myBitmap.Height + 110
+        obj5.Y = 100 + constpix 'myBitmap.Height + 110
+        obj6.Y = 120 + constpix 'myBitmap.Height + 110
+        obj7.Y = 140 + constpix 'myBitmap.Height + 110
+        obj8.Y = 160 + constpix 'myBitmap.Height + 110
+        obj9.Y = 180 + constpix  'myBitmap.Height + 110
+
+        myRectangle.X = 10
+        myRectangle.Y = 10 + constpix ' myBitmap.Height + 10
+        myRectangle.Height = 200
+        myRectangle.Width = 320 ' myBitmap.Width - 15
+
+        'objGraphics.DrawImage(myBitmap, 0, 0, myBitmap.Width, myBitmap.Height)
+
+        Dim OrangePen As New Pen(Color.OrangeRed, 5)
+        OrangePen.Alignment = Drawing2D.PenAlignment.Center
+
+
+        objGraphics.DrawString("SHIP DATA", objFont1, objBrushForeColor1, obj0)
+
+        objGraphics.DrawRectangle(OrangePen, myRectangle)
+
+        objGraphics.DrawString("Date: " & Split(BeginTime, "T")(0), objFont, objBrushForeColor, obj1)
+        objGraphics.DrawString("Time: " & Split(BeginTime, "T")(1), objFont, objBrushForeColor, obj2)
+        objGraphics.DrawString("Latitude: " & OutputDegString(OutputLatDeg), objFont, objBrushForeColor, obj3)
+        objGraphics.DrawString("Longitude: " & OutputDegString(OutputLongDeg), objFont, objBrushForeColor, obj4)
+        objGraphics.DrawString(TrimString, objFont, objBrushForeColor, obj5)
+        objGraphics.DrawString(HeelString, objFont, objBrushForeColor, obj6)
+        objGraphics.DrawString(HeadingString, objFont, objBrushForeColor, obj7)
+        objGraphics.DrawString(SpeedString, objFont, objBrushForeColor, obj8)
+        'objGraphics.DrawString(DraftString, objFont, objBrushForeColor, obj9)
+
+
+        ' Make the default transparent color transparent for myBitmap.
+        'myBitmap.MakeTransparent()
+
+        ' Draw the transparent bitmap to the screen.
+        'objGraphics.DrawImage(myBitmap, myBitmap.Width, 0, myBitmap.Width, myBitmap.Height)
+
+
+
+        objBitmap.Save("C:\Google Earth Tour\OverlayImages\" & FileName & indexForPlacemarkData.ToString & ".png", ImageFormat.Png)
+
+    End Sub
+
+    Private Function OutputDegString(OutputLatDeg As Double) As String
+        Return Int(OutputLatDeg) & "°" & Int((OutputLatDeg - Int(OutputLatDeg)) / 24 * (24 * 60) Mod 60) & "'" & Math.Round((OutputLatDeg - Int(OutputLatDeg)) / 24 * (24 * 60 * 60) Mod 60, 2) & "'';"
+
+    End Function
+
 
 
 End Class

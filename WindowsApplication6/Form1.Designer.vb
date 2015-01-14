@@ -59,8 +59,14 @@ Partial Class Form1
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.ReadoutFrequencyTextbox = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.ReeadoutCheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.FixedYawTextBox = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -127,10 +133,11 @@ Partial Class Form1
         Me.Radius = New System.Windows.Forms.TextBox()
         Me.RadiusCenter = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.FixedYawTextBox = New System.Windows.Forms.TextBox()
+        Me.ReadoutHeightTextbox = New System.Windows.Forms.TextBox()
+        Me.Label32 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.GroupBox7.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -260,7 +267,7 @@ Partial Class Form1
         Me.ns1range.Name = "ns1range"
         Me.ns1range.Size = New System.Drawing.Size(85, 20)
         Me.ns1range.TabIndex = 15
-        Me.ns1range.Text = "300"
+        Me.ns1range.Text = "50"
         '
         'Label8
         '
@@ -345,7 +352,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(6, 413)
+        Me.Button2.Location = New System.Drawing.Point(6, 573)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(149, 23)
         Me.Button2.TabIndex = 27
@@ -366,7 +373,7 @@ Partial Class Form1
         Me.ns1rangeMax.Name = "ns1rangeMax"
         Me.ns1rangeMax.Size = New System.Drawing.Size(85, 20)
         Me.ns1rangeMax.TabIndex = 32
-        Me.ns1rangeMax.Text = "3000"
+        Me.ns1rangeMax.Text = "70"
         '
         'ns1tiltMax
         '
@@ -374,7 +381,7 @@ Partial Class Form1
         Me.ns1tiltMax.Name = "ns1tiltMax"
         Me.ns1tiltMax.Size = New System.Drawing.Size(85, 20)
         Me.ns1tiltMax.TabIndex = 31
-        Me.ns1tiltMax.Text = "45"
+        Me.ns1tiltMax.Text = "60"
         '
         'ns1headingMax
         '
@@ -436,11 +443,12 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(12, 22)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(859, 468)
+        Me.TabControl1.Size = New System.Drawing.Size(859, 628)
         Me.TabControl1.TabIndex = 36
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.GroupBox7)
         Me.TabPage1.Controls.Add(Me.ProgressBar1)
         Me.TabPage1.Controls.Add(Me.GroupBox3)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
@@ -448,14 +456,54 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(851, 442)
+        Me.TabPage1.Size = New System.Drawing.Size(851, 602)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Animate from Placemarks"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'GroupBox7
+        '
+        Me.GroupBox7.Controls.Add(Me.ReadoutHeightTextbox)
+        Me.GroupBox7.Controls.Add(Me.Label32)
+        Me.GroupBox7.Controls.Add(Me.ReadoutFrequencyTextbox)
+        Me.GroupBox7.Controls.Add(Me.Label31)
+        Me.GroupBox7.Controls.Add(Me.ReeadoutCheckedListBox)
+        Me.GroupBox7.Location = New System.Drawing.Point(3, 413)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(833, 136)
+        Me.GroupBox7.TabIndex = 51
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Readout Data"
+        '
+        'ReadoutFrequencyTextbox
+        '
+        Me.ReadoutFrequencyTextbox.Location = New System.Drawing.Point(259, 13)
+        Me.ReadoutFrequencyTextbox.Name = "ReadoutFrequencyTextbox"
+        Me.ReadoutFrequencyTextbox.Size = New System.Drawing.Size(100, 20)
+        Me.ReadoutFrequencyTextbox.TabIndex = 2
+        Me.ReadoutFrequencyTextbox.Text = "30"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(155, 16)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(98, 13)
+        Me.Label31.TabIndex = 1
+        Me.Label31.Text = "ReadoutFrequency"
+        '
+        'ReeadoutCheckedListBox
+        '
+        Me.ReeadoutCheckedListBox.FormattingEnabled = True
+        Me.ReeadoutCheckedListBox.Items.AddRange(New Object() {"HeadingString", "SpeedString", "DraftString", "TrimString ", "HeelString"})
+        Me.ReeadoutCheckedListBox.Location = New System.Drawing.Point(3, 16)
+        Me.ReeadoutCheckedListBox.Name = "ReeadoutCheckedListBox"
+        Me.ReeadoutCheckedListBox.Size = New System.Drawing.Size(122, 94)
+        Me.ReeadoutCheckedListBox.TabIndex = 0
+        '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(161, 413)
+        Me.ProgressBar1.Location = New System.Drawing.Point(161, 573)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(675, 23)
         Me.ProgressBar1.TabIndex = 50
@@ -478,6 +526,23 @@ Partial Class Form1
         Me.GroupBox3.TabIndex = 44
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Model Animation"
+        '
+        'FixedYawTextBox
+        '
+        Me.FixedYawTextBox.Location = New System.Drawing.Point(704, 13)
+        Me.FixedYawTextBox.Name = "FixedYawTextBox"
+        Me.FixedYawTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.FixedYawTextBox.TabIndex = 76
+        Me.FixedYawTextBox.Text = "0"
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(641, 16)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(53, 13)
+        Me.Label30.TabIndex = 75
+        Me.Label30.Text = "FixedYaw"
         '
         'GroupBox6
         '
@@ -516,7 +581,7 @@ Partial Class Form1
         Me.TimeFactor.Name = "TimeFactor"
         Me.TimeFactor.Size = New System.Drawing.Size(41, 20)
         Me.TimeFactor.TabIndex = 40
-        Me.TimeFactor.Text = ".25"
+        Me.TimeFactor.Text = "1"
         '
         'TimeIncrement
         '
@@ -811,7 +876,7 @@ Partial Class Form1
         '
         Me.DaeModelListBox.AllowDrop = True
         Me.DaeModelListBox.FormattingEnabled = True
-        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\coastal renaissance.dae"})
+        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\birthdayship.dae"})
         Me.DaeModelListBox.Location = New System.Drawing.Point(0, 32)
         Me.DaeModelListBox.Name = "DaeModelListBox"
         Me.DaeModelListBox.Size = New System.Drawing.Size(537, 43)
@@ -978,7 +1043,7 @@ Partial Class Form1
         '
         Me.PmFolderListBox.AllowDrop = True
         Me.PmFolderListBox.FormattingEnabled = True
-        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\ActivePassExtract.kml"})
+        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\ShipApproach.kml"})
         Me.PmFolderListBox.Location = New System.Drawing.Point(108, 43)
         Me.PmFolderListBox.Name = "PmFolderListBox"
         Me.PmFolderListBox.Size = New System.Drawing.Size(438, 43)
@@ -1014,7 +1079,7 @@ Partial Class Form1
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(851, 442)
+        Me.TabPage3.Size = New System.Drawing.Size(851, 602)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Settings"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1043,7 +1108,7 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(851, 442)
+        Me.TabPage2.Size = New System.Drawing.Size(851, 602)
         Me.TabPage2.TabIndex = 3
         Me.TabPage2.Text = "Track Reader"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1087,7 +1152,7 @@ Partial Class Form1
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(851, 442)
+        Me.TabPage4.Size = New System.Drawing.Size(851, 602)
         Me.TabPage4.TabIndex = 4
         Me.TabPage4.Text = "Radius Maker"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1155,33 +1220,35 @@ Partial Class Form1
         '
         Me.OpenFileDialog3.FileName = "OpenFileDialog3"
         '
-        'Label30
+        'ReadoutHeightTextbox
         '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(641, 16)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(53, 13)
-        Me.Label30.TabIndex = 75
-        Me.Label30.Text = "FixedYaw"
+        Me.ReadoutHeightTextbox.Location = New System.Drawing.Point(259, 39)
+        Me.ReadoutHeightTextbox.Name = "ReadoutHeightTextbox"
+        Me.ReadoutHeightTextbox.Size = New System.Drawing.Size(100, 20)
+        Me.ReadoutHeightTextbox.TabIndex = 4
+        Me.ReadoutHeightTextbox.Text = "5"
         '
-        'FixedYawTextBox
+        'Label32
         '
-        Me.FixedYawTextBox.Location = New System.Drawing.Point(704, 13)
-        Me.FixedYawTextBox.Name = "FixedYawTextBox"
-        Me.FixedYawTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.FixedYawTextBox.TabIndex = 76
-        Me.FixedYawTextBox.Text = "0"
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(155, 42)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(82, 13)
+        Me.Label32.TabIndex = 3
+        Me.Label32.Text = "Readout Height"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(892, 492)
+        Me.ClientSize = New System.Drawing.Size(892, 662)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Form1"
         Me.Text = "Create Tour From Placemark"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.GroupBox7.ResumeLayout(False)
+        Me.GroupBox7.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
@@ -1312,5 +1379,11 @@ Partial Class Form1
     Friend WithEvents TimeInfoCheck As System.Windows.Forms.CheckBox
     Friend WithEvents FixedYawTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
+    Friend WithEvents ReeadoutCheckedListBox As System.Windows.Forms.CheckedListBox
+    Friend WithEvents ReadoutFrequencyTextbox As System.Windows.Forms.TextBox
+    Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents ReadoutHeightTextbox As System.Windows.Forms.TextBox
+    Friend WithEvents Label32 As System.Windows.Forms.Label
 
 End Class
