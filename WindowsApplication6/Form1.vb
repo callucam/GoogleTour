@@ -63,6 +63,9 @@ Public Class Form1
         Dim PMtiltMax1 As Double = PMrollMax.Text
         Dim PMroll As Double = PMpitchMin.Text
         Dim PMrollMax1 As Double = PMpitchMax.Text
+        Dim PMyaw As Double = PMyawMin.Text
+        Dim PMyawMax1 As Double = PMyawMax.Text
+
         Dim altitudeMode As String = ns2altitudeMode.Text
         Dim duration As Double = ns2duration.Text 'this is a percentage of the total length of tour, to the total duration.
         Dim flyToMode As String = ns2flyToMode.Text
@@ -236,7 +239,9 @@ Public Class Form1
             Dim HeadingString As String
             Dim SpeedString As String
             Dim HeelString As String
-            Dim TrimString As String
+        Dim TrimString As String
+        Dim YawString As String
+
             Dim DraftString As String
 
             Dim BeginTime As String
@@ -250,7 +255,8 @@ Public Class Form1
         Dim mb As Integer = 0
 
             Dim TrimData As Double
-            Dim HeelData As Double
+        Dim HeelData As Double
+        Dim YawData As Double
         Dim SpeedData As Double
         Dim PreviousxPosition As Double
         Dim PreviousyPosition As Double
@@ -343,7 +349,7 @@ Public Class Form1
 
                 'MsgBox(EndTime)
 
-                OutputString = OutputLongDeg & "," & OutputLatDeg & "," & ReadoutHeightTextbox.Text 'altitudes(0)
+                OutputString = OutputLongDeg & "," & OutputLatDeg  'altitudes(0)
 
                 If HeadingInfoCheck.Checked = True And XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(0).Elements(k + "heading").Count > 0 Then
 
@@ -386,6 +392,15 @@ Public Class Form1
 
                 HeelString = "Heel: " & Math.Round(HeelData, 1) & "°; "
 
+                If LinearYawOption.Checked = True Then
+                    YawData = PMyaw + (PMyawMax1 - PMyaw) / TimeArray(NPlacemarks) * i
+                    'MsgBox(YawData)
+                Else
+                    YawData = YawMagnitude.Text * Math.Sin(2 * pi / YawPeriod.Text * i + YawPhase.Text * pi / 180)
+                End If
+
+                YawString = "Yaw: " & Math.Round(YawData, 1) & "°; "
+
                 If j = DaeNameSteps Then j = 0 Else j = j + 1
 
                 'MsgBox((ModelX ^ 2 + ModelY ^ 2) ^ 0.5)
@@ -398,28 +413,28 @@ Public Class Form1
 
                 ReadoutString = ""
 
-                If ReeadoutCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
-                    ReadoutString = ReadoutString & HeadingString
-                End If
-                If ReeadoutCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
-                    ReadoutString = ReadoutString & SpeedString
-                End If
-                If ReeadoutCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
-                    ReadoutString = ReadoutString & DraftString
-                End If
-                If ReeadoutCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
-                    ReadoutString = ReadoutString & TrimString
-                End If
-                If ReeadoutCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
-                    ReadoutString = ReadoutString & HeelString
-                End If
+                'If ReeadoutCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
+                '    ReadoutString = ReadoutString & HeadingString
+                'End If
+                'If ReeadoutCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
+                '    ReadoutString = ReadoutString & SpeedString
+                'End If
+                'If ReeadoutCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
+                '    ReadoutString = ReadoutString & DraftString
+                'End If
+                'If ReeadoutCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
+                '    ReadoutString = ReadoutString & TrimString
+                'End If
+                'If ReeadoutCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
+                '    ReadoutString = ReadoutString & HeelString
+                'End If
 
 
 
                 'If index Mod ReadoutFrequencyTextbox.Text = 0 Then
-                CreateImageReadout(BeginTime, VeryEndTime, OutputLongDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData, TrimString, HeelString, HeadingString, SpeedString, DraftString)
+                CreateImageReadout(BeginTime, VeryEndTime, OutputLongDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData, TrimString, HeelString, HeadingString, SpeedString, DraftString, YawString)
 
-                AddToPlacemarkData(ReadoutString, BeginTime, EndTime, OutputString, OutputLongDeg, OutputLatDeg, ReadoutHeightTextbox.Text, OrientationString, TiltString, RangeString, indexForPlacemarkData)
+                AddToPlacemarkData(ReadoutString, BeginTime, EndTime, OutputString, OutputLongDeg, OutputLatDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData)
                 'AddToPlacemarkData(HeadingString, BeginTime, EndTime, OutputString, indexForPlacemarkData)
 
 
@@ -427,7 +442,7 @@ Public Class Form1
 
                 'End If
 
-                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing + FixedYawTextBox.Text, DaeName(j), HeelData, TrimData, index)
+                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing + FixedYawTextBox.Text, DaeName(j), HeelData, TrimData, YawData, index)
 
                 AddToTrack(BeginTime, CoordinateString, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, index)
 
@@ -858,12 +873,16 @@ Public Class Form1
 
     End Sub
 
-    Private Sub AddToAnimateModel(altitudeMode As String, horizFov As String, BeginTime As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, duration As Double, flyToMode As String, EndTime As String, ModelBearing As Double, DaeName As String, TrimData As Double, HeelData As Double, index As Integer)
+    Private Sub AddToAnimateModel(altitudeMode As String, horizFov As String, BeginTime As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, duration As Double, flyToMode As String, EndTime As String, ModelBearing As Double, DaeName As String, TrimData As Double, HeelData As Double, YawData As Double, index As Integer)
 
         Dim xPlacemarkTable As XElement
         Dim xFlytoTable As XElement
-
         Dim xInitialLookAt As XElement
+
+        Dim ModelBearing2 As Double
+
+        ModelBearing2 = ModelBearing + YawData
+
         xInitialLookAt = <ns1:LookAt xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
                              <ns2:TimeStamp>
                                  <ns1:when><%= BeginTime %></ns1:when>
@@ -911,7 +930,7 @@ Public Class Form1
                                           <ns1:altitude><%= altitudes %></ns1:altitude>
                                       </ns1:Location>
                                       <ns1:Orientation>
-                                          <ns1:heading><%= ModelBearing %></ns1:heading>
+                                          <ns1:heading><%= ModelBearing2 %></ns1:heading>
                                           <ns1:tilt><%= TrimData %></ns1:tilt>
                                           <ns1:roll><%= HeelData %></ns1:roll>
                                       </ns1:Orientation>
@@ -1370,7 +1389,7 @@ Public Class Form1
 
     End Function
 
-    Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, TrimString As String, HeelString As String, HeadingString As String, SpeedString As String, DraftString As String)
+    Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, TrimString As String, HeelString As String, HeadingString As String, SpeedString As String, DraftString As String, YawString As String)
 
         Dim FontColor As Color = Color.OrangeRed
         Dim BackColor As Color = Color.Transparent
@@ -1417,6 +1436,20 @@ Public Class Form1
         ' Create a Bitmap object from an image file. 
 
         Dim myRectangle As New Rectangle
+        Dim myRectangle0 As New Rectangle
+        Dim myRectangle1 As New Rectangle
+        Dim myRectangle2 As New Rectangle
+        Dim myRectangle3 As New Rectangle
+        Dim myRectangle4 As New Rectangle
+        Dim myRectangle5 As New Rectangle
+        Dim myRectangle6 As New Rectangle
+        Dim myRectangle7 As New Rectangle
+        Dim myRectangle8 As New Rectangle
+        Dim myRectangle9 As New Rectangle
+
+
+
+
 
         ' Draw myBitmap to the screen.
 
@@ -1449,6 +1482,21 @@ Public Class Form1
         myRectangle.Height = 200
         myRectangle.Width = 320 ' myBitmap.Width - 15
 
+        myRectangle1.X = 10
+        myRectangle1.Y = constpix ' myBitmap.Height + 10
+        myRectangle1.Height = 20
+        myRectangle1.Width = 80 ' myBitmap.Width - 15
+
+        myRectangle2.X = 10
+        myRectangle2.Y = 20 + constpix ' myBitmap.Height + 10
+        myRectangle2.Height = 20
+        myRectangle2.Width = 80 ' myBitmap.Width - 15
+
+        myRectangle3.X = 10
+        myRectangle3.Y = 40 + constpix ' myBitmap.Height + 10
+        myRectangle3.Height = 20
+        myRectangle3.Width = 80 ' myBitmap.Width - 15
+
         'objGraphics.DrawImage(myBitmap, 0, 0, myBitmap.Width, myBitmap.Height)
 
         Dim OrangePen As New Pen(Color.OrangeRed, 5)
@@ -1459,6 +1507,19 @@ Public Class Form1
 
         objGraphics.DrawRectangle(OrangePen, myRectangle)
 
+        'objGraphics.DrawRectangle(OrangePen, myRectangle1)
+        'objGraphics.FillRectangle(Brushes.DarkOrange, myRectangle1)
+        'objGraphics.DrawRectangle(OrangePen, myRectangle2)
+        'objGraphics.FillRectangle(Brushes.OrangeRed, myRectangle2)
+        'objGraphics.DrawRectangle(OrangePen, myRectangle3)
+        'objGraphics.FillRectangle(Brushes.Orange, myRectangle2)
+
+
+
+
+
+        'objGraphics.FillRectangle(Brushes.OldLace, myRectangle)
+
         objGraphics.DrawString("Date: " & Split(BeginTime, "T")(0), objFont, objBrushForeColor, obj1)
         objGraphics.DrawString("Time: " & Split(BeginTime, "T")(1), objFont, objBrushForeColor, obj2)
         objGraphics.DrawString("Latitude: " & OutputDegString(OutputLatDeg), objFont, objBrushForeColor, obj3)
@@ -1467,7 +1528,7 @@ Public Class Form1
         objGraphics.DrawString(HeelString, objFont, objBrushForeColor, obj6)
         objGraphics.DrawString(HeadingString, objFont, objBrushForeColor, obj7)
         objGraphics.DrawString(SpeedString, objFont, objBrushForeColor, obj8)
-        'objGraphics.DrawString(DraftString, objFont, objBrushForeColor, obj9)
+        objGraphics.DrawString(YawString, objFont, objBrushForeColor, obj9)
 
 
         ' Make the default transparent color transparent for myBitmap.

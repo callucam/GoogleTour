@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ns1:Document>
+		<ns1:name>Document</ns1:name>
+		<ns1:open>1</ns1:open>
+
+		<ns1:LookAt>
+			<ns2:TimeStamp>
+				<ns1:when></ns1:when>
+			</ns2:TimeStamp>
+			<ns1:longitude></ns1:longitude>
+			<ns1:latitude></ns1:latitude>
+			<ns1:altitude></ns1:altitude>
+			<ns1:heading></ns1:heading>
+			<ns1:tilt></ns1:tilt>
+			<ns1:range></ns1:range>
+			<ns2:altitudeMode></ns2:altitudeMode>
+		</ns1:LookAt>
+
+
+		<ns1:Style>
+			<ns1:ListStyle>
+				<ns1:listItemType>check</ns1:listItemType>
+				<ns1:bgColor>00ffffff</ns1:bgColor>
+				<ns1:maxSnippetLines>2</ns1:maxSnippetLines>
+			</ns1:ListStyle>
+		</ns1:Style>
+		<ns1:Folder>
+			<ns1:name>Folder</ns1:name>
+			
+			<ns1:Style>
+				<ns1:ListStyle>
+					<ns1:listItemType>checkHideChildren</ns1:listItemType>
+					<ns1:bgColor>00ffffff</ns1:bgColor>
+					<ns1:maxSnippetLines>2</ns1:maxSnippetLines>
+				</ns1:ListStyle>
+			</ns1:Style>
+			<ns1:Placemark>
+				<ns1:name>1</ns1:name>
+				<ns1:TimeSpan>
+					<ns1:begin></ns1:begin>
+					<ns1:end></ns1:end>
+				</ns1:TimeSpan>
+				<ns1:MultiGeometry>
+					<ns1:Model id="model_1">
+						<ns1:altitudeMode>relativeToGround</ns1:altitudeMode>
+						<ns1:Location>
+							<ns1:longitude></ns1:longitude>
+							<ns1:latitude></ns1:latitude>
+							<ns1:altitude></ns1:altitude>
+						</ns1:Location>
+						<ns1:Orientation>
+							<ns1:heading></ns1:heading>
+							<ns1:tilt></ns1:tilt>
+							<ns1:roll></ns1:roll>
+						</ns1:Orientation>
+						<ns1:Scale>
+							<ns1:x></ns1:x>
+							<ns1:y></ns1:y>
+							<ns1:z></ns1:z>
+						</ns1:Scale>
+						<ns1:Link>
+							<ns1:href></ns1:href>
+						</ns1:Link>
+					</ns1:Model>
+				</ns1:MultiGeometry>
+			</ns1:Placemark>
+		</ns1:Folder>
+		<ns2:Tour>
+			<ns1:name>Tour</ns1:name>
+			<ns2:Playlist>
+				<ns2:AnimatedUpdate>
+					<ns1:Update>
+						<ns1:Change>
+							<ns1:ScreenOverlay targetId="_0">
+								<ns2:balloonVisibility>1</ns2:balloonVisibility>
+							</ns1:ScreenOverlay>
+						</ns1:Change>
+					</ns1:Update>
+				</ns2:AnimatedUpdate>
+				<ns2:FlyTo>
+					<ns1:LookAt>
+						<ns2:altitudeMode></ns2:altitudeMode>
+						<ns2:horizFov></ns2:horizFov>
+						<ns2:TimeSpan>
+							<ns1:begin></ns1:begin>
+							<ns1:end></ns1:end>
+						</ns2:TimeSpan>
+						<ns1:longitude></ns1:longitude>
+						<ns1:latitude></ns1:latitude>
+						<ns1:altitude></ns1:altitude>
+						<ns1:heading></ns1:heading>
+						<ns1:tilt></ns1:tilt>
+						<ns1:range>relativeToSeaFloor</ns1:range>
+					</ns1:LookAt>
+					<ns2:duration>0.1</ns2:duration>
+					<ns2:flyToMode>smooth</ns2:flyToMode>
+				</ns2:FlyTo>
+			</ns2:Playlist>
+		</ns2:Tour>
+	</ns1:Document>
+</ns1:kml>

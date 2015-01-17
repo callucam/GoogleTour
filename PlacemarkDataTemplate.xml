@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ns1:Document>
+		<ns1:name>Data</ns1:name>
+
+
+		<ns1:open>1</ns1:open>
+
+		<ns1:LookAt>
+			<ns2:TimeStamp>
+				<ns1:when></ns1:when>
+			</ns2:TimeStamp>
+			<ns1:longitude></ns1:longitude>
+			<ns1:latitude></ns1:latitude>
+			<ns1:altitude></ns1:altitude>
+			<ns1:heading></ns1:heading>
+			<ns1:tilt></ns1:tilt>
+			<ns1:range></ns1:range>
+			<ns2:altitudeMode></ns2:altitudeMode>
+		</ns1:LookAt>
+
+
+
+
+		<ns1:Style id="Style_5">
+			<ns1:IconStyle>
+				<ns1:scale>0.4</ns1:scale>
+				<ns1:Icon>
+					<ns1:href>http://maps.google.com/mapfiles/kml/shapes/star.png</ns1:href>
+				</ns1:Icon>
+			</ns1:IconStyle>
+			<ns1:LabelStyle>
+				<ns1:color>9900ffff</ns1:color>
+			</ns1:LabelStyle>
+			<ns1:LineStyle>
+				<ns1:color>990000ff</ns1:color>
+				<ns1:width>2</ns1:width>
+			</ns1:LineStyle>
+			<ns1:PolyStyle>
+				<ns1:color>997f7fff</ns1:color>
+			</ns1:PolyStyle>
+		</ns1:Style>
+		<ns1:Folder>
+			<ns1:name>Folder</ns1:name>
+			<ns1:open>0</ns1:open>
+			
+			<ns1:ScreenOverlay>
+	
+			<ns1:name>Absolute Positioning: Bottom left</ns1:name>
+	
+			<ns1:Icon>
+		
+				<ns1:href></ns1:href>
+	
+			</ns1:Icon>
+	
+			<ns1:overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+	
+			<ns1:screenXY x="0" y="1" xunits="fraction" yunits="fraction"/>
+	
+			<ns1:rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+	
+			<ns1:size x="0" y="0" xunits="fraction" yunits="fraction"/>
+
+			<ns1:TimeSpan>
+          			<ns1:begin></ns1:begin>
+          			<ns1:end></ns1:end>
+        		</ns1:TimeSpan>
+			</ns1:ScreenOverlay>
+		</ns1:Folder>
+
+
+	</ns1:Document>
+</ns1:kml>

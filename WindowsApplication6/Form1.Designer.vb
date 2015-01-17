@@ -60,9 +60,6 @@ Partial Class Form1
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
-        Me.ReadoutFrequencyTextbox = New System.Windows.Forms.TextBox()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.ReeadoutCheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.FixedYawTextBox = New System.Windows.Forms.TextBox()
@@ -133,8 +130,15 @@ Partial Class Form1
         Me.Radius = New System.Windows.Forms.TextBox()
         Me.RadiusCenter = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
-        Me.ReadoutHeightTextbox = New System.Windows.Forms.TextBox()
+        Me.LinearYawOption = New System.Windows.Forms.RadioButton()
+        Me.PMyawMax = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.PMyawMin = New System.Windows.Forms.TextBox()
         Me.Label32 = New System.Windows.Forms.Label()
+        Me.CyclicalYawOption = New System.Windows.Forms.RadioButton()
+        Me.YawPeriod = New System.Windows.Forms.TextBox()
+        Me.YawPhase = New System.Windows.Forms.TextBox()
+        Me.YawMagnitude = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
@@ -463,43 +467,21 @@ Partial Class Form1
         '
         'GroupBox7
         '
-        Me.GroupBox7.Controls.Add(Me.ReadoutHeightTextbox)
-        Me.GroupBox7.Controls.Add(Me.Label32)
-        Me.GroupBox7.Controls.Add(Me.ReadoutFrequencyTextbox)
+        Me.GroupBox7.Controls.Add(Me.LinearYawOption)
+        Me.GroupBox7.Controls.Add(Me.PMyawMax)
         Me.GroupBox7.Controls.Add(Me.Label31)
-        Me.GroupBox7.Controls.Add(Me.ReeadoutCheckedListBox)
+        Me.GroupBox7.Controls.Add(Me.PMyawMin)
+        Me.GroupBox7.Controls.Add(Me.Label32)
+        Me.GroupBox7.Controls.Add(Me.CyclicalYawOption)
+        Me.GroupBox7.Controls.Add(Me.YawPeriod)
+        Me.GroupBox7.Controls.Add(Me.YawPhase)
+        Me.GroupBox7.Controls.Add(Me.YawMagnitude)
         Me.GroupBox7.Location = New System.Drawing.Point(3, 413)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(833, 136)
+        Me.GroupBox7.Size = New System.Drawing.Size(253, 136)
         Me.GroupBox7.TabIndex = 51
         Me.GroupBox7.TabStop = False
-        Me.GroupBox7.Text = "Readout Data"
-        '
-        'ReadoutFrequencyTextbox
-        '
-        Me.ReadoutFrequencyTextbox.Location = New System.Drawing.Point(259, 13)
-        Me.ReadoutFrequencyTextbox.Name = "ReadoutFrequencyTextbox"
-        Me.ReadoutFrequencyTextbox.Size = New System.Drawing.Size(100, 20)
-        Me.ReadoutFrequencyTextbox.TabIndex = 2
-        Me.ReadoutFrequencyTextbox.Text = "30"
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(155, 16)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(98, 13)
-        Me.Label31.TabIndex = 1
-        Me.Label31.Text = "ReadoutFrequency"
-        '
-        'ReeadoutCheckedListBox
-        '
-        Me.ReeadoutCheckedListBox.FormattingEnabled = True
-        Me.ReeadoutCheckedListBox.Items.AddRange(New Object() {"HeadingString", "SpeedString", "DraftString", "TrimString ", "HeelString"})
-        Me.ReeadoutCheckedListBox.Location = New System.Drawing.Point(3, 16)
-        Me.ReeadoutCheckedListBox.Name = "ReeadoutCheckedListBox"
-        Me.ReeadoutCheckedListBox.Size = New System.Drawing.Size(122, 94)
-        Me.ReeadoutCheckedListBox.TabIndex = 0
+        Me.GroupBox7.Text = "ShipYaw"
         '
         'ProgressBar1
         '
@@ -1220,22 +1202,85 @@ Partial Class Form1
         '
         Me.OpenFileDialog3.FileName = "OpenFileDialog3"
         '
-        'ReadoutHeightTextbox
+        'LinearYawOption
         '
-        Me.ReadoutHeightTextbox.Location = New System.Drawing.Point(259, 39)
-        Me.ReadoutHeightTextbox.Name = "ReadoutHeightTextbox"
-        Me.ReadoutHeightTextbox.Size = New System.Drawing.Size(100, 20)
-        Me.ReadoutHeightTextbox.TabIndex = 4
-        Me.ReadoutHeightTextbox.Text = "5"
+        Me.LinearYawOption.AutoSize = True
+        Me.LinearYawOption.Checked = True
+        Me.LinearYawOption.Location = New System.Drawing.Point(15, 19)
+        Me.LinearYawOption.Name = "LinearYawOption"
+        Me.LinearYawOption.Size = New System.Drawing.Size(54, 17)
+        Me.LinearYawOption.TabIndex = 66
+        Me.LinearYawOption.TabStop = True
+        Me.LinearYawOption.Text = "Linear"
+        Me.LinearYawOption.UseVisualStyleBackColor = True
+        '
+        'PMyawMax
+        '
+        Me.PMyawMax.Location = New System.Drawing.Point(147, 19)
+        Me.PMyawMax.Name = "PMyawMax"
+        Me.PMyawMax.Size = New System.Drawing.Size(45, 20)
+        Me.PMyawMax.TabIndex = 65
+        Me.PMyawMax.Text = "0"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(134, 100)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(63, 13)
+        Me.Label31.TabIndex = 72
+        Me.Label31.Text = "Phase (sec)"
+        '
+        'PMyawMin
+        '
+        Me.PMyawMin.Location = New System.Drawing.Point(96, 19)
+        Me.PMyawMin.Name = "PMyawMin"
+        Me.PMyawMin.Size = New System.Drawing.Size(45, 20)
+        Me.PMyawMin.TabIndex = 64
+        Me.PMyawMin.Text = "0"
         '
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(155, 42)
+        Me.Label32.Location = New System.Drawing.Point(131, 74)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(82, 13)
-        Me.Label32.TabIndex = 3
-        Me.Label32.Text = "Readout Height"
+        Me.Label32.Size = New System.Drawing.Size(63, 13)
+        Me.Label32.TabIndex = 71
+        Me.Label32.Text = "Period (sec)"
+        '
+        'CyclicalYawOption
+        '
+        Me.CyclicalYawOption.AutoSize = True
+        Me.CyclicalYawOption.Location = New System.Drawing.Point(15, 46)
+        Me.CyclicalYawOption.Name = "CyclicalYawOption"
+        Me.CyclicalYawOption.Size = New System.Drawing.Size(61, 17)
+        Me.CyclicalYawOption.TabIndex = 67
+        Me.CyclicalYawOption.Text = "Cyclical"
+        Me.CyclicalYawOption.UseVisualStyleBackColor = True
+        '
+        'YawPeriod
+        '
+        Me.YawPeriod.Location = New System.Drawing.Point(96, 71)
+        Me.YawPeriod.Name = "YawPeriod"
+        Me.YawPeriod.Size = New System.Drawing.Size(29, 20)
+        Me.YawPeriod.TabIndex = 69
+        Me.YawPeriod.Text = "60"
+        '
+        'YawPhase
+        '
+        Me.YawPhase.Location = New System.Drawing.Point(97, 97)
+        Me.YawPhase.Name = "YawPhase"
+        Me.YawPhase.Size = New System.Drawing.Size(29, 20)
+        Me.YawPhase.TabIndex = 70
+        Me.YawPhase.Text = "0"
+        '
+        'YawMagnitude
+        '
+        Me.YawMagnitude.Location = New System.Drawing.Point(96, 45)
+        Me.YawMagnitude.Name = "YawMagnitude"
+        Me.YawMagnitude.Size = New System.Drawing.Size(29, 20)
+        Me.YawMagnitude.TabIndex = 68
+        Me.YawMagnitude.Text = "1"
         '
         'Form1
         '
@@ -1380,10 +1425,14 @@ Partial Class Form1
     Friend WithEvents FixedYawTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label30 As System.Windows.Forms.Label
     Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
-    Friend WithEvents ReeadoutCheckedListBox As System.Windows.Forms.CheckedListBox
-    Friend WithEvents ReadoutFrequencyTextbox As System.Windows.Forms.TextBox
+    Friend WithEvents LinearYawOption As System.Windows.Forms.RadioButton
+    Friend WithEvents PMyawMax As System.Windows.Forms.TextBox
     Friend WithEvents Label31 As System.Windows.Forms.Label
-    Friend WithEvents ReadoutHeightTextbox As System.Windows.Forms.TextBox
+    Friend WithEvents PMyawMin As System.Windows.Forms.TextBox
     Friend WithEvents Label32 As System.Windows.Forms.Label
+    Friend WithEvents CyclicalYawOption As System.Windows.Forms.RadioButton
+    Friend WithEvents YawPeriod As System.Windows.Forms.TextBox
+    Friend WithEvents YawPhase As System.Windows.Forms.TextBox
+    Friend WithEvents YawMagnitude As System.Windows.Forms.TextBox
 
 End Class

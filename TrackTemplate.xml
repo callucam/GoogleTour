@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+<ns1:Document>
+	
+	<ns1:name>Track.kml</ns1:name>
+
+	<ns1:open>1</ns1:open>
+
+
+
+		<ns1:LookAt>
+			<ns2:TimeStamp>
+				<ns1:when></ns1:when>
+			</ns2:TimeStamp>
+			<ns1:longitude></ns1:longitude>
+			<ns1:latitude></ns1:latitude>
+			<ns1:altitude></ns1:altitude>
+			<ns1:heading></ns1:heading>
+			<ns1:tilt></ns1:tilt>
+			<ns1:range></ns1:range>
+			<ns2:altitudeMode></ns2:altitudeMode>
+		</ns1:LookAt>
+	
+	<ns1:Style id="failed">
+		
+	<ns1:IconStyle>
+<ns1:Icon>
+</ns1:Icon>
+</ns1:IconStyle>
+		
+	<ns1:ListStyle>
+</ns1:ListStyle>
+	</ns1:Style>
+	
+	<ns1:Style id="failed0">
+<ns1:IconStyle>
+	<ns1:Icon>
+	</ns1:Icon>
+</ns1:IconStyle>
+		
+	<ns1:ListStyle>
+</ns1:ListStyle>
+	</ns1:Style>
+
+	<ns1:StyleMap id="failed1">
+	<ns1:Pair>
+	
+		<ns1:key>normal</ns1:key>
+<ns1:styleUrl>#failed0</ns1:styleUrl>
+</ns1:Pair>
+		
+		<ns1:Pair>
+	<ns1:key>highlight</ns1:key>
+
+	<ns1:styleUrl>#failed</ns1:styleUrl>
+</ns1:Pair>
+</ns1:StyleMap>
+	
+	
+	<ns1:Placemark>
+<ns1:styleUrl>#failed1</ns1:styleUrl>
+
+		<ns2:balloonVisibility>1</ns2:balloonVisibility>
+		<ns2:Track>
+			<ns1:when></ns1:when>
+			<ns2:coord></ns2:coord>
+		</ns2:Track>
+	</ns1:Placemark>
+</ns1:Document>
+</ns1:kml>
