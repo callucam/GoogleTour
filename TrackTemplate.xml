@@ -32,8 +32,16 @@
 		
 	<ns1:ListStyle>
 </ns1:ListStyle>
-	</ns1:Style>
 	
+<ns1:LineStyle>
+			<ns1:color>ff0055ff</ns1:color>
+			<ns1:width>15</ns1:width>
+		</ns1:LineStyle>
+	
+</ns1:Style>
+	
+
+
 	<ns1:Style id="failed0">
 <ns1:IconStyle>
 	<ns1:Icon>
@@ -42,7 +50,13 @@
 		
 	<ns1:ListStyle>
 </ns1:ListStyle>
-	</ns1:Style>
+	
+<ns1:LineStyle>
+			<ns1:color>ff0055ff</ns1:color>
+			<ns1:width>15</ns1:width>
+		</ns1:LineStyle>
+
+</ns1:Style>
 
 	<ns1:StyleMap id="failed1">
 	<ns1:Pair>

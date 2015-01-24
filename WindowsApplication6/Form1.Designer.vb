@@ -58,12 +58,23 @@ Partial Class Form1
         Me.PlaceMarkName1 = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.HasYaw = New System.Windows.Forms.TabPage()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.LinearYawOption = New System.Windows.Forms.RadioButton()
+        Me.PMyawMax = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.PMyawMin = New System.Windows.Forms.TextBox()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.CyclicalYawOption = New System.Windows.Forms.RadioButton()
+        Me.YawPeriod = New System.Windows.Forms.TextBox()
+        Me.YawPhase = New System.Windows.Forms.TextBox()
+        Me.YawMagnitude = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.FixedYawTextBox = New System.Windows.Forms.TextBox()
-        Me.Label30 = New System.Windows.Forms.Label()
+        Me.ReadoutCheckBox = New System.Windows.Forms.CheckBox()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.CyclicalHeadingOption = New System.Windows.Forms.RadioButton()
+        Me.LinearHeadingOption = New System.Windows.Forms.RadioButton()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -74,6 +85,10 @@ Partial Class Form1
         Me.Label18 = New System.Windows.Forms.Label()
         Me.SpeedMin = New System.Windows.Forms.TextBox()
         Me.SpeedMax = New System.Windows.Forms.TextBox()
+        Me.ClearModels = New System.Windows.Forms.Button()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.DaeModelListBox = New System.Windows.Forms.ListBox()
+        Me.Label20 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.LinearPitchOption = New System.Windows.Forms.RadioButton()
         Me.PMpitchMax = New System.Windows.Forms.TextBox()
@@ -85,6 +100,17 @@ Partial Class Form1
         Me.PitchPeriod = New System.Windows.Forms.TextBox()
         Me.PitchPhase = New System.Windows.Forms.TextBox()
         Me.PitchMagnitude = New System.Windows.Forms.TextBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
+        Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
+        Me.ExcelSeriesTextBox = New System.Windows.Forms.TextBox()
+        Me.PmReferenceTextBox = New System.Windows.Forms.TextBox()
+        Me.FromXYRadioButton = New System.Windows.Forms.RadioButton()
+        Me.FromLatLonRadioButton = New System.Windows.Forms.RadioButton()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.ClearPlacemarks = New System.Windows.Forms.Button()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.PmFolderListBox = New System.Windows.Forms.ListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.LinearRollOption = New System.Windows.Forms.RadioButton()
         Me.CyclicalRollOption = New System.Windows.Forms.RadioButton()
@@ -96,24 +122,6 @@ Partial Class Form1
         Me.RollMagnitude = New System.Windows.Forms.TextBox()
         Me.label100 = New System.Windows.Forms.Label()
         Me.RollPhase = New System.Windows.Forms.TextBox()
-        Me.ClearModels = New System.Windows.Forms.Button()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.DaeModelListBox = New System.Windows.Forms.ListBox()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
-        Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.CyclicalHeadingOption = New System.Windows.Forms.RadioButton()
-        Me.LinearHeadingOption = New System.Windows.Forms.RadioButton()
-        Me.ExcelSeriesTextBox = New System.Windows.Forms.TextBox()
-        Me.PmReferenceTextBox = New System.Windows.Forms.TextBox()
-        Me.FromXYRadioButton = New System.Windows.Forms.RadioButton()
-        Me.FromLatLonRadioButton = New System.Windows.Forms.RadioButton()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.ClearPlacemarks = New System.Windows.Forms.Button()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.PmFolderListBox = New System.Windows.Forms.ListBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.PlaceMarkName2 = New System.Windows.Forms.TextBox()
@@ -130,25 +138,16 @@ Partial Class Form1
         Me.Radius = New System.Windows.Forms.TextBox()
         Me.RadiusCenter = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
-        Me.LinearYawOption = New System.Windows.Forms.RadioButton()
-        Me.PMyawMax = New System.Windows.Forms.TextBox()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.PMyawMin = New System.Windows.Forms.TextBox()
-        Me.Label32 = New System.Windows.Forms.Label()
-        Me.CyclicalYawOption = New System.Windows.Forms.RadioButton()
-        Me.YawPeriod = New System.Windows.Forms.TextBox()
-        Me.YawPhase = New System.Windows.Forms.TextBox()
-        Me.YawMagnitude = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
+        Me.HasYaw.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox9.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox9.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -440,7 +439,7 @@ Partial Class Form1
         '
         'TabControl1
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.HasYaw)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
@@ -450,20 +449,29 @@ Partial Class Form1
         Me.TabControl1.Size = New System.Drawing.Size(859, 628)
         Me.TabControl1.TabIndex = 36
         '
-        'TabPage1
+        'HasYaw
         '
-        Me.TabPage1.Controls.Add(Me.GroupBox7)
-        Me.TabPage1.Controls.Add(Me.ProgressBar1)
-        Me.TabPage1.Controls.Add(Me.GroupBox3)
-        Me.TabPage1.Controls.Add(Me.GroupBox1)
-        Me.TabPage1.Controls.Add(Me.Button2)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(851, 602)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Animate from Placemarks"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.HasYaw.Controls.Add(Me.ProgressBar1)
+        Me.HasYaw.Controls.Add(Me.GroupBox7)
+        Me.HasYaw.Controls.Add(Me.GroupBox3)
+        Me.HasYaw.Controls.Add(Me.GroupBox4)
+        Me.HasYaw.Controls.Add(Me.GroupBox1)
+        Me.HasYaw.Controls.Add(Me.GroupBox2)
+        Me.HasYaw.Controls.Add(Me.Button2)
+        Me.HasYaw.Location = New System.Drawing.Point(4, 22)
+        Me.HasYaw.Name = "HasYaw"
+        Me.HasYaw.Padding = New System.Windows.Forms.Padding(3)
+        Me.HasYaw.Size = New System.Drawing.Size(851, 602)
+        Me.HasYaw.TabIndex = 0
+        Me.HasYaw.Text = "Animate from Placemarks"
+        Me.HasYaw.UseVisualStyleBackColor = True
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(161, 573)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(675, 23)
+        Me.ProgressBar1.TabIndex = 50
         '
         'GroupBox7
         '
@@ -476,28 +484,99 @@ Partial Class Form1
         Me.GroupBox7.Controls.Add(Me.YawPeriod)
         Me.GroupBox7.Controls.Add(Me.YawPhase)
         Me.GroupBox7.Controls.Add(Me.YawMagnitude)
-        Me.GroupBox7.Location = New System.Drawing.Point(3, 413)
+        Me.GroupBox7.Location = New System.Drawing.Point(6, 410)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(253, 136)
+        Me.GroupBox7.Size = New System.Drawing.Size(213, 126)
         Me.GroupBox7.TabIndex = 51
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "ShipYaw"
         '
-        'ProgressBar1
+        'LinearYawOption
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(161, 573)
-        Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(675, 23)
-        Me.ProgressBar1.TabIndex = 50
+        Me.LinearYawOption.AutoSize = True
+        Me.LinearYawOption.Checked = True
+        Me.LinearYawOption.Location = New System.Drawing.Point(15, 19)
+        Me.LinearYawOption.Name = "LinearYawOption"
+        Me.LinearYawOption.Size = New System.Drawing.Size(54, 17)
+        Me.LinearYawOption.TabIndex = 66
+        Me.LinearYawOption.TabStop = True
+        Me.LinearYawOption.Text = "Linear"
+        Me.LinearYawOption.UseVisualStyleBackColor = True
+        '
+        'PMyawMax
+        '
+        Me.PMyawMax.Location = New System.Drawing.Point(147, 19)
+        Me.PMyawMax.Name = "PMyawMax"
+        Me.PMyawMax.Size = New System.Drawing.Size(45, 20)
+        Me.PMyawMax.TabIndex = 65
+        Me.PMyawMax.Text = "0"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(134, 100)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(63, 13)
+        Me.Label31.TabIndex = 72
+        Me.Label31.Text = "Phase (sec)"
+        '
+        'PMyawMin
+        '
+        Me.PMyawMin.Location = New System.Drawing.Point(96, 19)
+        Me.PMyawMin.Name = "PMyawMin"
+        Me.PMyawMin.Size = New System.Drawing.Size(45, 20)
+        Me.PMyawMin.TabIndex = 64
+        Me.PMyawMin.Text = "0"
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(131, 74)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(63, 13)
+        Me.Label32.TabIndex = 71
+        Me.Label32.Text = "Period (sec)"
+        '
+        'CyclicalYawOption
+        '
+        Me.CyclicalYawOption.AutoSize = True
+        Me.CyclicalYawOption.Location = New System.Drawing.Point(15, 46)
+        Me.CyclicalYawOption.Name = "CyclicalYawOption"
+        Me.CyclicalYawOption.Size = New System.Drawing.Size(61, 17)
+        Me.CyclicalYawOption.TabIndex = 67
+        Me.CyclicalYawOption.Text = "Cyclical"
+        Me.CyclicalYawOption.UseVisualStyleBackColor = True
+        '
+        'YawPeriod
+        '
+        Me.YawPeriod.Location = New System.Drawing.Point(96, 71)
+        Me.YawPeriod.Name = "YawPeriod"
+        Me.YawPeriod.Size = New System.Drawing.Size(29, 20)
+        Me.YawPeriod.TabIndex = 69
+        Me.YawPeriod.Text = "60"
+        '
+        'YawPhase
+        '
+        Me.YawPhase.Location = New System.Drawing.Point(97, 97)
+        Me.YawPhase.Name = "YawPhase"
+        Me.YawPhase.Size = New System.Drawing.Size(29, 20)
+        Me.YawPhase.TabIndex = 70
+        Me.YawPhase.Text = "0"
+        '
+        'YawMagnitude
+        '
+        Me.YawMagnitude.Location = New System.Drawing.Point(96, 45)
+        Me.YawMagnitude.Name = "YawMagnitude"
+        Me.YawMagnitude.Size = New System.Drawing.Size(29, 20)
+        Me.YawMagnitude.TabIndex = 68
+        Me.YawMagnitude.Text = "1"
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.FixedYawTextBox)
-        Me.GroupBox3.Controls.Add(Me.Label30)
+        Me.GroupBox3.Controls.Add(Me.ReadoutCheckBox)
+        Me.GroupBox3.Controls.Add(Me.GroupBox9)
         Me.GroupBox3.Controls.Add(Me.GroupBox6)
         Me.GroupBox3.Controls.Add(Me.GroupBox5)
-        Me.GroupBox3.Controls.Add(Me.GroupBox4)
-        Me.GroupBox3.Controls.Add(Me.GroupBox2)
         Me.GroupBox3.Controls.Add(Me.ClearModels)
         Me.GroupBox3.Controls.Add(Me.Label14)
         Me.GroupBox3.Controls.Add(Me.DaeModelListBox)
@@ -509,22 +588,59 @@ Partial Class Form1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Model Animation"
         '
-        'FixedYawTextBox
+        'ReadoutCheckBox
         '
-        Me.FixedYawTextBox.Location = New System.Drawing.Point(704, 13)
-        Me.FixedYawTextBox.Name = "FixedYawTextBox"
-        Me.FixedYawTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.FixedYawTextBox.TabIndex = 76
-        Me.FixedYawTextBox.Text = "0"
+        Me.ReadoutCheckBox.AutoSize = True
+        Me.ReadoutCheckBox.Checked = True
+        Me.ReadoutCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ReadoutCheckBox.Location = New System.Drawing.Point(90, 184)
+        Me.ReadoutCheckBox.Name = "ReadoutCheckBox"
+        Me.ReadoutCheckBox.Size = New System.Drawing.Size(144, 17)
+        Me.ReadoutCheckBox.TabIndex = 37
+        Me.ReadoutCheckBox.Text = "Create Readout Images?"
+        Me.ReadoutCheckBox.UseVisualStyleBackColor = True
         '
-        'Label30
+        'GroupBox9
         '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(641, 16)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(53, 13)
-        Me.Label30.TabIndex = 75
-        Me.Label30.Text = "FixedYaw"
+        Me.GroupBox9.Controls.Add(Me.Label4)
+        Me.GroupBox9.Controls.Add(Me.ns1tiltMax)
+        Me.GroupBox9.Controls.Add(Me.ns1tilt)
+        Me.GroupBox9.Controls.Add(Me.ns1headingMax)
+        Me.GroupBox9.Controls.Add(Me.ns1rangeMax)
+        Me.GroupBox9.Controls.Add(Me.ns1heading)
+        Me.GroupBox9.Controls.Add(Me.CyclicalHeadingOption)
+        Me.GroupBox9.Controls.Add(Me.ns1range)
+        Me.GroupBox9.Controls.Add(Me.LinearHeadingOption)
+        Me.GroupBox9.Controls.Add(Me.Label9)
+        Me.GroupBox9.Controls.Add(Me.Label8)
+        Me.GroupBox9.Location = New System.Drawing.Point(294, 81)
+        Me.GroupBox9.Name = "GroupBox9"
+        Me.GroupBox9.Size = New System.Drawing.Size(275, 124)
+        Me.GroupBox9.TabIndex = 60
+        Me.GroupBox9.TabStop = False
+        Me.GroupBox9.Text = "View Parameters"
+        '
+        'CyclicalHeadingOption
+        '
+        Me.CyclicalHeadingOption.AutoSize = True
+        Me.CyclicalHeadingOption.Location = New System.Drawing.Point(95, 41)
+        Me.CyclicalHeadingOption.Name = "CyclicalHeadingOption"
+        Me.CyclicalHeadingOption.Size = New System.Drawing.Size(61, 17)
+        Me.CyclicalHeadingOption.TabIndex = 52
+        Me.CyclicalHeadingOption.Text = "Cyclical"
+        Me.CyclicalHeadingOption.UseVisualStyleBackColor = True
+        '
+        'LinearHeadingOption
+        '
+        Me.LinearHeadingOption.AutoSize = True
+        Me.LinearHeadingOption.Checked = True
+        Me.LinearHeadingOption.Location = New System.Drawing.Point(95, 18)
+        Me.LinearHeadingOption.Name = "LinearHeadingOption"
+        Me.LinearHeadingOption.Size = New System.Drawing.Size(54, 17)
+        Me.LinearHeadingOption.TabIndex = 49
+        Me.LinearHeadingOption.TabStop = True
+        Me.LinearHeadingOption.Text = "Linear"
+        Me.LinearHeadingOption.UseVisualStyleBackColor = True
         '
         'GroupBox6
         '
@@ -532,9 +648,9 @@ Partial Class Form1
         Me.GroupBox6.Controls.Add(Me.Label24)
         Me.GroupBox6.Controls.Add(Me.TimeFactor)
         Me.GroupBox6.Controls.Add(Me.TimeIncrement)
-        Me.GroupBox6.Location = New System.Drawing.Point(543, 140)
+        Me.GroupBox6.Location = New System.Drawing.Point(147, 81)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(281, 57)
+        Me.GroupBox6.Size = New System.Drawing.Size(141, 71)
         Me.GroupBox6.TabIndex = 74
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "TimeIncrement"
@@ -542,7 +658,7 @@ Partial Class Form1
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(205, 29)
+        Me.Label25.Location = New System.Drawing.Point(72, 47)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(34, 13)
         Me.Label25.TabIndex = 74
@@ -551,7 +667,7 @@ Partial Class Form1
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(62, 29)
+        Me.Label24.Location = New System.Drawing.Point(71, 23)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(53, 13)
         Me.Label24.TabIndex = 73
@@ -559,17 +675,17 @@ Partial Class Form1
         '
         'TimeFactor
         '
-        Me.TimeFactor.Location = New System.Drawing.Point(158, 26)
+        Me.TimeFactor.Location = New System.Drawing.Point(6, 44)
         Me.TimeFactor.Name = "TimeFactor"
-        Me.TimeFactor.Size = New System.Drawing.Size(41, 20)
+        Me.TimeFactor.Size = New System.Drawing.Size(60, 20)
         Me.TimeFactor.TabIndex = 40
         Me.TimeFactor.Text = "1"
         '
         'TimeIncrement
         '
-        Me.TimeIncrement.Location = New System.Drawing.Point(6, 26)
+        Me.TimeIncrement.Location = New System.Drawing.Point(6, 19)
         Me.TimeIncrement.Name = "TimeIncrement"
-        Me.TimeIncrement.Size = New System.Drawing.Size(50, 20)
+        Me.TimeIncrement.Size = New System.Drawing.Size(60, 20)
         Me.TimeIncrement.TabIndex = 39
         Me.TimeIncrement.Text = "1"
         '
@@ -579,9 +695,9 @@ Partial Class Form1
         Me.GroupBox5.Controls.Add(Me.Label18)
         Me.GroupBox5.Controls.Add(Me.SpeedMin)
         Me.GroupBox5.Controls.Add(Me.SpeedMax)
-        Me.GroupBox5.Location = New System.Drawing.Point(543, 48)
+        Me.GroupBox5.Location = New System.Drawing.Point(0, 81)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(281, 86)
+        Me.GroupBox5.Size = New System.Drawing.Size(141, 71)
         Me.GroupBox5.TabIndex = 73
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Speed"
@@ -589,7 +705,7 @@ Partial Class Form1
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(137, 58)
+        Me.Label19.Location = New System.Drawing.Point(72, 49)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(52, 13)
         Me.Label19.TabIndex = 72
@@ -598,7 +714,7 @@ Partial Class Form1
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(137, 29)
+        Me.Label18.Location = New System.Drawing.Point(72, 23)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(60, 13)
         Me.Label18.TabIndex = 72
@@ -606,19 +722,55 @@ Partial Class Form1
         '
         'SpeedMin
         '
-        Me.SpeedMin.Location = New System.Drawing.Point(46, 26)
+        Me.SpeedMin.Location = New System.Drawing.Point(6, 18)
         Me.SpeedMin.Name = "SpeedMin"
-        Me.SpeedMin.Size = New System.Drawing.Size(85, 20)
+        Me.SpeedMin.Size = New System.Drawing.Size(60, 20)
         Me.SpeedMin.TabIndex = 39
         Me.SpeedMin.Text = "1"
         '
         'SpeedMax
         '
-        Me.SpeedMax.Location = New System.Drawing.Point(46, 52)
+        Me.SpeedMax.Location = New System.Drawing.Point(6, 44)
         Me.SpeedMax.Name = "SpeedMax"
-        Me.SpeedMax.Size = New System.Drawing.Size(85, 20)
+        Me.SpeedMax.Size = New System.Drawing.Size(60, 20)
         Me.SpeedMax.TabIndex = 40
         Me.SpeedMax.Text = "1"
+        '
+        'ClearModels
+        '
+        Me.ClearModels.Location = New System.Drawing.Point(575, 32)
+        Me.ClearModels.Name = "ClearModels"
+        Me.ClearModels.Size = New System.Drawing.Size(75, 23)
+        Me.ClearModels.TabIndex = 49
+        Me.ClearModels.Text = "Clear"
+        Me.ClearModels.UseVisualStyleBackColor = True
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(0, 16)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(271, 13)
+        Me.Label14.TabIndex = 42
+        Me.Label14.Text = "Drag and Drop up to eight DAE models in the box below"
+        '
+        'DaeModelListBox
+        '
+        Me.DaeModelListBox.AllowDrop = True
+        Me.DaeModelListBox.FormattingEnabled = True
+        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Model.dae"})
+        Me.DaeModelListBox.Location = New System.Drawing.Point(0, 32)
+        Me.DaeModelListBox.Name = "DaeModelListBox"
+        Me.DaeModelListBox.Size = New System.Drawing.Size(569, 43)
+        Me.DaeModelListBox.TabIndex = 42
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(3, 87)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(0, 13)
+        Me.Label20.TabIndex = 47
         '
         'GroupBox4
         '
@@ -632,9 +784,9 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.PitchPeriod)
         Me.GroupBox4.Controls.Add(Me.PitchPhase)
         Me.GroupBox4.Controls.Add(Me.PitchMagnitude)
-        Me.GroupBox4.Location = New System.Drawing.Point(6, 81)
+        Me.GroupBox4.Location = New System.Drawing.Point(225, 413)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(244, 133)
+        Me.GroupBox4.Size = New System.Drawing.Size(213, 126)
         Me.GroupBox4.TabIndex = 72
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "ShipPitch"
@@ -728,6 +880,122 @@ Partial Class Form1
         Me.PitchMagnitude.TabIndex = 58
         Me.PitchMagnitude.Text = "1"
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.HeadingInfoCheck)
+        Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
+        Me.GroupBox1.Controls.Add(Me.ExcelSeriesTextBox)
+        Me.GroupBox1.Controls.Add(Me.PmReferenceTextBox)
+        Me.GroupBox1.Controls.Add(Me.FromXYRadioButton)
+        Me.GroupBox1.Controls.Add(Me.FromLatLonRadioButton)
+        Me.GroupBox1.Controls.Add(Me.Label28)
+        Me.GroupBox1.Controls.Add(Me.ClearPlacemarks)
+        Me.GroupBox1.Controls.Add(Me.Label15)
+        Me.GroupBox1.Controls.Add(Me.PmFolderListBox)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(833, 173)
+        Me.GroupBox1.TabIndex = 42
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Path"
+        '
+        'HeadingInfoCheck
+        '
+        Me.HeadingInfoCheck.AutoSize = True
+        Me.HeadingInfoCheck.Location = New System.Drawing.Point(650, 72)
+        Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
+        Me.HeadingInfoCheck.Size = New System.Drawing.Size(115, 17)
+        Me.HeadingInfoCheck.TabIndex = 62
+        Me.HeadingInfoCheck.Text = "HeadingInfoCheck"
+        Me.HeadingInfoCheck.UseVisualStyleBackColor = True
+        '
+        'TimeInfoCheck
+        '
+        Me.TimeInfoCheck.AutoSize = True
+        Me.TimeInfoCheck.Location = New System.Drawing.Point(552, 72)
+        Me.TimeInfoCheck.Name = "TimeInfoCheck"
+        Me.TimeInfoCheck.Size = New System.Drawing.Size(98, 17)
+        Me.TimeInfoCheck.TabIndex = 61
+        Me.TimeInfoCheck.Text = "TimeInfoCheck"
+        Me.TimeInfoCheck.UseVisualStyleBackColor = True
+        '
+        'ExcelSeriesTextBox
+        '
+        Me.ExcelSeriesTextBox.AllowDrop = True
+        Me.ExcelSeriesTextBox.Location = New System.Drawing.Point(108, 147)
+        Me.ExcelSeriesTextBox.Name = "ExcelSeriesTextBox"
+        Me.ExcelSeriesTextBox.Size = New System.Drawing.Size(438, 20)
+        Me.ExcelSeriesTextBox.TabIndex = 59
+        Me.ExcelSeriesTextBox.Text = "C:\Google Earth Tour\XYCoord.xlsx"
+        '
+        'PmReferenceTextBox
+        '
+        Me.PmReferenceTextBox.AllowDrop = True
+        Me.PmReferenceTextBox.Location = New System.Drawing.Point(108, 121)
+        Me.PmReferenceTextBox.Name = "PmReferenceTextBox"
+        Me.PmReferenceTextBox.Size = New System.Drawing.Size(438, 20)
+        Me.PmReferenceTextBox.TabIndex = 58
+        Me.PmReferenceTextBox.Text = "C:\Google Earth Tour\CentrePlacemark.kml"
+        '
+        'FromXYRadioButton
+        '
+        Me.FromXYRadioButton.AutoSize = True
+        Me.FromXYRadioButton.Location = New System.Drawing.Point(15, 120)
+        Me.FromXYRadioButton.Name = "FromXYRadioButton"
+        Me.FromXYRadioButton.Size = New System.Drawing.Size(62, 17)
+        Me.FromXYRadioButton.TabIndex = 57
+        Me.FromXYRadioButton.Text = "FromXY"
+        Me.FromXYRadioButton.UseVisualStyleBackColor = True
+        '
+        'FromLatLonRadioButton
+        '
+        Me.FromLatLonRadioButton.AutoSize = True
+        Me.FromLatLonRadioButton.Checked = True
+        Me.FromLatLonRadioButton.Location = New System.Drawing.Point(15, 43)
+        Me.FromLatLonRadioButton.Name = "FromLatLonRadioButton"
+        Me.FromLatLonRadioButton.Size = New System.Drawing.Size(81, 17)
+        Me.FromLatLonRadioButton.TabIndex = 56
+        Me.FromLatLonRadioButton.TabStop = True
+        Me.FromLatLonRadioButton.Text = "FromLatLon"
+        Me.FromLatLonRadioButton.UseVisualStyleBackColor = True
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(6, 104)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(231, 13)
+        Me.Label28.TabIndex = 54
+        Me.Label28.Text = "Drag and Drop an Excel File of X-Y Coordinates"
+        '
+        'ClearPlacemarks
+        '
+        Me.ClearPlacemarks.Location = New System.Drawing.Point(552, 43)
+        Me.ClearPlacemarks.Name = "ClearPlacemarks"
+        Me.ClearPlacemarks.Size = New System.Drawing.Size(75, 23)
+        Me.ClearPlacemarks.TabIndex = 48
+        Me.ClearPlacemarks.Text = "Clear"
+        Me.ClearPlacemarks.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(6, 27)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(378, 13)
+        Me.Label15.TabIndex = 41
+        Me.Label15.Text = "Drag and Drop up to ten KML Placemarks (or one KML folder) in the box below"
+        '
+        'PmFolderListBox
+        '
+        Me.PmFolderListBox.AllowDrop = True
+        Me.PmFolderListBox.FormattingEnabled = True
+        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Approach.kml"})
+        Me.PmFolderListBox.Location = New System.Drawing.Point(108, 43)
+        Me.PmFolderListBox.Name = "PmFolderListBox"
+        Me.PmFolderListBox.Size = New System.Drawing.Size(438, 43)
+        Me.PmFolderListBox.TabIndex = 39
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.LinearRollOption)
@@ -740,9 +1008,9 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.RollMagnitude)
         Me.GroupBox2.Controls.Add(Me.label100)
         Me.GroupBox2.Controls.Add(Me.RollPhase)
-        Me.GroupBox2.Location = New System.Drawing.Point(256, 81)
+        Me.GroupBox2.Location = New System.Drawing.Point(444, 413)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(272, 133)
+        Me.GroupBox2.Size = New System.Drawing.Size(213, 126)
         Me.GroupBox2.TabIndex = 72
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ShipRoll"
@@ -835,201 +1103,6 @@ Partial Class Form1
         Me.RollPhase.Size = New System.Drawing.Size(29, 20)
         Me.RollPhase.TabIndex = 66
         Me.RollPhase.Text = "0"
-        '
-        'ClearModels
-        '
-        Me.ClearModels.Location = New System.Drawing.Point(543, 19)
-        Me.ClearModels.Name = "ClearModels"
-        Me.ClearModels.Size = New System.Drawing.Size(75, 23)
-        Me.ClearModels.TabIndex = 49
-        Me.ClearModels.Text = "Clear"
-        Me.ClearModels.UseVisualStyleBackColor = True
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(0, 16)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(271, 13)
-        Me.Label14.TabIndex = 42
-        Me.Label14.Text = "Drag and Drop up to eight DAE models in the box below"
-        '
-        'DaeModelListBox
-        '
-        Me.DaeModelListBox.AllowDrop = True
-        Me.DaeModelListBox.FormattingEnabled = True
-        Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Models\birthdayship.dae"})
-        Me.DaeModelListBox.Location = New System.Drawing.Point(0, 32)
-        Me.DaeModelListBox.Name = "DaeModelListBox"
-        Me.DaeModelListBox.Size = New System.Drawing.Size(537, 43)
-        Me.DaeModelListBox.TabIndex = 42
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(3, 87)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(0, 13)
-        Me.Label20.TabIndex = 47
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.HeadingInfoCheck)
-        Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
-        Me.GroupBox1.Controls.Add(Me.GroupBox9)
-        Me.GroupBox1.Controls.Add(Me.ExcelSeriesTextBox)
-        Me.GroupBox1.Controls.Add(Me.PmReferenceTextBox)
-        Me.GroupBox1.Controls.Add(Me.FromXYRadioButton)
-        Me.GroupBox1.Controls.Add(Me.FromLatLonRadioButton)
-        Me.GroupBox1.Controls.Add(Me.Label28)
-        Me.GroupBox1.Controls.Add(Me.ClearPlacemarks)
-        Me.GroupBox1.Controls.Add(Me.Label15)
-        Me.GroupBox1.Controls.Add(Me.PmFolderListBox)
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(833, 173)
-        Me.GroupBox1.TabIndex = 42
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Path"
-        '
-        'HeadingInfoCheck
-        '
-        Me.HeadingInfoCheck.AutoSize = True
-        Me.HeadingInfoCheck.Location = New System.Drawing.Point(654, 19)
-        Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
-        Me.HeadingInfoCheck.Size = New System.Drawing.Size(115, 17)
-        Me.HeadingInfoCheck.TabIndex = 62
-        Me.HeadingInfoCheck.Text = "HeadingInfoCheck"
-        Me.HeadingInfoCheck.UseVisualStyleBackColor = True
-        '
-        'TimeInfoCheck
-        '
-        Me.TimeInfoCheck.AutoSize = True
-        Me.TimeInfoCheck.Location = New System.Drawing.Point(552, 19)
-        Me.TimeInfoCheck.Name = "TimeInfoCheck"
-        Me.TimeInfoCheck.Size = New System.Drawing.Size(98, 17)
-        Me.TimeInfoCheck.TabIndex = 61
-        Me.TimeInfoCheck.Text = "TimeInfoCheck"
-        Me.TimeInfoCheck.UseVisualStyleBackColor = True
-        '
-        'GroupBox9
-        '
-        Me.GroupBox9.Controls.Add(Me.Label4)
-        Me.GroupBox9.Controls.Add(Me.ns1tiltMax)
-        Me.GroupBox9.Controls.Add(Me.ns1tilt)
-        Me.GroupBox9.Controls.Add(Me.ns1headingMax)
-        Me.GroupBox9.Controls.Add(Me.ns1rangeMax)
-        Me.GroupBox9.Controls.Add(Me.ns1heading)
-        Me.GroupBox9.Controls.Add(Me.CyclicalHeadingOption)
-        Me.GroupBox9.Controls.Add(Me.ns1range)
-        Me.GroupBox9.Controls.Add(Me.LinearHeadingOption)
-        Me.GroupBox9.Controls.Add(Me.Label9)
-        Me.GroupBox9.Controls.Add(Me.Label8)
-        Me.GroupBox9.Location = New System.Drawing.Point(552, 43)
-        Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(275, 124)
-        Me.GroupBox9.TabIndex = 60
-        Me.GroupBox9.TabStop = False
-        Me.GroupBox9.Text = "View Parameters"
-        '
-        'CyclicalHeadingOption
-        '
-        Me.CyclicalHeadingOption.AutoSize = True
-        Me.CyclicalHeadingOption.Location = New System.Drawing.Point(95, 41)
-        Me.CyclicalHeadingOption.Name = "CyclicalHeadingOption"
-        Me.CyclicalHeadingOption.Size = New System.Drawing.Size(61, 17)
-        Me.CyclicalHeadingOption.TabIndex = 52
-        Me.CyclicalHeadingOption.Text = "Cyclical"
-        Me.CyclicalHeadingOption.UseVisualStyleBackColor = True
-        '
-        'LinearHeadingOption
-        '
-        Me.LinearHeadingOption.AutoSize = True
-        Me.LinearHeadingOption.Checked = True
-        Me.LinearHeadingOption.Location = New System.Drawing.Point(95, 18)
-        Me.LinearHeadingOption.Name = "LinearHeadingOption"
-        Me.LinearHeadingOption.Size = New System.Drawing.Size(54, 17)
-        Me.LinearHeadingOption.TabIndex = 49
-        Me.LinearHeadingOption.TabStop = True
-        Me.LinearHeadingOption.Text = "Linear"
-        Me.LinearHeadingOption.UseVisualStyleBackColor = True
-        '
-        'ExcelSeriesTextBox
-        '
-        Me.ExcelSeriesTextBox.AllowDrop = True
-        Me.ExcelSeriesTextBox.Location = New System.Drawing.Point(108, 147)
-        Me.ExcelSeriesTextBox.Name = "ExcelSeriesTextBox"
-        Me.ExcelSeriesTextBox.Size = New System.Drawing.Size(438, 20)
-        Me.ExcelSeriesTextBox.TabIndex = 59
-        Me.ExcelSeriesTextBox.Text = "C:\Google Earth Tour\XYCoord.xlsx"
-        '
-        'PmReferenceTextBox
-        '
-        Me.PmReferenceTextBox.AllowDrop = True
-        Me.PmReferenceTextBox.Location = New System.Drawing.Point(108, 121)
-        Me.PmReferenceTextBox.Name = "PmReferenceTextBox"
-        Me.PmReferenceTextBox.Size = New System.Drawing.Size(438, 20)
-        Me.PmReferenceTextBox.TabIndex = 58
-        Me.PmReferenceTextBox.Text = "C:\Google Earth Tour\CentrePlacemark.kml"
-        '
-        'FromXYRadioButton
-        '
-        Me.FromXYRadioButton.AutoSize = True
-        Me.FromXYRadioButton.Location = New System.Drawing.Point(15, 120)
-        Me.FromXYRadioButton.Name = "FromXYRadioButton"
-        Me.FromXYRadioButton.Size = New System.Drawing.Size(62, 17)
-        Me.FromXYRadioButton.TabIndex = 57
-        Me.FromXYRadioButton.Text = "FromXY"
-        Me.FromXYRadioButton.UseVisualStyleBackColor = True
-        '
-        'FromLatLonRadioButton
-        '
-        Me.FromLatLonRadioButton.AutoSize = True
-        Me.FromLatLonRadioButton.Checked = True
-        Me.FromLatLonRadioButton.Location = New System.Drawing.Point(15, 43)
-        Me.FromLatLonRadioButton.Name = "FromLatLonRadioButton"
-        Me.FromLatLonRadioButton.Size = New System.Drawing.Size(81, 17)
-        Me.FromLatLonRadioButton.TabIndex = 56
-        Me.FromLatLonRadioButton.TabStop = True
-        Me.FromLatLonRadioButton.Text = "FromLatLon"
-        Me.FromLatLonRadioButton.UseVisualStyleBackColor = True
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(6, 104)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(231, 13)
-        Me.Label28.TabIndex = 54
-        Me.Label28.Text = "Drag and Drop an Excel File of X-Y Coordinates"
-        '
-        'ClearPlacemarks
-        '
-        Me.ClearPlacemarks.Location = New System.Drawing.Point(471, 92)
-        Me.ClearPlacemarks.Name = "ClearPlacemarks"
-        Me.ClearPlacemarks.Size = New System.Drawing.Size(75, 23)
-        Me.ClearPlacemarks.TabIndex = 48
-        Me.ClearPlacemarks.Text = "Clear"
-        Me.ClearPlacemarks.UseVisualStyleBackColor = True
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(6, 27)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(378, 13)
-        Me.Label15.TabIndex = 41
-        Me.Label15.Text = "Drag and Drop up to ten KML Placemarks (or one KML folder) in the box below"
-        '
-        'PmFolderListBox
-        '
-        Me.PmFolderListBox.AllowDrop = True
-        Me.PmFolderListBox.FormattingEnabled = True
-        Me.PmFolderListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\ShipApproach.kml"})
-        Me.PmFolderListBox.Location = New System.Drawing.Point(108, 43)
-        Me.PmFolderListBox.Name = "PmFolderListBox"
-        Me.PmFolderListBox.Size = New System.Drawing.Size(438, 43)
-        Me.PmFolderListBox.TabIndex = 39
         '
         'TabPage3
         '
@@ -1202,86 +1275,6 @@ Partial Class Form1
         '
         Me.OpenFileDialog3.FileName = "OpenFileDialog3"
         '
-        'LinearYawOption
-        '
-        Me.LinearYawOption.AutoSize = True
-        Me.LinearYawOption.Checked = True
-        Me.LinearYawOption.Location = New System.Drawing.Point(15, 19)
-        Me.LinearYawOption.Name = "LinearYawOption"
-        Me.LinearYawOption.Size = New System.Drawing.Size(54, 17)
-        Me.LinearYawOption.TabIndex = 66
-        Me.LinearYawOption.TabStop = True
-        Me.LinearYawOption.Text = "Linear"
-        Me.LinearYawOption.UseVisualStyleBackColor = True
-        '
-        'PMyawMax
-        '
-        Me.PMyawMax.Location = New System.Drawing.Point(147, 19)
-        Me.PMyawMax.Name = "PMyawMax"
-        Me.PMyawMax.Size = New System.Drawing.Size(45, 20)
-        Me.PMyawMax.TabIndex = 65
-        Me.PMyawMax.Text = "0"
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(134, 100)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(63, 13)
-        Me.Label31.TabIndex = 72
-        Me.Label31.Text = "Phase (sec)"
-        '
-        'PMyawMin
-        '
-        Me.PMyawMin.Location = New System.Drawing.Point(96, 19)
-        Me.PMyawMin.Name = "PMyawMin"
-        Me.PMyawMin.Size = New System.Drawing.Size(45, 20)
-        Me.PMyawMin.TabIndex = 64
-        Me.PMyawMin.Text = "0"
-        '
-        'Label32
-        '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(131, 74)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(63, 13)
-        Me.Label32.TabIndex = 71
-        Me.Label32.Text = "Period (sec)"
-        '
-        'CyclicalYawOption
-        '
-        Me.CyclicalYawOption.AutoSize = True
-        Me.CyclicalYawOption.Location = New System.Drawing.Point(15, 46)
-        Me.CyclicalYawOption.Name = "CyclicalYawOption"
-        Me.CyclicalYawOption.Size = New System.Drawing.Size(61, 17)
-        Me.CyclicalYawOption.TabIndex = 67
-        Me.CyclicalYawOption.Text = "Cyclical"
-        Me.CyclicalYawOption.UseVisualStyleBackColor = True
-        '
-        'YawPeriod
-        '
-        Me.YawPeriod.Location = New System.Drawing.Point(96, 71)
-        Me.YawPeriod.Name = "YawPeriod"
-        Me.YawPeriod.Size = New System.Drawing.Size(29, 20)
-        Me.YawPeriod.TabIndex = 69
-        Me.YawPeriod.Text = "60"
-        '
-        'YawPhase
-        '
-        Me.YawPhase.Location = New System.Drawing.Point(97, 97)
-        Me.YawPhase.Name = "YawPhase"
-        Me.YawPhase.Size = New System.Drawing.Size(29, 20)
-        Me.YawPhase.TabIndex = 70
-        Me.YawPhase.Text = "0"
-        '
-        'YawMagnitude
-        '
-        Me.YawMagnitude.Location = New System.Drawing.Point(96, 45)
-        Me.YawMagnitude.Name = "YawMagnitude"
-        Me.YawMagnitude.Size = New System.Drawing.Size(29, 20)
-        Me.YawMagnitude.TabIndex = 68
-        Me.YawMagnitude.Text = "1"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1291,23 +1284,23 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Create Tour From Placemark"
         Me.TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
+        Me.HasYaw.ResumeLayout(False)
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.GroupBox9.ResumeLayout(False)
+        Me.GroupBox9.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox9.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
@@ -1353,7 +1346,7 @@ Partial Class Form1
     Friend WithEvents PlaceMarkName1 As System.Windows.Forms.TextBox
     Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+    Friend WithEvents HasYaw As System.Windows.Forms.TabPage
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents PlaceMarkName2 As System.Windows.Forms.TextBox
     Friend WithEvents OpenFileDialog3 As System.Windows.Forms.OpenFileDialog
@@ -1422,8 +1415,6 @@ Partial Class Form1
     Friend WithEvents TrackAndHeadingButton As System.Windows.Forms.Button
     Friend WithEvents HeadingInfoCheck As System.Windows.Forms.CheckBox
     Friend WithEvents TimeInfoCheck As System.Windows.Forms.CheckBox
-    Friend WithEvents FixedYawTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents Label30 As System.Windows.Forms.Label
     Friend WithEvents GroupBox7 As System.Windows.Forms.GroupBox
     Friend WithEvents LinearYawOption As System.Windows.Forms.RadioButton
     Friend WithEvents PMyawMax As System.Windows.Forms.TextBox
@@ -1434,5 +1425,6 @@ Partial Class Form1
     Friend WithEvents YawPeriod As System.Windows.Forms.TextBox
     Friend WithEvents YawPhase As System.Windows.Forms.TextBox
     Friend WithEvents YawMagnitude As System.Windows.Forms.TextBox
+    Friend WithEvents ReadoutCheckBox As System.Windows.Forms.CheckBox
 
 End Class

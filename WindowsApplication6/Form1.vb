@@ -41,9 +41,9 @@ Public Class Form1
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim mystring As String = ""
 
-        XPlacemark_Data = XElement.Load("C:\Google Earth Tour\PlacemarkDataTemplate.xml")
-        XAnimateModel = XElement.Load("C:\Google Earth Tour\AnimateModelTemplate.xml")
-        XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplate.xml")
+        XPlacemark_Data = XElement.Load("C:\Users\kjcjwc\Documents\GitHub\GoogleTour\PlacemarkDataTemplate.xml")
+        XAnimateModel = XElement.Load("C:\Users\kjcjwc\Documents\GitHub\GoogleTour\AnimateModelTemplate.xml")
+        XTrack = XElement.Load("C:\Users\kjcjwc\Documents\GitHub\GoogleTour\TrackTemplate.xml")
 
         ' Set view properties
 
@@ -110,7 +110,13 @@ Public Class Form1
             Dim DistanceArray(500) As Double
             Dim GlobalBearingArray(500) As Double
             Dim XArray(500) As Double
-            Dim YArray(500) As Double
+        Dim YArray(500) As Double
+
+        Dim HeelArray(500) As Double
+        Dim TrimArray(500) As Double
+        Dim YawArray(500) As Double
+        Dim DraftArray(500) As Double
+
             Dim LocalBearingArray(500) As Double
             Dim OrientationArray(500) As Double
             Dim SpeedMinText As Double = SpeedMin.Text
@@ -154,20 +160,36 @@ Public Class Form1
                 oWB2 = oWBs.Open(ExcelSeriesTextBox.Text)
 
                 Sheet1 = oWB2.Worksheets(1)
-                NPlacemarks = 500
+            NPlacemarks = Sheet1.Range("m1").Offset(0, 0).Value - 1
+
                 XArray(0) = Sheet1.Range("a2").Offset(0, 0).Value
-                YArray(0) = Sheet1.Range("b2").Offset(0, 0).Value
+            YArray(0) = Sheet1.Range("b2").Offset(0, 0).Value
+
+            HeelArray(0) = Sheet1.Range("c2").Offset(0, 0).Value
+            TrimArray(0) = Sheet1.Range("d2").Offset(0, 0).Value
+            YawArray(0) = Sheet1.Range("e2").Offset(0, 0).Value
+            DraftArray(0) = Sheet1.Range("f2").Offset(0, 0).Value
+
                 For n = 1 To NPlacemarks
                     For speedindex = 0 To NPlacemarks
                         SpeedArray(speedindex) = SpeedMinText + (SpeedMaxText - SpeedMinText) / NPlacemarks * speedindex
                     Next
                     XArray(n) = Sheet1.Range("a2").Offset(n, 0).Value ' xarrayfromdistbearing(DistanceArray, GlobalBearingArray)
-                    YArray(n) = Sheet1.Range("b2").Offset(n, 0).Value
+                YArray(n) = Sheet1.Range("b2").Offset(n, 0).Value
+
+                HeelArray(n) = Sheet1.Range("c2").Offset(n, 0).Value
+                TrimArray(n) = Sheet1.Range("d2").Offset(n, 0).Value
+                YawArray(n) = Sheet1.Range("e2").Offset(n, 0).Value
+                DraftArray(n) = Sheet1.Range("f2").Offset(n, 0).Value
+
+
+                'MsgBox(YArray(n))
                     DistanceArray(n) = ((XArray(n) - XArray(0)) ^ 2 + (YArray(n) - YArray(0)) ^ 2) ^ 0.5
                     GlobalBearingArray(n) = Math.Atan2(YArray(n) - YArray(0), XArray(n) - XArray(0))
                     LocalBearingArray(n) = Math.Atan2(YArray(n) - YArray(n - 1), XArray(n) - XArray(n - 1))
+                'MsgBox(GlobalBearingArray(n) & " " & LocalBearingArray(n))
+            Next
 
-                Next
 
                 xPosition = XArray(0)
                 xPosition = YArray(0)
@@ -178,7 +200,8 @@ Public Class Form1
                 OutputLatDeg = (Math.Asin(Math.Sin(latitudes(0)) * Math.Cos(DistanceBetweenXY / 1000 / 6378.1) + Math.Cos(latitudes(0)) * Math.Sin(DistanceBetweenXY / 1000 / 6378.1) * Math.Cos(BearingBetweenXY))) * 180 / pi
                 OutputLongDeg = (longitudes(0) + Math.Atan2(Math.Cos(DistanceBetweenXY / EarthRadius) - Math.Sin(latitudes(0)) * Math.Sin(OutputLatDeg * pi / 180), Math.Sin(BearingBetweenXY) * Math.Sin(DistanceBetweenXY / EarthRadius) * Math.Cos(latitudes(0)))) * 180 / pi - 90
 
-                oWB2.Close(False)
+            oWB2.Close(False)
+
             End If
 
             For p = 0 To LocalBearingArray.Length - 2
@@ -257,6 +280,7 @@ Public Class Form1
             Dim TrimData As Double
         Dim HeelData As Double
         Dim YawData As Double
+        Dim DraftData As Double
         Dim SpeedData As Double
         Dim PreviousxPosition As Double
         Dim PreviousyPosition As Double
@@ -276,7 +300,10 @@ Public Class Form1
 
                 SpeedPosition = (Bezier(i, TimeArray, SpeedArray))
 
-                SpeedData = ((PreviousxPosition - xPosition) ^ 2 + (PreviousyPosition - yPosition) ^ 2) ^ 0.5 / TimeIncrementText * TimeFactor.Text * SpeedPosition
+                'SpeedData = ((PreviousxPosition - xPosition) ^ 2 + (PreviousyPosition - yPosition) ^ 2) ^ 0.5 / TimeIncrementText * TimeFactor.Text * SpeedPosition
+
+                SpeedData = ((PreviousxPosition - xPosition) ^ 2 + (PreviousyPosition - yPosition) ^ 2) ^ 0.5 * TimeFactor.Text * SpeedPosition
+
 
                 If IsNumeric(Math.Abs(xPosition) < 1000000.0) And (Math.Abs(yPosition) < 1000000.0) Then
                     PreviousxPosition = xPosition
@@ -376,40 +403,61 @@ Public Class Form1
                 OutputLatDegPrevious = OutputLatDeg
                 OutputLongDegPrevious = OutputLongDeg
 
-                If LinearRollOption.Checked = True Then
-                    HeelData = PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
+                If FromLatLonRadioButton.Checked = True Then
+
+                    If LinearRollOption.Checked = True Then
+                        HeelData = PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
+                    Else
+                        HeelData = RollMagnitude.Text * Math.Sin(2 * pi / RollPeriod.Text * i + RollPhase.Text * pi / 180)
+                    End If
+
+                    TrimString = "Trim: " & Math.Round(TrimData, 1) & "°; "
+
+                    If LinearPitchOption.Checked = True Then
+                        TrimData = PMroll + (PMrollMax1 - PMroll) / TimeArray(NPlacemarks) * i
+                    Else
+                        TrimData = PitchMagnitude.Text * Math.Sin(2 * pi / PitchPeriod.Text * i + PitchPhase.Text * pi / 180)
+                    End If
+
+                    HeelString = "Heel: " & Math.Round(HeelData, 1) & "°; "
+
+                    If LinearYawOption.Checked = True Then
+                        YawData = PMyaw + (PMyawMax1 - PMyaw) / TimeArray(NPlacemarks) * i
+                    Else
+                        YawData = YawMagnitude.Text * Math.Sin(2 * pi / YawPeriod.Text * i + YawPhase.Text * pi / 180)
+                    End If
+
+                    YawString = "Yaw: " & Math.Round(YawData, 1) & "°; "
+
+                    DraftString = "Draft: " & Math.Round(altitudes(0), 1) & " m; "
+
+                    HeadingString = "Heading: " & Math.Round(ModelBearing + 90, 1) & "°; "
+
+                    SpeedString = "Speed: " & Math.Round(SpeedData, 2) & " m/s (" & Math.Round(SpeedData * 1.94384, 1) & " knots); "
+
                 Else
-                    HeelData = RollMagnitude.Text * Math.Sin(2 * pi / RollPeriod.Text * i + RollPhase.Text * pi / 180)
+
+                    HeelData = (Bezier(i, TimeArray, HeelArray))
+                    TrimString = "Trim: " & Math.Round(TrimData, 1) & "°; "
+
+                    TrimData = (Bezier(i, TimeArray, TrimArray))
+                    HeelString = "Heel: " & Math.Round(HeelData, 1) & "°; "
+
+                    YawData = (Bezier(i, TimeArray, YawArray))
+                    YawString = "Yaw: " & Math.Round(YawData, 1) & "°; "
+
+                    DraftData = (Bezier(i, TimeArray, DraftArray))
+                    DraftString = "Draft: " & Math.Round(DraftData, 1) & " m; "
+
+                    HeadingString = "Heading: " & Math.Round(ModelBearing + 90, 1) & "°; "
+
+                    SpeedString = "Speed: " & Math.Round(SpeedData, 2) & " m/s (" & Math.Round(SpeedData * 1.94384, 1) & " knots); "
+
                 End If
-
-                TrimString = "Trim: " & Math.Round(TrimData, 1) & "°; "
-
-                If LinearPitchOption.Checked = True Then
-                    TrimData = PMroll + (PMrollMax1 - PMroll) / TimeArray(NPlacemarks) * i
-                Else
-                    TrimData = PitchMagnitude.Text * Math.Sin(2 * pi / PitchPeriod.Text * i + PitchPhase.Text * pi / 180)
-                End If
-
-                HeelString = "Heel: " & Math.Round(HeelData, 1) & "°; "
-
-                If LinearYawOption.Checked = True Then
-                    YawData = PMyaw + (PMyawMax1 - PMyaw) / TimeArray(NPlacemarks) * i
-                    'MsgBox(YawData)
-                Else
-                    YawData = YawMagnitude.Text * Math.Sin(2 * pi / YawPeriod.Text * i + YawPhase.Text * pi / 180)
-                End If
-
-                YawString = "Yaw: " & Math.Round(YawData, 1) & "°; "
 
                 If j = DaeNameSteps Then j = 0 Else j = j + 1
 
                 'MsgBox((ModelX ^ 2 + ModelY ^ 2) ^ 0.5)
-
-                HeadingString = "Heading: " & Math.Round(ModelBearing + 90, 1) & "°; "
-
-                SpeedString = "Speed: " & Math.Round(SpeedData, 2) & " m/s (" & Math.Round(SpeedData * 1.94384, 1) & " knots); "
-
-                DraftString = "Draft: " & Math.Round(altitudes(0), 1) & " m; "
 
                 ReadoutString = ""
 
@@ -429,20 +477,28 @@ Public Class Form1
                 '    ReadoutString = ReadoutString & HeelString
                 'End If
 
-
-
                 'If index Mod ReadoutFrequencyTextbox.Text = 0 Then
-                CreateImageReadout(BeginTime, VeryEndTime, OutputLongDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData, TrimString, HeelString, HeadingString, SpeedString, DraftString, YawString)
+
+                If ReadoutCheckBox.Checked = True Then CreateImageReadout(BeginTime, VeryEndTime, OutputLongDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData, TrimString, HeelString, HeadingString, SpeedString, DraftString, YawString)
 
                 AddToPlacemarkData(ReadoutString, BeginTime, EndTime, OutputString, OutputLongDeg, OutputLatDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData)
                 'AddToPlacemarkData(HeadingString, BeginTime, EndTime, OutputString, indexForPlacemarkData)
-
 
                 indexForPlacemarkData = indexForPlacemarkData + 1
 
                 'End If
 
-                AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing + FixedYawTextBox.Text, DaeName(j), HeelData, TrimData, YawData, index)
+                If FromLatLonRadioButton.Checked = True Then
+
+                    AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelData, TrimData, YawData, index)
+
+                Else
+                    AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, DraftData, OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelData, TrimData, YawData, index)
+
+
+                End If
+
+
 
                 AddToTrack(BeginTime, CoordinateString, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, index)
 
@@ -850,7 +906,7 @@ Public Class Form1
                                 <ns1:Icon>
                                     <ns1:href><%= OverlayFilename %></ns1:href>
                                 </ns1:Icon>
-                                <ns1:overlayXY x="0" y="-1" xunits="fraction" yunits="fraction"/>
+                                <ns1:overlayXY x="0" y="-0.5" xunits="fraction" yunits="fraction"/>
                                 <ns1:screenXY x="0" y="0" xunits="fraction" yunits="fraction"/>
                                 <ns1:rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
                                 <ns1:size x="0" y="0" xunits="fraction" yunits="fraction"/>
@@ -893,7 +949,7 @@ Public Class Form1
                              <ns1:heading><%= OrientationString %></ns1:heading>
                              <ns1:tilt><%= TiltString %></ns1:tilt>
                              <ns1:range><%= RangeString %></ns1:range>
-                             <ns2:altitudeMode>relativeToSeaFloor</ns2:altitudeMode>
+                             <ns2:altitudeMode>relativeToGround</ns2:altitudeMode>
                          </ns1:LookAt>
 
         xFlytoTable = <ns2:FlyTo xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
@@ -976,7 +1032,7 @@ Public Class Form1
                              <ns1:heading><%= OrientationString %></ns1:heading>
                              <ns1:tilt><%= TiltString %></ns1:tilt>
                              <ns1:range><%= RangeString %></ns1:range>
-                             <ns2:altitudeMode>relativeToSeaFloor</ns2:altitudeMode>
+                             <ns2:altitudeMode>relativeToGround</ns2:altitudeMode>
                          </ns1:LookAt>
 
         xAddTime = <ns1:when xmlns:ns1="http://www.opengis.net/kml/2.2"><%= BeginTime %></ns1:when>
@@ -1017,7 +1073,8 @@ Public Class Form1
         ' Write to Excel
 
         Dim XTrackAndHeading As XElement
-        XTrackAndHeading = XElement.Load("C:\Google Earth Tour\TrackAndHeadingTemplate.xml")
+        XTrackAndHeading = XElement.Load("C:\Users\kjcjwc\Documents\GitHub\GoogleTour\TrackAndHeadingTemplate.xml")
+
 
         Dim XTrackAdd As XElement
 
@@ -1174,7 +1231,7 @@ Public Class Form1
                                      <ns1:heading><%= 10 %></ns1:heading>
                                      <ns1:tilt><%= 10 %></ns1:tilt>
                                      <ns1:range><%= 10 %></ns1:range>
-                                     <ns2:altitudeMode>relativeToSeaFloor</ns2:altitudeMode>
+                                     <ns2:altitudeMode>relativeToGround</ns2:altitudeMode>
                                  </ns1:LookAt>
 
                 XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Elements(k + "LookAt")(n).ReplaceWith(xInitialLookAt)
@@ -1330,9 +1387,9 @@ Public Class Form1
 
     Private Function Bezier(x As Double, XVector() As Double, YVector() As Double)
         Dim y As Double
-        Dim VectorCount As Integer = XVector.Length
+        Dim VectorCount As Integer = XVector.Length - 1
         Dim index As Integer = 0
-        'MsgBox(XVector(0))
+
         While x >= XVector(index)
             index = index + 1
         End While
@@ -1362,6 +1419,8 @@ Public Class Form1
         'End If
 
         y = h00(t) * pk1 + h10(t) * (xk2 - xk1) * mk1 + h01(t) * pk2 + h11(t) * (xk2 - xk1) * mk2
+
+        'MsgBox(x & " " & y & " " & XVector(index) & " " & YVector(index))
 
         'MsgBox(index & "," & x & "," & xk1 & "," & xk2 & "," & t & "," & pk1 & "," & mk1 & "," & y)
 
@@ -1395,7 +1454,7 @@ Public Class Form1
         Dim BackColor As Color = Color.Transparent
         Dim FontName As String = "courier"
         Dim FontSize As Integer = 12
-        Dim Height As Integer = 250
+        Dim Height As Integer = 270
         Dim Width As Integer = 400
         Dim objBitmap As New Bitmap(Width, Height)
 
@@ -1418,6 +1477,8 @@ Public Class Form1
         Dim obj7 As New PointF(10.0F, 20.0F)
         Dim obj8 As New PointF(10.0F, 20.0F)
         Dim obj9 As New PointF(10.0F, 20.0F)
+        Dim obj10 As New PointF(10.0F, 20.0F)
+
 
 
         Dim objBrushForeColor As New SolidBrush(FontColor)
@@ -1463,6 +1524,8 @@ Public Class Form1
         obj7.X = 15
         obj8.X = 15
         obj9.X = 15
+        obj10.X = 15
+
 
         Dim constpix As Integer = 30
 
@@ -1476,10 +1539,12 @@ Public Class Form1
         obj7.Y = 140 + constpix 'myBitmap.Height + 110
         obj8.Y = 160 + constpix 'myBitmap.Height + 110
         obj9.Y = 180 + constpix  'myBitmap.Height + 110
+        obj10.Y = 200 + constpix  'myBitmap.Height + 110
+
 
         myRectangle.X = 10
         myRectangle.Y = 10 + constpix ' myBitmap.Height + 10
-        myRectangle.Height = 200
+        myRectangle.Height = 220
         myRectangle.Width = 320 ' myBitmap.Width - 15
 
         myRectangle1.X = 10
@@ -1524,11 +1589,15 @@ Public Class Form1
         objGraphics.DrawString("Time: " & Split(BeginTime, "T")(1), objFont, objBrushForeColor, obj2)
         objGraphics.DrawString("Latitude: " & OutputDegString(OutputLatDeg), objFont, objBrushForeColor, obj3)
         objGraphics.DrawString("Longitude: " & OutputDegString(OutputLongDeg), objFont, objBrushForeColor, obj4)
-        objGraphics.DrawString(TrimString, objFont, objBrushForeColor, obj5)
-        objGraphics.DrawString(HeelString, objFont, objBrushForeColor, obj6)
-        objGraphics.DrawString(HeadingString, objFont, objBrushForeColor, obj7)
-        objGraphics.DrawString(SpeedString, objFont, objBrushForeColor, obj8)
+        objGraphics.DrawString(HeadingString, objFont, objBrushForeColor, obj5)
+        objGraphics.DrawString(SpeedString, objFont, objBrushForeColor, obj6)
+        objGraphics.DrawString(TrimString, objFont, objBrushForeColor, obj7)
+        objGraphics.DrawString(HeelString, objFont, objBrushForeColor, obj8)
         objGraphics.DrawString(YawString, objFont, objBrushForeColor, obj9)
+        objGraphics.DrawString(DraftString, objFont, objBrushForeColor, obj10)
+
+
+
 
 
         ' Make the default transparent color transparent for myBitmap.
@@ -1547,6 +1616,8 @@ Public Class Form1
         Return Int(OutputLatDeg) & "°" & Int((OutputLatDeg - Int(OutputLatDeg)) / 24 * (24 * 60) Mod 60) & "'" & Math.Round((OutputLatDeg - Int(OutputLatDeg)) / 24 * (24 * 60 * 60) Mod 60, 2) & "'';"
 
     End Function
+
+
 
 
 

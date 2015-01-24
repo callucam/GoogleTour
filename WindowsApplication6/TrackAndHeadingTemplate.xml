@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ns1:Folder>
+		<ns1:name>Untitled Folder</ns1:name>
+		<ns1:open>1</ns1:open>
+		<ns1:Document>
+			<ns1:name>1</ns1:name>
+			<ns1:open>1</ns1:open>
+
+
+		<ns1:LookAt>
+			<ns2:TimeStamp>
+				<ns1:when></ns1:when>
+			</ns2:TimeStamp>
+			<ns1:longitude></ns1:longitude>
+			<ns1:latitude></ns1:latitude>
+			<ns1:altitude></ns1:altitude>
+			<ns1:heading></ns1:heading>
+			<ns1:tilt></ns1:tilt>
+			<ns1:range></ns1:range>
+			<ns2:altitudeMode></ns2:altitudeMode>
+		</ns1:LookAt>
+
+
+			<ns1:StyleMap id="s_ylw-pushpin">
+				<ns1:Pair>
+					<ns1:key>normal</ns1:key>
+					<ns1:styleUrl>#s_ylw-pushpin1</ns1:styleUrl>
+				</ns1:Pair>
+				<ns1:Pair>
+					<ns1:key>highlight</ns1:key>
+					<ns1:styleUrl>#s_ylw-pushpin0</ns1:styleUrl>
+				</ns1:Pair>
+			</ns1:StyleMap>
+			<ns1:Style id="s_ylw-pushpin0">
+				<ns1:IconStyle>
+					<ns1:scale>1.1</ns1:scale>
+					<ns1:heading>90</ns1:heading>
+					<ns1:Icon>
+						<ns1:href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</ns1:href>
+					</ns1:Icon>
+					<ns1:hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+				</ns1:IconStyle>
+			</ns1:Style>
+			<ns1:Style id="s_ylw-pushpin1">
+				<ns1:IconStyle>
+					<ns1:scale>1.1</ns1:scale>
+					<ns1:heading>90</ns1:heading>
+					<ns1:Icon>
+						<ns1:href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</ns1:href>
+					</ns1:Icon>
+					<ns1:hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+				</ns1:IconStyle>
+			</ns1:Style>
+			<ns1:Placemark>
+				<ns1:name>1.1</ns1:name>
+				<ns1:open>1</ns1:open>
+				<ns1:styleUrl>#s_ylw-pushpin</ns1:styleUrl>
+				<ns1:Point>
+					<ns1:coordinates>-123.3260787154814,48.85883345364654,0</ns1:coordinates>
+				</ns1:Point>
+			</ns1:Placemark>
+		</ns1:Document>
+	</ns1:Folder>
+</ns1:kml>

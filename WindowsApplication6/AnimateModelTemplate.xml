@@ -4,6 +4,20 @@
 		<ns1:name>Document</ns1:name>
 		<ns1:open>1</ns1:open>
 
+		<ns1:LookAt>
+			<ns2:TimeStamp>
+				<ns1:when></ns1:when>
+			</ns2:TimeStamp>
+			<ns1:longitude></ns1:longitude>
+			<ns1:latitude></ns1:latitude>
+			<ns1:altitude></ns1:altitude>
+			<ns1:heading></ns1:heading>
+			<ns1:tilt></ns1:tilt>
+			<ns1:range></ns1:range>
+			<ns2:altitudeMode></ns2:altitudeMode>
+		</ns1:LookAt>
+
+
 		<ns1:Style>
 			<ns1:ListStyle>
 				<ns1:listItemType>check</ns1:listItemType>
