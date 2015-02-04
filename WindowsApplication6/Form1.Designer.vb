@@ -59,8 +59,20 @@ Partial Class Form1
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.HasYaw = New System.Windows.Forms.TabPage()
+        Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.LinearDraftOption = New System.Windows.Forms.RadioButton()
+        Me.CyclicalDraftOption = New System.Windows.Forms.RadioButton()
+        Me.PMdraftMax = New System.Windows.Forms.TextBox()
+        Me.PMdraftMin = New System.Windows.Forms.TextBox()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.DraftPeriod = New System.Windows.Forms.TextBox()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.DraftMagnitude = New System.Windows.Forms.TextBox()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.DraftPhase = New System.Windows.Forms.TextBox()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.LinearYawOption = New System.Windows.Forms.RadioButton()
         Me.PMyawMax = New System.Windows.Forms.TextBox()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -71,8 +83,9 @@ Partial Class Form1
         Me.YawPhase = New System.Windows.Forms.TextBox()
         Me.YawMagnitude = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.ReadoutCheckBox = New System.Windows.Forms.CheckBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.FixedLookAtCheckBox = New System.Windows.Forms.CheckBox()
+        Me.FixedLookAtTextBox = New System.Windows.Forms.TextBox()
         Me.CyclicalHeadingOption = New System.Windows.Forms.RadioButton()
         Me.LinearHeadingOption = New System.Windows.Forms.RadioButton()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
@@ -101,6 +114,7 @@ Partial Class Form1
         Me.PitchPhase = New System.Windows.Forms.TextBox()
         Me.PitchMagnitude = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ReadoutCheckBox = New System.Windows.Forms.CheckBox()
         Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
         Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
         Me.ExcelSeriesTextBox = New System.Windows.Forms.TextBox()
@@ -140,6 +154,7 @@ Partial Class Form1
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1.SuspendLayout()
         Me.HasYaw.SuspendLayout()
+        Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
@@ -266,7 +281,7 @@ Partial Class Form1
         '
         'ns1range
         '
-        Me.ns1range.Location = New System.Drawing.Point(74, 92)
+        Me.ns1range.Location = New System.Drawing.Point(325, 43)
         Me.ns1range.Name = "ns1range"
         Me.ns1range.Size = New System.Drawing.Size(85, 20)
         Me.ns1range.TabIndex = 15
@@ -275,7 +290,7 @@ Partial Class Form1
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(6, 95)
+        Me.Label8.Location = New System.Drawing.Point(257, 46)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(51, 13)
         Me.Label8.TabIndex = 14
@@ -283,7 +298,7 @@ Partial Class Form1
         '
         'ns1tilt
         '
-        Me.ns1tilt.Location = New System.Drawing.Point(74, 66)
+        Me.ns1tilt.Location = New System.Drawing.Point(325, 17)
         Me.ns1tilt.Name = "ns1tilt"
         Me.ns1tilt.Size = New System.Drawing.Size(85, 20)
         Me.ns1tilt.TabIndex = 13
@@ -292,7 +307,7 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(6, 69)
+        Me.Label9.Location = New System.Drawing.Point(257, 20)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(34, 13)
         Me.Label9.TabIndex = 12
@@ -372,7 +387,7 @@ Partial Class Form1
         '
         'ns1rangeMax
         '
-        Me.ns1rangeMax.Location = New System.Drawing.Point(165, 92)
+        Me.ns1rangeMax.Location = New System.Drawing.Point(416, 43)
         Me.ns1rangeMax.Name = "ns1rangeMax"
         Me.ns1rangeMax.Size = New System.Drawing.Size(85, 20)
         Me.ns1rangeMax.TabIndex = 32
@@ -380,7 +395,7 @@ Partial Class Form1
         '
         'ns1tiltMax
         '
-        Me.ns1tiltMax.Location = New System.Drawing.Point(165, 66)
+        Me.ns1tiltMax.Location = New System.Drawing.Point(416, 17)
         Me.ns1tiltMax.Name = "ns1tiltMax"
         Me.ns1tiltMax.Size = New System.Drawing.Size(85, 20)
         Me.ns1tiltMax.TabIndex = 31
@@ -451,6 +466,7 @@ Partial Class Form1
         '
         'HasYaw
         '
+        Me.HasYaw.Controls.Add(Me.GroupBox8)
         Me.HasYaw.Controls.Add(Me.ProgressBar1)
         Me.HasYaw.Controls.Add(Me.GroupBox7)
         Me.HasYaw.Controls.Add(Me.GroupBox3)
@@ -466,6 +482,114 @@ Partial Class Form1
         Me.HasYaw.Text = "Animate from Placemarks"
         Me.HasYaw.UseVisualStyleBackColor = True
         '
+        'GroupBox8
+        '
+        Me.GroupBox8.Controls.Add(Me.LinearDraftOption)
+        Me.GroupBox8.Controls.Add(Me.CyclicalDraftOption)
+        Me.GroupBox8.Controls.Add(Me.PMdraftMax)
+        Me.GroupBox8.Controls.Add(Me.PMdraftMin)
+        Me.GroupBox8.Controls.Add(Me.Label33)
+        Me.GroupBox8.Controls.Add(Me.DraftPeriod)
+        Me.GroupBox8.Controls.Add(Me.Label34)
+        Me.GroupBox8.Controls.Add(Me.DraftMagnitude)
+        Me.GroupBox8.Controls.Add(Me.Label35)
+        Me.GroupBox8.Controls.Add(Me.DraftPhase)
+        Me.GroupBox8.Location = New System.Drawing.Point(542, 413)
+        Me.GroupBox8.Name = "GroupBox8"
+        Me.GroupBox8.Size = New System.Drawing.Size(172, 126)
+        Me.GroupBox8.TabIndex = 73
+        Me.GroupBox8.TabStop = False
+        Me.GroupBox8.Text = "ShipDraft"
+        '
+        'LinearDraftOption
+        '
+        Me.LinearDraftOption.AutoSize = True
+        Me.LinearDraftOption.Checked = True
+        Me.LinearDraftOption.Location = New System.Drawing.Point(6, 18)
+        Me.LinearDraftOption.Name = "LinearDraftOption"
+        Me.LinearDraftOption.Size = New System.Drawing.Size(54, 17)
+        Me.LinearDraftOption.TabIndex = 70
+        Me.LinearDraftOption.TabStop = True
+        Me.LinearDraftOption.Text = "Linear"
+        Me.LinearDraftOption.UseVisualStyleBackColor = True
+        '
+        'CyclicalDraftOption
+        '
+        Me.CyclicalDraftOption.AutoSize = True
+        Me.CyclicalDraftOption.Location = New System.Drawing.Point(6, 45)
+        Me.CyclicalDraftOption.Name = "CyclicalDraftOption"
+        Me.CyclicalDraftOption.Size = New System.Drawing.Size(61, 17)
+        Me.CyclicalDraftOption.TabIndex = 71
+        Me.CyclicalDraftOption.Text = "Cyclical"
+        Me.CyclicalDraftOption.UseVisualStyleBackColor = True
+        '
+        'PMdraftMax
+        '
+        Me.PMdraftMax.Location = New System.Drawing.Point(121, 16)
+        Me.PMdraftMax.Name = "PMdraftMax"
+        Me.PMdraftMax.Size = New System.Drawing.Size(45, 20)
+        Me.PMdraftMax.TabIndex = 42
+        Me.PMdraftMax.Text = "0"
+        '
+        'PMdraftMin
+        '
+        Me.PMdraftMin.Location = New System.Drawing.Point(70, 16)
+        Me.PMdraftMin.Name = "PMdraftMin"
+        Me.PMdraftMin.Size = New System.Drawing.Size(45, 20)
+        Me.PMdraftMin.TabIndex = 41
+        Me.PMdraftMin.Text = "0"
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(108, 97)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(63, 13)
+        Me.Label33.TabIndex = 69
+        Me.Label33.Text = "Phase (sec)"
+        '
+        'DraftPeriod
+        '
+        Me.DraftPeriod.Location = New System.Drawing.Point(70, 68)
+        Me.DraftPeriod.Name = "DraftPeriod"
+        Me.DraftPeriod.Size = New System.Drawing.Size(29, 20)
+        Me.DraftPeriod.TabIndex = 65
+        Me.DraftPeriod.Text = "30"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(105, 71)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(63, 13)
+        Me.Label34.TabIndex = 68
+        Me.Label34.Text = "Period (sec)"
+        '
+        'DraftMagnitude
+        '
+        Me.DraftMagnitude.Location = New System.Drawing.Point(70, 42)
+        Me.DraftMagnitude.Name = "DraftMagnitude"
+        Me.DraftMagnitude.Size = New System.Drawing.Size(29, 20)
+        Me.DraftMagnitude.TabIndex = 64
+        Me.DraftMagnitude.Text = "3"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(105, 45)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(53, 13)
+        Me.Label35.TabIndex = 67
+        Me.Label35.Text = "Amplitude"
+        '
+        'DraftPhase
+        '
+        Me.DraftPhase.Location = New System.Drawing.Point(71, 94)
+        Me.DraftPhase.Name = "DraftPhase"
+        Me.DraftPhase.Size = New System.Drawing.Size(29, 20)
+        Me.DraftPhase.TabIndex = 66
+        Me.DraftPhase.Text = "0"
+        '
         'ProgressBar1
         '
         Me.ProgressBar1.Location = New System.Drawing.Point(161, 573)
@@ -475,6 +599,7 @@ Partial Class Form1
         '
         'GroupBox7
         '
+        Me.GroupBox7.Controls.Add(Me.Label30)
         Me.GroupBox7.Controls.Add(Me.LinearYawOption)
         Me.GroupBox7.Controls.Add(Me.PMyawMax)
         Me.GroupBox7.Controls.Add(Me.Label31)
@@ -486,16 +611,25 @@ Partial Class Form1
         Me.GroupBox7.Controls.Add(Me.YawMagnitude)
         Me.GroupBox7.Location = New System.Drawing.Point(6, 410)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(213, 126)
+        Me.GroupBox7.Size = New System.Drawing.Size(174, 126)
         Me.GroupBox7.TabIndex = 51
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "ShipYaw"
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(102, 51)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(53, 13)
+        Me.Label30.TabIndex = 73
+        Me.Label30.Text = "Amplitude"
         '
         'LinearYawOption
         '
         Me.LinearYawOption.AutoSize = True
         Me.LinearYawOption.Checked = True
-        Me.LinearYawOption.Location = New System.Drawing.Point(15, 19)
+        Me.LinearYawOption.Location = New System.Drawing.Point(6, 21)
         Me.LinearYawOption.Name = "LinearYawOption"
         Me.LinearYawOption.Size = New System.Drawing.Size(54, 17)
         Me.LinearYawOption.TabIndex = 66
@@ -505,7 +639,7 @@ Partial Class Form1
         '
         'PMyawMax
         '
-        Me.PMyawMax.Location = New System.Drawing.Point(147, 19)
+        Me.PMyawMax.Location = New System.Drawing.Point(118, 22)
         Me.PMyawMax.Name = "PMyawMax"
         Me.PMyawMax.Size = New System.Drawing.Size(45, 20)
         Me.PMyawMax.TabIndex = 65
@@ -514,7 +648,7 @@ Partial Class Form1
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(134, 100)
+        Me.Label31.Location = New System.Drawing.Point(105, 103)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(63, 13)
         Me.Label31.TabIndex = 72
@@ -522,7 +656,7 @@ Partial Class Form1
         '
         'PMyawMin
         '
-        Me.PMyawMin.Location = New System.Drawing.Point(96, 19)
+        Me.PMyawMin.Location = New System.Drawing.Point(67, 22)
         Me.PMyawMin.Name = "PMyawMin"
         Me.PMyawMin.Size = New System.Drawing.Size(45, 20)
         Me.PMyawMin.TabIndex = 64
@@ -531,7 +665,7 @@ Partial Class Form1
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(131, 74)
+        Me.Label32.Location = New System.Drawing.Point(102, 77)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(63, 13)
         Me.Label32.TabIndex = 71
@@ -540,7 +674,7 @@ Partial Class Form1
         'CyclicalYawOption
         '
         Me.CyclicalYawOption.AutoSize = True
-        Me.CyclicalYawOption.Location = New System.Drawing.Point(15, 46)
+        Me.CyclicalYawOption.Location = New System.Drawing.Point(6, 48)
         Me.CyclicalYawOption.Name = "CyclicalYawOption"
         Me.CyclicalYawOption.Size = New System.Drawing.Size(61, 17)
         Me.CyclicalYawOption.TabIndex = 67
@@ -549,7 +683,7 @@ Partial Class Form1
         '
         'YawPeriod
         '
-        Me.YawPeriod.Location = New System.Drawing.Point(96, 71)
+        Me.YawPeriod.Location = New System.Drawing.Point(67, 74)
         Me.YawPeriod.Name = "YawPeriod"
         Me.YawPeriod.Size = New System.Drawing.Size(29, 20)
         Me.YawPeriod.TabIndex = 69
@@ -557,7 +691,7 @@ Partial Class Form1
         '
         'YawPhase
         '
-        Me.YawPhase.Location = New System.Drawing.Point(97, 97)
+        Me.YawPhase.Location = New System.Drawing.Point(68, 100)
         Me.YawPhase.Name = "YawPhase"
         Me.YawPhase.Size = New System.Drawing.Size(29, 20)
         Me.YawPhase.TabIndex = 70
@@ -565,7 +699,7 @@ Partial Class Form1
         '
         'YawMagnitude
         '
-        Me.YawMagnitude.Location = New System.Drawing.Point(96, 45)
+        Me.YawMagnitude.Location = New System.Drawing.Point(67, 48)
         Me.YawMagnitude.Name = "YawMagnitude"
         Me.YawMagnitude.Size = New System.Drawing.Size(29, 20)
         Me.YawMagnitude.TabIndex = 68
@@ -573,7 +707,6 @@ Partial Class Form1
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.ReadoutCheckBox)
         Me.GroupBox3.Controls.Add(Me.GroupBox9)
         Me.GroupBox3.Controls.Add(Me.GroupBox6)
         Me.GroupBox3.Controls.Add(Me.GroupBox5)
@@ -588,20 +721,10 @@ Partial Class Form1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Model Animation"
         '
-        'ReadoutCheckBox
-        '
-        Me.ReadoutCheckBox.AutoSize = True
-        Me.ReadoutCheckBox.Checked = True
-        Me.ReadoutCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ReadoutCheckBox.Location = New System.Drawing.Point(90, 184)
-        Me.ReadoutCheckBox.Name = "ReadoutCheckBox"
-        Me.ReadoutCheckBox.Size = New System.Drawing.Size(144, 17)
-        Me.ReadoutCheckBox.TabIndex = 37
-        Me.ReadoutCheckBox.Text = "Create Readout Images?"
-        Me.ReadoutCheckBox.UseVisualStyleBackColor = True
-        '
         'GroupBox9
         '
+        Me.GroupBox9.Controls.Add(Me.FixedLookAtCheckBox)
+        Me.GroupBox9.Controls.Add(Me.FixedLookAtTextBox)
         Me.GroupBox9.Controls.Add(Me.Label4)
         Me.GroupBox9.Controls.Add(Me.ns1tiltMax)
         Me.GroupBox9.Controls.Add(Me.ns1tilt)
@@ -615,10 +738,29 @@ Partial Class Form1
         Me.GroupBox9.Controls.Add(Me.Label8)
         Me.GroupBox9.Location = New System.Drawing.Point(294, 81)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(275, 124)
+        Me.GroupBox9.Size = New System.Drawing.Size(513, 135)
         Me.GroupBox9.TabIndex = 60
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "View Parameters"
+        '
+        'FixedLookAtCheckBox
+        '
+        Me.FixedLookAtCheckBox.AutoSize = True
+        Me.FixedLookAtCheckBox.Location = New System.Drawing.Point(10, 94)
+        Me.FixedLookAtCheckBox.Name = "FixedLookAtCheckBox"
+        Me.FixedLookAtCheckBox.Size = New System.Drawing.Size(85, 17)
+        Me.FixedLookAtCheckBox.TabIndex = 75
+        Me.FixedLookAtCheckBox.Text = "FixedLookAt"
+        Me.FixedLookAtCheckBox.UseVisualStyleBackColor = True
+        '
+        'FixedLookAtTextBox
+        '
+        Me.FixedLookAtTextBox.AllowDrop = True
+        Me.FixedLookAtTextBox.Location = New System.Drawing.Point(101, 92)
+        Me.FixedLookAtTextBox.Name = "FixedLookAtTextBox"
+        Me.FixedLookAtTextBox.Size = New System.Drawing.Size(399, 20)
+        Me.FixedLookAtTextBox.TabIndex = 60
+        Me.FixedLookAtTextBox.Text = "C:\Google Earth Tour\Lookat.kml"
         '
         'CyclicalHeadingOption
         '
@@ -784,9 +926,9 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.PitchPeriod)
         Me.GroupBox4.Controls.Add(Me.PitchPhase)
         Me.GroupBox4.Controls.Add(Me.PitchMagnitude)
-        Me.GroupBox4.Location = New System.Drawing.Point(225, 413)
+        Me.GroupBox4.Location = New System.Drawing.Point(186, 413)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(213, 126)
+        Me.GroupBox4.Size = New System.Drawing.Size(172, 126)
         Me.GroupBox4.TabIndex = 72
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "ShipPitch"
@@ -805,7 +947,7 @@ Partial Class Form1
         '
         'PMpitchMax
         '
-        Me.PMpitchMax.Location = New System.Drawing.Point(138, 19)
+        Me.PMpitchMax.Location = New System.Drawing.Point(117, 19)
         Me.PMpitchMax.Name = "PMpitchMax"
         Me.PMpitchMax.Size = New System.Drawing.Size(45, 20)
         Me.PMpitchMax.TabIndex = 44
@@ -814,7 +956,7 @@ Partial Class Form1
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(125, 100)
+        Me.Label23.Location = New System.Drawing.Point(104, 100)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(63, 13)
         Me.Label23.TabIndex = 63
@@ -822,7 +964,7 @@ Partial Class Form1
         '
         'PMpitchMin
         '
-        Me.PMpitchMin.Location = New System.Drawing.Point(87, 19)
+        Me.PMpitchMin.Location = New System.Drawing.Point(66, 19)
         Me.PMpitchMin.Name = "PMpitchMin"
         Me.PMpitchMin.Size = New System.Drawing.Size(45, 20)
         Me.PMpitchMin.TabIndex = 43
@@ -831,7 +973,7 @@ Partial Class Form1
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(122, 74)
+        Me.Label22.Location = New System.Drawing.Point(101, 74)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(63, 13)
         Me.Label22.TabIndex = 62
@@ -850,15 +992,15 @@ Partial Class Form1
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(122, 48)
+        Me.Label21.Location = New System.Drawing.Point(101, 48)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(84, 13)
+        Me.Label21.Size = New System.Drawing.Size(53, 13)
         Me.Label21.TabIndex = 61
-        Me.Label21.Text = "Magnitude (deg)"
+        Me.Label21.Text = "Amplitude"
         '
         'PitchPeriod
         '
-        Me.PitchPeriod.Location = New System.Drawing.Point(87, 71)
+        Me.PitchPeriod.Location = New System.Drawing.Point(66, 71)
         Me.PitchPeriod.Name = "PitchPeriod"
         Me.PitchPeriod.Size = New System.Drawing.Size(29, 20)
         Me.PitchPeriod.TabIndex = 59
@@ -866,7 +1008,7 @@ Partial Class Form1
         '
         'PitchPhase
         '
-        Me.PitchPhase.Location = New System.Drawing.Point(88, 97)
+        Me.PitchPhase.Location = New System.Drawing.Point(67, 97)
         Me.PitchPhase.Name = "PitchPhase"
         Me.PitchPhase.Size = New System.Drawing.Size(29, 20)
         Me.PitchPhase.TabIndex = 60
@@ -874,7 +1016,7 @@ Partial Class Form1
         '
         'PitchMagnitude
         '
-        Me.PitchMagnitude.Location = New System.Drawing.Point(87, 45)
+        Me.PitchMagnitude.Location = New System.Drawing.Point(66, 45)
         Me.PitchMagnitude.Name = "PitchMagnitude"
         Me.PitchMagnitude.Size = New System.Drawing.Size(29, 20)
         Me.PitchMagnitude.TabIndex = 58
@@ -882,6 +1024,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.ReadoutCheckBox)
         Me.GroupBox1.Controls.Add(Me.HeadingInfoCheck)
         Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
         Me.GroupBox1.Controls.Add(Me.ExcelSeriesTextBox)
@@ -899,6 +1042,18 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Path"
         '
+        'ReadoutCheckBox
+        '
+        Me.ReadoutCheckBox.AutoSize = True
+        Me.ReadoutCheckBox.Checked = True
+        Me.ReadoutCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ReadoutCheckBox.Location = New System.Drawing.Point(650, 118)
+        Me.ReadoutCheckBox.Name = "ReadoutCheckBox"
+        Me.ReadoutCheckBox.Size = New System.Drawing.Size(144, 17)
+        Me.ReadoutCheckBox.TabIndex = 37
+        Me.ReadoutCheckBox.Text = "Create Readout Images?"
+        Me.ReadoutCheckBox.UseVisualStyleBackColor = True
+        '
         'HeadingInfoCheck
         '
         Me.HeadingInfoCheck.AutoSize = True
@@ -912,7 +1067,7 @@ Partial Class Form1
         'TimeInfoCheck
         '
         Me.TimeInfoCheck.AutoSize = True
-        Me.TimeInfoCheck.Location = New System.Drawing.Point(552, 72)
+        Me.TimeInfoCheck.Location = New System.Drawing.Point(650, 95)
         Me.TimeInfoCheck.Name = "TimeInfoCheck"
         Me.TimeInfoCheck.Size = New System.Drawing.Size(98, 17)
         Me.TimeInfoCheck.TabIndex = 61
@@ -1008,9 +1163,9 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.RollMagnitude)
         Me.GroupBox2.Controls.Add(Me.label100)
         Me.GroupBox2.Controls.Add(Me.RollPhase)
-        Me.GroupBox2.Location = New System.Drawing.Point(444, 413)
+        Me.GroupBox2.Location = New System.Drawing.Point(364, 413)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(213, 126)
+        Me.GroupBox2.Size = New System.Drawing.Size(172, 126)
         Me.GroupBox2.TabIndex = 72
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ShipRoll"
@@ -1019,7 +1174,7 @@ Partial Class Form1
         '
         Me.LinearRollOption.AutoSize = True
         Me.LinearRollOption.Checked = True
-        Me.LinearRollOption.Location = New System.Drawing.Point(22, 19)
+        Me.LinearRollOption.Location = New System.Drawing.Point(6, 18)
         Me.LinearRollOption.Name = "LinearRollOption"
         Me.LinearRollOption.Size = New System.Drawing.Size(54, 17)
         Me.LinearRollOption.TabIndex = 70
@@ -1030,7 +1185,7 @@ Partial Class Form1
         'CyclicalRollOption
         '
         Me.CyclicalRollOption.AutoSize = True
-        Me.CyclicalRollOption.Location = New System.Drawing.Point(22, 46)
+        Me.CyclicalRollOption.Location = New System.Drawing.Point(6, 45)
         Me.CyclicalRollOption.Name = "CyclicalRollOption"
         Me.CyclicalRollOption.Size = New System.Drawing.Size(61, 17)
         Me.CyclicalRollOption.TabIndex = 71
@@ -1039,7 +1194,7 @@ Partial Class Form1
         '
         'PMrollMax
         '
-        Me.PMrollMax.Location = New System.Drawing.Point(148, 18)
+        Me.PMrollMax.Location = New System.Drawing.Point(121, 16)
         Me.PMrollMax.Name = "PMrollMax"
         Me.PMrollMax.Size = New System.Drawing.Size(45, 20)
         Me.PMrollMax.TabIndex = 42
@@ -1047,7 +1202,7 @@ Partial Class Form1
         '
         'PMrollMin
         '
-        Me.PMrollMin.Location = New System.Drawing.Point(97, 18)
+        Me.PMrollMin.Location = New System.Drawing.Point(70, 16)
         Me.PMrollMin.Name = "PMrollMin"
         Me.PMrollMin.Size = New System.Drawing.Size(45, 20)
         Me.PMrollMin.TabIndex = 41
@@ -1056,7 +1211,7 @@ Partial Class Form1
         'Label102
         '
         Me.Label102.AutoSize = True
-        Me.Label102.Location = New System.Drawing.Point(135, 99)
+        Me.Label102.Location = New System.Drawing.Point(108, 97)
         Me.Label102.Name = "Label102"
         Me.Label102.Size = New System.Drawing.Size(63, 13)
         Me.Label102.TabIndex = 69
@@ -1064,7 +1219,7 @@ Partial Class Form1
         '
         'RollPeriod
         '
-        Me.RollPeriod.Location = New System.Drawing.Point(97, 70)
+        Me.RollPeriod.Location = New System.Drawing.Point(70, 68)
         Me.RollPeriod.Name = "RollPeriod"
         Me.RollPeriod.Size = New System.Drawing.Size(29, 20)
         Me.RollPeriod.TabIndex = 65
@@ -1073,7 +1228,7 @@ Partial Class Form1
         'Label101
         '
         Me.Label101.AutoSize = True
-        Me.Label101.Location = New System.Drawing.Point(132, 73)
+        Me.Label101.Location = New System.Drawing.Point(105, 71)
         Me.Label101.Name = "Label101"
         Me.Label101.Size = New System.Drawing.Size(63, 13)
         Me.Label101.TabIndex = 68
@@ -1081,7 +1236,7 @@ Partial Class Form1
         '
         'RollMagnitude
         '
-        Me.RollMagnitude.Location = New System.Drawing.Point(97, 44)
+        Me.RollMagnitude.Location = New System.Drawing.Point(70, 42)
         Me.RollMagnitude.Name = "RollMagnitude"
         Me.RollMagnitude.Size = New System.Drawing.Size(29, 20)
         Me.RollMagnitude.TabIndex = 64
@@ -1090,15 +1245,15 @@ Partial Class Form1
         'label100
         '
         Me.label100.AutoSize = True
-        Me.label100.Location = New System.Drawing.Point(132, 47)
+        Me.label100.Location = New System.Drawing.Point(105, 45)
         Me.label100.Name = "label100"
-        Me.label100.Size = New System.Drawing.Size(84, 13)
+        Me.label100.Size = New System.Drawing.Size(53, 13)
         Me.label100.TabIndex = 67
-        Me.label100.Text = "Magnitude (deg)"
+        Me.label100.Text = "Amplitude"
         '
         'RollPhase
         '
-        Me.RollPhase.Location = New System.Drawing.Point(98, 96)
+        Me.RollPhase.Location = New System.Drawing.Point(71, 94)
         Me.RollPhase.Name = "RollPhase"
         Me.RollPhase.Size = New System.Drawing.Size(29, 20)
         Me.RollPhase.TabIndex = 66
@@ -1285,6 +1440,8 @@ Partial Class Form1
         Me.Text = "Create Tour From Placemark"
         Me.TabControl1.ResumeLayout(False)
         Me.HasYaw.ResumeLayout(False)
+        Me.GroupBox8.ResumeLayout(False)
+        Me.GroupBox8.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
         Me.GroupBox7.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -1426,5 +1583,19 @@ Partial Class Form1
     Friend WithEvents YawPhase As System.Windows.Forms.TextBox
     Friend WithEvents YawMagnitude As System.Windows.Forms.TextBox
     Friend WithEvents ReadoutCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
+    Friend WithEvents LinearDraftOption As System.Windows.Forms.RadioButton
+    Friend WithEvents CyclicalDraftOption As System.Windows.Forms.RadioButton
+    Friend WithEvents PMdraftMax As System.Windows.Forms.TextBox
+    Friend WithEvents PMdraftMin As System.Windows.Forms.TextBox
+    Friend WithEvents Label33 As System.Windows.Forms.Label
+    Friend WithEvents DraftPeriod As System.Windows.Forms.TextBox
+    Friend WithEvents Label34 As System.Windows.Forms.Label
+    Friend WithEvents DraftMagnitude As System.Windows.Forms.TextBox
+    Friend WithEvents Label35 As System.Windows.Forms.Label
+    Friend WithEvents DraftPhase As System.Windows.Forms.TextBox
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents FixedLookAtCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents FixedLookAtTextBox As System.Windows.Forms.TextBox
 
 End Class
