@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
 	<ns1:Folder>
 		<ns1:name>Untitled Folder</ns1:name>
 		<ns1:open>1</ns1:open>
@@ -10,14 +11,14 @@
 
 		<ns1:LookAt>
 			<ns2:TimeStamp>
-				<ns1:when></ns1:when>
+				<ns1:when>0</ns1:when>
 			</ns2:TimeStamp>
-			<ns1:longitude></ns1:longitude>
-			<ns1:latitude></ns1:latitude>
-			<ns1:altitude></ns1:altitude>
-			<ns1:heading></ns1:heading>
-			<ns1:tilt></ns1:tilt>
-			<ns1:range></ns1:range>
+			<ns1:longitude>0</ns1:longitude>
+			<ns1:latitude>0</ns1:latitude>
+			<ns1:altitude>0</ns1:altitude>
+			<ns1:heading>0</ns1:heading>
+			<ns1:tilt>0</ns1:tilt>
+			<ns1:range>0</ns1:range>
 			<ns2:altitudeMode></ns2:altitudeMode>
 		</ns1:LookAt>
 

@@ -31,7 +31,7 @@ Public Class Form1
     Dim XPlacemark_Data As XElement
     Dim XAnimateModel As XElement
     Dim XTrack As XElement
-    Dim DaeName(8) As String
+    Dim DaeName(24) As String
     Dim DaeNameSteps As Integer
     Dim pi = 3.14159265358979
     Dim EarthRadius = 6378.1 * 1000
@@ -64,6 +64,9 @@ Public Class Form1
         Dim PMtiltMax1 As Double = PMrollMax.Text
         Dim PMroll As Double = PMpitchMin.Text
         Dim PMrollMax1 As Double = PMpitchMax.Text
+        Dim PMscale As Double = PMscaleMin.Text
+        Dim PMscaleMax1 As Double = PMscaleMax.Text
+
         Dim PMyaw As Double = PMyawMin.Text
         Dim PMyawMax1 As Double = PMyawMax.Text
         Dim PMdraft As Double = PMdraftMin.Text
@@ -301,7 +304,8 @@ Public Class Form1
             Dim HeelData As Double
             Dim YawData As Double
             Dim DraftData As Double
-            Dim SpeedData As Double
+        Dim SpeedData As Double
+        Dim ScaleData As Double
             Dim PreviousxPosition As Double
             Dim PreviousyPosition As Double
             Dim indexForPlacemarkData As Integer = 0
@@ -425,7 +429,8 @@ Public Class Form1
 
                     HeelData = 0
                     TrimData = 0
-                    YawData = 0
+                YawData = 0
+                ScaleData = 1
                     DraftData = OutputAltitude
 
                     If FromXYRadioButton.Checked = True Then
@@ -440,7 +445,9 @@ Public Class Form1
                         YawString = "Yaw: " & Math.Round(YawData, 1) & "°; "
 
                         DraftData = (Bezier(i, TimeArray, DraftArray))
-                        DraftString = "Draft: " & Math.Round(DraftData, 1) & " m; "
+                    DraftString = "Draft: " & Math.Round(DraftData, 1) & " m; "
+
+                    ScaleData = 1
 
                     End If
 
@@ -473,6 +480,8 @@ Public Class Form1
                     Else
                         DraftData = DraftData + DraftMagnitude.Text * Math.Sin(2 * pi / DraftPeriod.Text * i + DraftPhase.Text * pi / 180)
                     End If
+
+                ScaleData = ScaleData + PMscale + (PMscaleMax1 - PMscale) / TimeArray(NPlacemarks) * i
 
                     DraftString = "Draft: " & Math.Round(DraftData, 1) & " m; "
 
@@ -515,10 +524,10 @@ Public Class Form1
 
                     If FromLatLonRadioButton.Checked = True Then
 
-                        AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, DraftData, OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelData, TrimData, YawData, index)
+                    AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, DraftData, OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelData, TrimData, YawData, index, ScaleData)
 
                     Else
-                        AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, DraftData, OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelData, TrimData, YawData, index)
+                    AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, DraftData, OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelData, TrimData, YawData, index, ScaleData)
 
 
                     End If
@@ -658,11 +667,9 @@ Public Class Form1
 
         NPlacemarks = 0
 
-        Dim LonLatAlt(3) As Double
+        Dim LonLatAlt(3)
 
         LonLatAlt = LoadPlacemarks(RadiusCenter.Text)
-
-        MsgBox(LonLatAlt(0))
 
         ' NOT COMPLETE
 
@@ -954,7 +961,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub AddToAnimateModel(altitudeMode As String, horizFov As String, BeginTime As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, duration As Double, flyToMode As String, EndTime As String, ModelBearing As Double, DaeName As String, TrimData As Double, HeelData As Double, YawData As Double, index As Integer)
+    Private Sub AddToAnimateModel(altitudeMode As String, horizFov As String, BeginTime As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, duration As Double, flyToMode As String, EndTime As String, ModelBearing As Double, DaeName As String, TrimData As Double, HeelData As Double, YawData As Double, index As Integer, ScaleData As Double)
 
         Dim xPlacemarkTable As XElement
         Dim xFlytoTable As XElement
@@ -1044,8 +1051,8 @@ Public Class Form1
                                           <ns1:roll><%= HeelData %></ns1:roll>
                                       </ns1:Orientation>
                                       <ns1:Scale>
-                                          <ns1:x>1</ns1:x>
-                                          <ns1:y>1</ns1:y>
+                                          <ns1:x><%= ScaleData %></ns1:x>
+                                          <ns1:y><%= ScaleData %></ns1:y>
                                           <ns1:z>1</ns1:z>
                                       </ns1:Scale>
                                       <ns1:Link>
@@ -1270,11 +1277,11 @@ Public Class Form1
 
 
             If n = 0 Then
-                XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document")(n).ReplaceWith(XTrackAdd)
+                'XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document")(n).ReplaceWith(XTrackAdd)
 
 
 
-                xInitialLookAt = <ns1:LookAt xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
+                xInitialLookAt = <ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
                                      <ns2:TimeStamp>
                                          <ns1:when><%= BeginTime %></ns1:when>
                                      </ns2:TimeStamp>
@@ -1285,8 +1292,9 @@ Public Class Form1
                                      <ns1:tilt><%= 10 %></ns1:tilt>
                                      <ns1:range><%= 10 %></ns1:range>
                                      <ns2:altitudeMode>relativeToGround</ns2:altitudeMode>
-                                 </ns1:LookAt>
-
+                                 </ns1:kml>
+                'MsgBox(XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Elements(kk + "LookAt").Count)
+                'MsgBox(XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Elements(k + "StyleMap").Count)
                 XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Elements(k + "LookAt")(n).ReplaceWith(xInitialLookAt)
                 'MsgBox(XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Count)
             Else
@@ -1312,6 +1320,7 @@ Public Class Form1
         XElementAdd = <ns1:Document xmlns:ns1="http://www.opengis.net/kml/2.2">
                           <ns1:name><%= n %></ns1:name>
                           <ns1:open>1</ns1:open>
+
                           <ns1:StyleMap id="s_ylw-pushpin">
                               <ns1:Pair>
                                   <ns1:key>normal</ns1:key>
@@ -1700,6 +1709,7 @@ Public Class Form1
 
 
    
+
 
 
 

@@ -59,6 +59,9 @@ Partial Class Form1
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.HasYaw = New System.Windows.Forms.TabPage()
+        Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.PMscaleMax = New System.Windows.Forms.TextBox()
+        Me.PMscaleMin = New System.Windows.Forms.TextBox()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.LinearDraftOption = New System.Windows.Forms.RadioButton()
         Me.CyclicalDraftOption = New System.Windows.Forms.RadioButton()
@@ -114,6 +117,8 @@ Partial Class Form1
         Me.PitchPhase = New System.Windows.Forms.TextBox()
         Me.PitchMagnitude = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label36 = New System.Windows.Forms.Label()
         Me.ReadoutCheckBox = New System.Windows.Forms.CheckBox()
         Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
         Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
@@ -152,8 +157,10 @@ Partial Class Form1
         Me.Radius = New System.Windows.Forms.TextBox()
         Me.RadiusCenter = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabControl1.SuspendLayout()
         Me.HasYaw.SuspendLayout()
+        Me.GroupBox10.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -458,6 +465,7 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
+        Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Location = New System.Drawing.Point(12, 22)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -466,6 +474,7 @@ Partial Class Form1
         '
         'HasYaw
         '
+        Me.HasYaw.Controls.Add(Me.GroupBox10)
         Me.HasYaw.Controls.Add(Me.GroupBox8)
         Me.HasYaw.Controls.Add(Me.ProgressBar1)
         Me.HasYaw.Controls.Add(Me.GroupBox7)
@@ -481,6 +490,33 @@ Partial Class Form1
         Me.HasYaw.TabIndex = 0
         Me.HasYaw.Text = "Animate from Placemarks"
         Me.HasYaw.UseVisualStyleBackColor = True
+        '
+        'GroupBox10
+        '
+        Me.GroupBox10.Controls.Add(Me.PMscaleMax)
+        Me.GroupBox10.Controls.Add(Me.PMscaleMin)
+        Me.GroupBox10.Location = New System.Drawing.Point(720, 413)
+        Me.GroupBox10.Name = "GroupBox10"
+        Me.GroupBox10.Size = New System.Drawing.Size(116, 126)
+        Me.GroupBox10.TabIndex = 72
+        Me.GroupBox10.TabStop = False
+        Me.GroupBox10.Text = "ScaleBox"
+        '
+        'PMscaleMax
+        '
+        Me.PMscaleMax.Location = New System.Drawing.Point(36, 64)
+        Me.PMscaleMax.Name = "PMscaleMax"
+        Me.PMscaleMax.Size = New System.Drawing.Size(45, 20)
+        Me.PMscaleMax.TabIndex = 43
+        Me.PMscaleMax.Text = "1"
+        '
+        'PMscaleMin
+        '
+        Me.PMscaleMin.Location = New System.Drawing.Point(35, 38)
+        Me.PMscaleMin.Name = "PMscaleMin"
+        Me.PMscaleMin.Size = New System.Drawing.Size(45, 20)
+        Me.PMscaleMin.TabIndex = 42
+        Me.PMscaleMin.Text = "1"
         '
         'GroupBox8
         '
@@ -1024,6 +1060,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.Label36)
         Me.GroupBox1.Controls.Add(Me.ReadoutCheckBox)
         Me.GroupBox1.Controls.Add(Me.HeadingInfoCheck)
         Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
@@ -1042,12 +1080,29 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Path"
         '
+        'TextBox1
+        '
+        Me.TextBox1.AllowDrop = True
+        Me.TextBox1.Location = New System.Drawing.Point(622, 121)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(198, 20)
+        Me.TextBox1.TabIndex = 64
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(549, 124)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(68, 13)
+        Me.Label36.TabIndex = 63
+        Me.Label36.Text = "... or address"
+        '
         'ReadoutCheckBox
         '
         Me.ReadoutCheckBox.AutoSize = True
         Me.ReadoutCheckBox.Checked = True
         Me.ReadoutCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ReadoutCheckBox.Location = New System.Drawing.Point(650, 118)
+        Me.ReadoutCheckBox.Location = New System.Drawing.Point(650, 89)
         Me.ReadoutCheckBox.Name = "ReadoutCheckBox"
         Me.ReadoutCheckBox.Size = New System.Drawing.Size(144, 17)
         Me.ReadoutCheckBox.TabIndex = 37
@@ -1057,7 +1112,7 @@ Partial Class Form1
         'HeadingInfoCheck
         '
         Me.HeadingInfoCheck.AutoSize = True
-        Me.HeadingInfoCheck.Location = New System.Drawing.Point(650, 72)
+        Me.HeadingInfoCheck.Location = New System.Drawing.Point(650, 43)
         Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
         Me.HeadingInfoCheck.Size = New System.Drawing.Size(115, 17)
         Me.HeadingInfoCheck.TabIndex = 62
@@ -1067,7 +1122,7 @@ Partial Class Form1
         'TimeInfoCheck
         '
         Me.TimeInfoCheck.AutoSize = True
-        Me.TimeInfoCheck.Location = New System.Drawing.Point(650, 95)
+        Me.TimeInfoCheck.Location = New System.Drawing.Point(650, 66)
         Me.TimeInfoCheck.Name = "TimeInfoCheck"
         Me.TimeInfoCheck.Size = New System.Drawing.Size(98, 17)
         Me.TimeInfoCheck.TabIndex = 61
@@ -1339,7 +1394,7 @@ Partial Class Form1
         Me.ExcelReaderTextbox.Name = "ExcelReaderTextbox"
         Me.ExcelReaderTextbox.Size = New System.Drawing.Size(438, 20)
         Me.ExcelReaderTextbox.TabIndex = 60
-        Me.ExcelReaderTextbox.Text = "C:\Google Earth Tour\Log Files\logRun (11).txt"
+        Me.ExcelReaderTextbox.Text = "C:\Google Earth Tour\logRun.txt"
         '
         'Label29
         '
@@ -1430,6 +1485,16 @@ Partial Class Form1
         '
         Me.OpenFileDialog3.FileName = "OpenFileDialog3"
         '
+        'TabPage1
+        '
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(851, 602)
+        Me.TabPage1.TabIndex = 5
+        Me.TabPage1.Text = "Simultaneous Elements"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1440,6 +1505,8 @@ Partial Class Form1
         Me.Text = "Create Tour From Placemark"
         Me.TabControl1.ResumeLayout(False)
         Me.HasYaw.ResumeLayout(False)
+        Me.GroupBox10.ResumeLayout(False)
+        Me.GroupBox10.PerformLayout()
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox8.PerformLayout()
         Me.GroupBox7.ResumeLayout(False)
@@ -1597,5 +1664,11 @@ Partial Class Form1
     Friend WithEvents Label30 As System.Windows.Forms.Label
     Friend WithEvents FixedLookAtCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents FixedLookAtTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox10 As System.Windows.Forms.GroupBox
+    Friend WithEvents PMscaleMax As System.Windows.Forms.TextBox
+    Friend WithEvents PMscaleMin As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label36 As System.Windows.Forms.Label
+    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
 
 End Class
