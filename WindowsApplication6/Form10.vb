@@ -17,8 +17,8 @@ Public Class Form10
     End Sub
 
     Public Function GetLatLon(ByVal addr As String) As String
-        Dim googleResult As New MSXML2.DOMDocument
-        Dim googleService As New MSXML2.XMLHTTP
+        Dim googleResult As New MSXML2.DOMDocument60
+        Dim googleService As New MSXML2.XMLHTTP60
         Dim oNodes As MSXML2.IXMLDOMNodeList
         Dim oNode As MSXML2.IXMLDOMNode
 
@@ -49,7 +49,9 @@ Public Class Form10
         End If
 
 
+#Disable Warning BC42105 ' Function doesn't return a value on all code paths
     End Function
+#Enable Warning BC42105 ' Function doesn't return a value on all code paths
     Public Function URLEncode(StringVal As String, Optional SpaceAsPlus As Boolean = False) As String
         Dim CharCode As Integer
         Dim Char1 As String
@@ -79,7 +81,9 @@ Public Class Form10
             Next i
             URLEncode = Join(result, "")
         End If
+#Disable Warning BC42105 ' Function doesn't return a value on all code paths
     End Function
+#Enable Warning BC42105 ' Function doesn't return a value on all code paths
 
 
 End Class
