@@ -76,9 +76,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.GoogleTourFromLocation.My.MySettings
+        Friend ReadOnly Property Settings() As Global.Twin.My.MySettings
             Get
-                Return Global.GoogleTourFromLocation.My.MySettings.Default
+                Return Global.Twin.My.MySettings.Default
             End Get
         End Property
     End Module

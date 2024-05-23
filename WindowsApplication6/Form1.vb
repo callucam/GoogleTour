@@ -1,17 +1,4 @@
-﻿'Add view from stationary location
-'Add direct export to XML
-'Add CCPE logo
-'Add parameter call out -- speed, heading, heel, trim, draft
-
-'Models: 
-
-'crane barge
-'sea trials
-'turning cycle
-'seakeeping to buoy
-
-
-#Region "Imports directives"
+﻿#Region "Imports directives"
 
 Imports System.Reflection
 Imports System.IO
@@ -27,8 +14,8 @@ Imports System.Net.Configuration
 
 Public Class Form1
 
-    Dim XPlaceMark(500) As XElement
-    Dim XLookAtPlaceMark(500) As XElement
+    Dim XPlaceMark(5000) As XElement
+    Dim XLookAtPlaceMark(5000) As XElement
     Dim XPlacemark_Data As XElement
     Dim XAnimateModel As XElement
     Dim XTrack As XElement
@@ -60,20 +47,6 @@ Public Class Form1
 
         ' Set model properties
 
-        Dim PMheading As Double = SpeedMin.Text
-        Dim PMheadingMax1 As Double = SpeedMax.Text
-        Dim PMtilt As Double = PMrollMin.Text
-        Dim PMtiltMax1 As Double = PMrollMax.Text
-        Dim PMroll As Double = PMpitchMin.Text
-        Dim PMrollMax1 As Double = PMpitchMax.Text
-        Dim PMscale As Double = PMscaleMin.Text
-        Dim PMscaleMax1 As Double = PMscaleMax.Text
-
-        Dim PMyaw As Double = PMyawMin.Text
-        Dim PMyawMax1 As Double = PMyawMax.Text
-        Dim PMdraft As Double = PMdraftMin.Text
-        Dim PMdraftMax1 As Double = PMdraftMax.Text
-
         Dim altitudeMode As String = ns2altitudeMode.Text
         Dim duration As Double = ns2duration.Text 'this is a percentage of the total length of tour, to the total duration.
         Dim flyToMode As String = ns2flyToMode.Text
@@ -81,248 +54,152 @@ Public Class Form1
         ' Load Placemarks
 
         Dim LonLatAlt
-        Dim longitudes(500) As Double
-        Dim latitudes(500) As Double
-        Dim altitudes(500) As Double
+        Dim longitudes(5000) As Double
+        Dim latitudes(5000) As Double
+        Dim altitudes(5000) As Double
 
-
-
-
-        If FromLatLonRadioButton.Checked = True Then
-            LonLatAlt = LoadPlacemarks(PmFolderListBox.Items(0))
-        Else
-            LonLatAlt = LoadPlacemarks(PmReferenceTextBox.Text)
-        End If
+        LonLatAlt = LoadPlacemarks(PmReferenceTextBox.Text)
 
         longitudes = LonLatAlt(0)
         latitudes = LonLatAlt(1)
         altitudes = LonLatAlt(2)
-
-
-
 
         LoadModel()
 
         ' Write to Excel
 
         Dim oXL As Excel.Application = Nothing
-
-
         Dim oWBs As Excel.Workbooks = Nothing
-
         Dim oWB2 As Excel.Workbook = Nothing
-
         Dim Sheet1 As Excel.Worksheet
-
-        'Dim m2 As Date = ns1when.Value
         Dim m3 As Date
 
 #Disable Warning BC42024 ' Unused local variable
+
         Dim m7 As Date
+
 #Enable Warning BC42024 ' Unused local variable
 
 
+        Dim DistanceArray(5000) As Double
+        Dim CummulativeDistanceArray(5000) As Double
 
-        Dim DistanceArray(500) As Double
-        Dim GlobalBearingArray(500) As Double
-        Dim XArray(500) As Double
-        Dim YArray(500) As Double
+        Dim GlobalBearingArray(5000) As Double
+        Dim XArray(5000) As Double
+        Dim YArray(5000) As Double
 
-        Dim HeelArray(500) As Double
-        Dim TrimArray(500) As Double
-        Dim YawArray(500) As Double
-        Dim DraftArray(500) As Double
+        Dim HeelArray(5000) As Double
+        Dim TrimArray(5000) As Double
+        Dim YawArray(5000) As Double
+        Dim DraftArray(5000) As Double
 
-        Dim LocalBearingArray(500) As Double
-        Dim OrientationArray(500) As Double
-        Dim SpeedMinText As Double = SpeedMin.Text
-        Dim SpeedMaxText As Double = SpeedMax.Text
-        Dim SpeedArray(500) As Double
-        Dim TimeArray(500) As Double
-        Dim VxArray(500) As Double
-        Dim VyArray(500) As Double
-        Dim AxArray(500) As Double
-        Dim BxArray(500) As Double
-        Dim AyArray(500) As Double
-        Dim ByArray(500) As Double
+        Dim LocalBearingArray(5000) As Double
+        Dim OrientationArray(5000) As Double
+
+        Dim SpeedArray(5000) As Double
+        Dim TimeArray(5000) As Double
+        Dim VxArray(5000) As Double
+        Dim VyArray(5000) As Double
+        Dim AxArray(5000) As Double
+        Dim BxArray(5000) As Double
+        Dim AyArray(5000) As Double
+        Dim ByArray(5000) As Double
         Dim j As Integer = 0
-        Dim xPosition As Double
-        Dim yPosition As Double
-        Dim SpeedPosition As Double
         Dim DistanceBetweenXY As Double = 0
         Dim BearingBetweenXY As Double = 0
-        Dim OutputLatDeg As Double
-        Dim OutputLongDeg As Double
 
         Dim OutputAltitude As Double
 
+        Dim String1(5000) As String
+        Dim String2(5000) As String
+        Dim String3(5000) As String
+        Dim String4(5000) As String
+        Dim String5(5000) As String
+        Dim String6(5000) As String
+        Dim String7(5000) As String
+
+
+        Dim ResolutionArray(5000) As Integer
+        'Dim IndexArray(5000) As Integer
+
+
+        Dim LatArray(5000) As String
+        Dim LongArray(5000) As String
 
         Dim m4 As Date
         Dim m5 As Date
 
-        If FromLatLonRadioButton.Checked = True Then
-            For speedindex = 0 To NPlacemarks
-                SpeedArray(speedindex) = SpeedMinText + (SpeedMaxText - SpeedMinText) / NPlacemarks * speedindex
-
-            Next
-            DistanceArray = DistBetweenPlacemarks(latitudes, longitudes)
-            GlobalBearingArray = GlobalBearingBetweenPlacemarks(latitudes, longitudes)
-            XArray = xarrayfromdistbearing(DistanceArray, GlobalBearingArray)
-            YArray = yarrayfromdistbearing(DistanceArray, GlobalBearingArray)
-            LocalBearingArray = LocalBearingBetweenPlacemarks(XArray, YArray)
-            OutputLatDeg = latitudes(0) * 180 / pi
-            OutputLongDeg = longitudes(0) * 180 / pi
-            OutputAltitude = altitudes(0)
-            xPosition = 0
-            yPosition = 0
-
-        Else
-            oXL = New Excel.Application
-            oXL.Visible = True
-            oWBs = oXL.Workbooks
-
-            oWB2 = oWBs.Open(ExcelSeriesTextBox.Text)
-
-            Sheet1 = oWB2.Worksheets(1)
-            NPlacemarks = Sheet1.Range("m1").Offset(0, 0).Value - 1
-
-
-            XArray(0) = Sheet1.Range("b2").Offset(0, 0).Value
-            YArray(0) = Sheet1.Range("c2").Offset(0, 0).Value
-            HeelArray(0) = Sheet1.Range("d2").Offset(0, 0).Value
-            TrimArray(0) = Sheet1.Range("e2").Offset(0, 0).Value
-            YawArray(0) = Sheet1.Range("f2").Offset(0, 0).Value
-            DraftArray(0) = Sheet1.Range("g2").Offset(0, 0).Value
-
-            For n = 1 To NPlacemarks
-                For speedindex = 0 To NPlacemarks
-                    SpeedArray(speedindex) = SpeedMinText + (SpeedMaxText - SpeedMinText) / NPlacemarks * speedindex
-                    MsgBox(SpeedArray(speedindex))
-                Next
-
-                XArray(n) = Sheet1.Range("b2").Offset(n, 0).Value ' xarrayfromdistbearing(DistanceArray, GlobalBearingArray)
-                YArray(n) = Sheet1.Range("c2").Offset(n, 0).Value
-                HeelArray(n) = Sheet1.Range("d2").Offset(n, 0).Value
-                TrimArray(n) = Sheet1.Range("e2").Offset(n, 0).Value
-                YawArray(n) = Sheet1.Range("f2").Offset(n, 0).Value
-                DraftArray(n) = Sheet1.Range("g2").Offset(n, 0).Value
-
-                DistanceArray(n) = ((XArray(n) - XArray(0)) ^ 2 + (YArray(n) - YArray(0)) ^ 2) ^ 0.5
-
-                GlobalBearingArray(n) = Math.Atan2(YArray(n) - YArray(0), XArray(n) - XArray(0))
-                LocalBearingArray(n) = Math.Atan2(YArray(n) - YArray(n - 1), XArray(n) - XArray(n - 1))
-                MsgBox(DistanceArray(n))
-            Next
-
-            'm3 = DateAdd(DateInterval.Hour, 8, DateTime.Parse(Sheet1.Range("a2").Offset(0, 0).Value))
-
-
-            m3 = DateAdd(DateInterval.Second, Sheet1.Range("a2").Offset(0, 0).Value, ns1when.Value)
-            m3 = DateAdd(DateInterval.Hour, NumericUpDown1.Value, m3)
-            m3 = DateAdd(DateInterval.Minute, NumericUpDown2.Value, m3)
-
-            '2014-11-29T01:18:27.759Z
-
-            'MsgBox(m3)
-
-            For q = 0 To NPlacemarks
-                'TimeArray(q) = DateDiff(DateInterval.Second, m3, DateAdd(DateInterval.Hour, 8, DateTime.Parse(Sheet1.Range("a2").Offset(q, 0).Value)))
-                m5 = DateAdd(DateInterval.Second, Sheet1.Range("a2").Offset(q, 0).Value, ns1when.Value)
-                m5 = DateAdd(DateInterval.Hour, NumericUpDown1.Value, m5)
-                m5 = DateAdd(DateInterval.Minute, NumericUpDown2.Value, m5)
-                TimeArray(q) = DateDiff(DateInterval.Second, m3, m5)
-                'MsgBox(ns1when.Value)
-            Next
-
-
-            xPosition = XArray(0)
-            xPosition = YArray(0)
-
-            DistanceBetweenXY = (XArray(0) ^ 2 + YArray(0) ^ 2) ^ 0.5
-            BearingBetweenXY = Math.Atan2(yPosition, xPosition) - 90 * pi / 180
-
-            OutputLatDeg = (Math.Asin(Math.Sin(latitudes(0)) * Math.Cos(DistanceBetweenXY / 1000 / 6378.1) + Math.Cos(latitudes(0)) * Math.Sin(DistanceBetweenXY / 1000 / 6378.1) * Math.Cos(BearingBetweenXY))) * 180 / pi
-            OutputLongDeg = (longitudes(0) + Math.Atan2(Math.Cos(DistanceBetweenXY / EarthRadius) - Math.Sin(latitudes(0)) * Math.Sin(OutputLatDeg * pi / 180), Math.Sin(BearingBetweenXY) * Math.Sin(DistanceBetweenXY / EarthRadius) * Math.Cos(latitudes(0)))) * 180 / pi - 90
-
-            oWB2.Close(False)
-
-        End If
 
 
 
-        For p = 0 To LocalBearingArray.Length - 2
-            OrientationArray(p) = LocalBearingArray(p) / 2 + LocalBearingArray(p + 1) / 2
+        oXL = New Excel.Application
+        oXL.Visible = False
+        oWBs = oXL.Workbooks
+        oWB2 = oWBs.Open(ExcelSeriesTextBox.Text)
+        Sheet1 = oWB2.Worksheets(1)
+        NPlacemarks = Sheet1.Range("b2").Offset(0, 0).Value - 1
+        ProgressBar1.Minimum = 0
+        ProgressBar1.Maximum = NPlacemarks
+        m3 = DateAdd(DateInterval.Second, Sheet1.Range("a11").Offset(0, 0).Value, ns1when.Value)
+        m3 = DateAdd(DateInterval.Hour, NumericUpDown1.Value, m3)
+        m3 = DateAdd(DateInterval.Minute, NumericUpDown2.Value, m3)
+        For n = 0 To NPlacemarks
+            m5 = DateAdd(DateInterval.Second, Sheet1.Range("a11").Offset(n, 0).Value, ns1when.Value)
+            m5 = DateAdd(DateInterval.Hour, NumericUpDown1.Value, m5)
+            m5 = DateAdd(DateInterval.Minute, NumericUpDown2.Value, m5)
+            TimeArray(n) = Sheet1.Range("a11").Offset(n, 0).Value 'DateDiff(DateInterval.Second, m3, m5)
+            'MsgBox(m5 & " " & TimeArray(n) & " " & Sheet1.Range("a11").Offset(n, 0).Value)
+            XArray(n) = Sheet1.Range("b11").Offset(n, 0).Value ' xarrayfromdistbearing(DistanceArray, GlobalBearingArray)
+            YArray(n) = Sheet1.Range("c11").Offset(n, 0).Value
+            HeelArray(n) = Sheet1.Range("d11").Offset(n, 0).Value
+            TrimArray(n) = Sheet1.Range("e11").Offset(n, 0).Value
+            YawArray(n) = Sheet1.Range("f11").Offset(n, 0).Value
+            DraftArray(n) = Sheet1.Range("g11").Offset(n, 0).Value
+            GlobalBearingArray(n) = Sheet1.Range("h11").Offset(n, 0).Value
+            LocalBearingArray(n) = Sheet1.Range("i11").Offset(n, 0).Value
+            DistanceArray(n) = Sheet1.Range("j11").Offset(n, 0).Value
+            SpeedArray(n) = Sheet1.Range("k11").Offset(n, 0).Value
+
+            String1(n) = Sheet1.Range("l11").Offset(n, 0).Value
+            String2(n) = Sheet1.Range("m11").Offset(n, 0).Value
+            String3(n) = Sheet1.Range("n11").Offset(n, 0).Value
+            String4(n) = Sheet1.Range("y11").Offset(n, 0).Value
+            String5(n) = Sheet1.Range("z11").Offset(n, 0).Value
+            String6(n) = Sheet1.Range("aa11").Offset(n, 0).Value
+            String7(n) = Sheet1.Range("ab11").Offset(n, 0).Value
+
+            ResolutionArray(n) = Sheet1.Range("ac11").Offset(n, 0).Value
+
+            'IndexArray(n) = Sheet1.Range("ae11").Offset(n, 0).Value
+
+
+            CummulativeDistanceArray(n) = Sheet1.Range("o11").Offset(n, 0).Value
+
+            LatArray(n) = Sheet1.Range("r11").Offset(n, 0).Value
+            LongArray(n) = Sheet1.Range("s11").Offset(n, 0).Value
+            ProgressBar1.Visible = True
+            ProgressBar1.Value = n
+
         Next
 
-        OrientationArray(0) = LocalBearingArray(1)
+        oWB2.Close(False)
 
-        OrientationArray(NPlacemarks) = LocalBearingArray(NPlacemarks)
 
-        'MsgBox(LonLatAlt(3)(0))
-
-        If FromLatLonRadioButton.Checked = True Then
-
-            If TimeInfoCheck.Checked = True And Not IsNothing(LonLatAlt(3)(0)) Then
-                MsgBox("note 1")
-                m3 = DateAdd(DateInterval.Hour, 8, DateTime.Parse(LonLatAlt(3)(0))) '2014-11-29T01:18:27.759Z
-
-                For q = 0 To NPlacemarks
-                    TimeArray(q) = DateDiff(DateInterval.Second, m3, DateAdd(DateInterval.Hour, 8, DateTime.Parse(LonLatAlt(3)(q))))
-                    MsgBox(TimeArray(q))
-                Next
-
-            Else
-                m3 = ns1when.Value
-                m3 = DateAdd(DateInterval.Hour, NumericUpDown1.Value, m3)
-                m3 = DateAdd(DateInterval.Minute, NumericUpDown2.Value, m3)
-                TimeArray = TimeArrayfromDistanceArray(DistanceArray, SpeedArray)
-                'MsgBox(m3)
-            End If
-
-        End If
+        OrientationArray = LocalBearingArray
 
         m4 = DateAdd(DateInterval.Second, TimeArray(NPlacemarks), m3)
 
+        'MsgBox(TimeArray(NPlacemarks) & " " & NPlacemarks)
+
         Dim VeryEndTime As String = kmlDate(m4)
 
-        'TimeArray = TimeArrayfromDistanceArray(DistanceArray, SpeedArray)
-        VxArray = VxArrayfromLocalBearingAndSpeed(OrientationArray, SpeedArray)
-        VyArray = VyArrayfromLocalBearingAndSpeed(OrientationArray, SpeedArray)
-        AxArray = AArrayfromPositionTimeSpeed(XArray, TimeArray, VxArray)
-        BxArray = BArrayfromPositionTimeSpeed(XArray, TimeArray, VxArray)
-        AyArray = AArrayfromPositionTimeSpeed(YArray, TimeArray, VyArray)
-        ByArray = BArrayfromPositionTimeSpeed(YArray, TimeArray, VyArray)
+        'MsgBox(VeryEndTime)
 
-        Dim ModelX As Double
-        Dim ModelY As Double
         Dim ModelBearing As Double
-
-        Dim OutputLatDegPrevious As Double
-        Dim OutputLongDegPrevious As Double
         Dim ModelBearingPrevious(20) As Double
-
-        ProgressBar1.Minimum = 0
-        ProgressBar1.Maximum = TimeArray(NPlacemarks)
-
-        ProgressBar1.Visible = True
-        ProgressBar1.Value = ProgressBar1.Minimum
 
         Dim i As Double = 0
         Dim index As Integer = 0
-        Dim TimeIncrementText As Double = TimeIncrement.Text
-
-        Dim HeadingString As String
-        Dim SpeedString As String
-        Dim HeelString As String
-        Dim TrimString As String
-        Dim YawString As String
-
-        Dim WeatherString As String
-        Dim PassengerString As String
-        Dim PowerString As String
-        Dim BatteryString As String
-
-        Dim DraftString As String
 
         Dim BeginTime As String
         Dim EndTime As String
@@ -334,397 +211,111 @@ Public Class Form1
         Dim RangeString As String
         Dim mb As Integer = 0
 
-        Dim TrimData As Double
-        Dim HeelData As Double
-        Dim YawData As Double
-        Dim DraftData As Double
-        Dim SpeedData As Double
         Dim ScaleData As Double
-        Dim PowerData As Double
-        Dim PreviousxPosition As Double
-        Dim PreviousyPosition As Double
-        Dim indexForPlacemarkData As Integer = 0
-        Dim ReadoutString As String
 
+        'Dim indexForPlacemarkData As Integer = 0
+        Dim ReadoutString As String
+        Dim LongPos As Double
+        Dim LatPos As Double
+        Dim Resolution As Integer = 8
 
         For h = 1 To NPlacemarks
-            'MsgBox(i & " " & h)
-            While i < TimeArray(h)
-                'MsgBox(TimeArray(h))
-                'xPosition = 1 / 6 * AxArray(h) * (i - TimeArray(h - 1)) ^ 3 + 1 / 2 * BxArray(h) * (i - TimeArray(h - 1)) ^ 2 + VxArray(h - 1) * (i - TimeArray(h - 1)) + XArray(h - 1) '+XArray(0) 
-                'yPosition = 1 / 6 * AyArray(h) * (i - TimeArray(h - 1)) ^ 3 + 1 / 2 * ByArray(h) * (i - TimeArray(h - 1)) ^ 2 + VyArray(h - 1) * (i - TimeArray(h - 1)) + YArray(h - 1) '+ YArray(0)
 
-                xPosition = (Bezier(i, TimeArray, XArray))
+            ProgressBar2.Minimum = 0
+            ProgressBar2.Maximum = NPlacemarks
+            ProgressBar2.Value = h
 
-                yPosition = (Bezier(i, TimeArray, YArray))
+            Resolution = ResolutionArray(h - 1)
+            'MsgBox(Resolution)
 
-                SpeedPosition = (Bezier(i, TimeArray, SpeedArray))
-                ' MsgBox(xPosition & " " & yPosition & " " & SpeedPosition)
-                'SpeedData = ((PreviousxPosition - xPosition) ^ 2 + (PreviousyPosition - yPosition) ^ 2) ^ 0.5 / TimeIncrementText * TimeFactor.Text * SpeedPosition
-                'SpeedData = ((PreviousxPosition - xPosition) ^ 2 + (PreviousyPosition - yPosition) ^ 2) ^ 0.5 * TimeFactor.Text * SpeedPosition
-                SpeedData = ((PreviousxPosition - xPosition) ^ 2 + (PreviousyPosition - yPosition) ^ 2) ^ 0.5 * TimeFactor.Text
-                'SpeedData = ((PreviousxPosition - xPosition) ^ 2 + (PreviousyPosition - yPosition) ^ 2) ^ 0.5 / TimeFactor.Text
+            For i = 0 To Resolution - 1
+                'For i = 1 To 2
 
-                If IsNumeric(Math.Abs(xPosition) < 1000000.0) And (Math.Abs(yPosition) < 1000000.0) Then
-                    PreviousxPosition = xPosition
-                    PreviousyPosition = yPosition
+                'MsgBox(h & " " & TimeArray(h) & " " & i)
+
+                OutputAltitude = altitudes(0)
+
+                BeginTime = kmlDate(m3)
+
+                LongPos = LongArray(h - 1) + (LongArray(h) - LongArray(h - 1)) / (Resolution) * (i)
+                LatPos = LatArray(h - 1) + (LatArray(h) - LatArray(h - 1)) / (Resolution) * (i)
+
+
+                'CoordinateString = LongArray(h) & " " & LatArray(h) & " " & OutputAltitude
+                CoordinateString = LongPos & " " & LatPos & " " & OutputAltitude
+
+                'MsgBox(CoordinateString)
+
+                If LinearHeadingOption.Checked = True Then
+                    OrientationString = heading + (headingMax - heading) / ((NPlacemarks - 1) * Resolution) * (((h - 1) * Resolution) + i)
                 Else
-                    xPosition = PreviousxPosition
-                    yPosition = PreviousyPosition
+                    OrientationString = h Mod 360
                     'MsgBox("here")
                 End If
 
-                DistanceBetweenXY = (xPosition ^ 2 + yPosition ^ 2) ^ 0.5
-
-                BearingBetweenXY = Math.Atan2(yPosition, xPosition) - 90 * pi / 180
-
-                OutputLatDeg = (Math.Asin(Math.Sin(latitudes(0)) * Math.Cos(DistanceBetweenXY / 1000 / 6378.1) + Math.Cos(latitudes(0)) * Math.Sin(DistanceBetweenXY / 1000 / 6378.1) * Math.Cos(BearingBetweenXY))) * 180 / pi
-
-                OutputLongDeg = (longitudes(0) + Math.Atan2(Math.Cos(DistanceBetweenXY / EarthRadius) - Math.Sin(latitudes(0)) * Math.Sin(OutputLatDeg * pi / 180), Math.Sin(BearingBetweenXY) * Math.Sin(DistanceBetweenXY / EarthRadius) * Math.Cos(latitudes(0)))) * 180 / pi - 90
-                OutputAltitude = (Bezier(i, TimeArray, altitudes))
-                If IsNumeric(OutputLatDeg) And IsNumeric(OutputLongDeg) Then
-
-                Else
-                    OutputLatDeg = OutputLatDegPrevious
-                    OutputLongDeg = OutputLongDegPrevious
-                    MsgBox("here2")
-                End If
-
-
-
-                ProgressBar1.Value = i
-
-                'Set the view
-
-                ' m3 = DateAdd(DateInterval.Second, TimeArray(n) / 1000, m3)
-
-                'BeginTime = Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":  " & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00") & "Z"
-                BeginTime = kmlDate(m3)
-
-                'Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00")
-                'BeginTime = BeginTime & "." & m3.Millisecond & "Z"
-
-                'BeginTime = BeginTime & "." & Microsoft.VisualBasic.Right(TimeArray(n), 3) & "Z"
-
-                'MsgBox(BeginTime)
-                'BeginTime = BeginTime & "." & Microsoft.VisualBasic.Right(TimeArray(n), 3) & "Z"
-
-                CoordinateString = OutputLongDeg & " " & OutputLatDeg & " " & OutputAltitude
-
-                If LinearHeadingOption.Checked = True Then
-                    OrientationString = heading + (headingMax - heading) / TimeArray(NPlacemarks) * i
-                Else
-                    OrientationString = i Mod 360
-                End If
-
-                TiltString = tilt + (tiltMax - tilt) / TimeArray(NPlacemarks) * i
-                RangeString = range + (rangeMax - range) / TimeArray(NPlacemarks) * i
+                TiltString = tilt + (tiltMax - tilt) / ((NPlacemarks - 1) * Resolution) * (((h - 1) * Resolution) + i)
+                RangeString = range + (rangeMax - range) / ((NPlacemarks - 1) * Resolution) * (((h - 1) * Resolution) + i)
 
                 'Set the model
 
-                'm3 = CDate(Date.FromOADate(CDbl(m3.ToOADate()) + TimeIncrementText / 60 / 60 / 24))
+                'm3 = m3.AddMilliseconds(1 * 1000 / Resolution)
+                m3 = m3.AddMilliseconds(1000 * ((TimeArray(h) - TimeArray(h - 1)) / Resolution))
 
-                m3 = m3.AddMilliseconds(TimeIncrementText * 1000)
-                'm7 = m3.AddMilliseconds(TimeIncrementText * -1)
-
-                'MsgBox("hello" & m3.Millisecond)
+                'MsgBox(TimeArray(h) & " " & TimeArray(h - 1) & " " & Resolution)
 
                 EndTime = kmlDate(m3)
-                'EndTime = kmlDate(m7)
 
-                '= Year(m3) & "-" & Format(Month(m3), "00") & "-" & Format(Day(m3), "00") & "T" & Format(Hour(m3), "00") & ":" & Format(Minute(m3), "00") & ":" & Format(Second(m3), "00")
-                'EndTime = EndTime & "." & m3.Millisecond & "Z"
+                OutputString = LongPos & "," & LatPos  'altitudes(0)
 
-                'MsgBox(EndTime)
+                ModelBearing = GlobalBearingArray(h - 1) + (GlobalBearingArray(h) - GlobalBearingArray(h - 1)) / Resolution * i - 90
 
-                OutputString = OutputLongDeg & "," & OutputLatDeg  'altitudes(0)
-
-                If HeadingInfoCheck.Checked = True And XPlaceMark(0).Descendants(k + "Style").Elements(k + "IconStyle")(0).Elements(k + "heading").Count > 0 Then
-
-                    ModelBearing = (Bezier(i, TimeArray, LonLatAlt(4)))
-                    'MsgBox(i & " " & ModelBearing)
-
-                Else
-
-                    ModelY = Math.Sin((OutputLongDeg - OutputLongDegPrevious) * pi / 180) * Math.Cos(OutputLatDeg * pi / 180)
-                    ModelX = Math.Cos(OutputLatDegPrevious * pi / 180) * Math.Sin(OutputLatDeg * pi / 180) - Math.Sin(OutputLatDegPrevious * pi / 180) * Math.Cos(OutputLatDeg * pi / 180) * Math.Cos((OutputLongDeg - OutputLongDegPrevious) * pi / 180)
-                    ModelBearing = Math.Atan2(ModelY, ModelX) * 180 / pi - 90
-
-                    'If mb = 20 Then mb = 0 Else mb = mb + 1
-                    'ModelBearingPrevious(mb) = ModelBearing
-
-                    'For mbi = 0 To 20
-                    '    ModelBearing = ModelBearing + ModelBearingPrevious(mbi) / 21
-                    'Next
-
-
-                    'MsgBox(ModelBearing)
-                End If
-
-                OutputLatDegPrevious = OutputLatDeg
-                OutputLongDegPrevious = OutputLongDeg
-
-                HeelData = 0
-                TrimData = 0
-                YawData = 0
-                ScaleData = 1
-                DraftData = OutputAltitude
-
-
-                If FromXYRadioButton.Checked = True Then
-
-                    HeelData = (Bezier(i, TimeArray, HeelArray))
-                    HeelString = "Heel: " & Math.Round(HeelData, 1) & "°; "
-
-                    TrimData = (Bezier(i, TimeArray, TrimArray))
-                    TrimString = "Trim: " & Math.Round(TrimData, 1) & "°; "
-
-                    YawData = (Bezier(i, TimeArray, YawArray))
-                    YawString = "Yaw: " & Math.Round(YawData, 1) & "°; "
-
-                    DraftData = (Bezier(i, TimeArray, DraftArray))
-                    DraftString = "Draft: " & Math.Round(DraftData, 1) & " m; "
-
-                    PowerString = "Power"
-                    BatteryString = "Battery" & i
-
-
-                    ScaleData = 1
-
-                End If
-
-                If LinearRollOption.Checked = True Then
-                    HeelData = HeelData + PMtilt + (PMtiltMax1 - PMtilt) / TimeArray(NPlacemarks) * i
-                Else
-                    HeelData = HeelData + RollMagnitude.Text * Math.Sin(2 * pi / RollPeriod.Text * i + RollPhase.Text * pi / 180)
-                End If
-
-                HeelString = "Heel: " & Math.Round(HeelData, 1) & "°; "
-
-                If LinearPitchOption.Checked = True Then
-                    TrimData = TrimData + PMroll + (PMrollMax1 - PMroll) / TimeArray(NPlacemarks) * i
-                Else
-                    TrimData = TrimData + PitchMagnitude.Text * Math.Sin(2 * pi / PitchPeriod.Text * i + PitchPhase.Text * pi / 180)
-                End If
-
-                TrimString = "Trim: " & Math.Round(TrimData, 1) & "°; "
-
-                If LinearYawOption.Checked = True Then
-                    YawData = YawData + PMyaw + (PMyawMax1 - PMyaw) / TimeArray(NPlacemarks) * i
-                Else
-                    YawData = YawData + YawMagnitude.Text * Math.Sin(2 * pi / YawPeriod.Text * i + YawPhase.Text * pi / 180)
-                End If
-
-                YawString = "Yaw: " & Math.Round(YawData, 1) & "°; "
-
-                PowerData = If(SpeedData = 0, 0, Math.Round(164.85 * Math.Exp(0.1616 * SpeedData), 0))
-                ESS = ESS - PowerData / 60 / 60
-
-                PassengerString = "Passengers: " & 146
-                WeatherString = "Weather: Winds SE 10 knots"
-                PowerString = "Propulsion Power: " & PowerData & " kW" ' correlated to speed in m/s
-                BatteryString = "Vessel SOC: " & Math.Round(ESS, 0) & " kWh"
-
-                If LinearDraftOption.Checked = True Then
-                    DraftData = DraftData + PMdraft + (PMdraftMax1 - PMdraft) / TimeArray(NPlacemarks) * i
-                Else
-                    DraftData = DraftData + DraftMagnitude.Text * Math.Sin(2 * pi / DraftPeriod.Text * i + DraftPhase.Text * pi / 180)
-                End If
-
-                'ScaleData = ScaleData + PMscale + (PMscaleMax1 - PMscale) / TimeArray(NPlacemarks) * i
+                'PowerString = "Power"
+                'BatteryString = "Battery" & i
                 ScaleData = 1
 
-                DraftString = "Draft: " & Math.Round(DraftData, 1) & " m; "
+                'PowerData = If(SpeedData = 0, 0, Math.Round(164.85 * Math.Exp(0.1616 * SpeedData), 0))
+                'ESS = ESS - PowerData / 60 / 60
 
-                HeadingString = "Heading: " & Math.Round(ModelBearing + 90, 1) & "°; "
+                'PassengerString = "Passengers: " & 146
+                'WeatherString = "Weather: Winds SE 10 knots"
+                'PowerString = "Propulsion Power: " & PowerData & " kW" ' correlated to speed in m/s
+                'BatteryString = "Vessel SOC: " & Math.Round(ESS, 0) & " kWh"
 
-                SpeedString = "Speed: " & Math.Round(SpeedData, 2) & " m/s (" & Math.Round(SpeedData * 1.94384, 1) & " knots); "
-
-                If j = DaeNameSteps Then j = 0 Else j = j + 1
-
-                'MsgBox((ModelX ^ 2 + ModelY ^ 2) ^ 0.5)
+                'If j = DaeNameSteps Then j = 0 Else j = j + 1
 
                 ReadoutString = ""
 
-                'If ReeadoutCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
-                '    ReadoutString = ReadoutString & HeadingString
-                'End If
-                'If ReeadoutCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
-                '    ReadoutString = ReadoutString & SpeedString
-                'End If
-                'If ReeadoutCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
-                '    ReadoutString = ReadoutString & DraftString
-                'End If
-                'If ReeadoutCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
-                '    ReadoutString = ReadoutString & TrimString
-                'End If
-                'If ReeadoutCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
-                '    ReadoutString = ReadoutString & HeelString
-                'End If
+                'MsgBox(OutputLongDeg & " " & OutputLatDeg & " " & LongArray(h) & " " & LatArray(h))
 
-                'If index Mod ReadoutFrequencyTextbox.Text = 0 Then
-
-                If ReadoutCheckBox.Checked = True Then CreateImageReadout(BeginTime, VeryEndTime, OutputLongDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData, PassengerString, WeatherString, HeadingString, SpeedString, PowerString, BatteryString)
-
-                AddToPlacemarkData(ReadoutString, BeginTime, EndTime, OutputString, OutputLongDeg, OutputLatDeg, OutputLatDeg, OrientationString, TiltString, RangeString, indexForPlacemarkData)
-                'AddToPlacemarkData(HeadingString, BeginTime, EndTime, OutputString, indexForPlacemarkData)
-
-                indexForPlacemarkData = indexForPlacemarkData + 1
-
-                'End If
-
-                If FromLatLonRadioButton.Checked = True Then
-
-                    AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, DraftData, OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelData, TrimData, YawData, index, ScaleData)
-
-                Else
-                    AddToAnimateModel(altitudeMode, horizFov, BeginTime, OutputLongDeg, OutputLatDeg, DraftData, OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelData, TrimData, YawData, index, ScaleData)
-
-
+                If ReadoutCheckBox.Checked = True Then
+                    CreateImageReadout(BeginTime, VeryEndTime, LongPos, LatPos, OrientationString, TiltString, RangeString, index, String5(h), String4(h), String2(h), String3(h), String6(h), String7(h))
                 End If
 
+                AddToPlacemarkData(ReadoutString, BeginTime, EndTime, OutputString, LongPos, LatPos, LatPos, OrientationString, TiltString, RangeString, index)
+                AddToAnimateModel(altitudeMode, horizFov, BeginTime, LongPos, LatPos, DraftArray(h), OrientationString, TiltString, RangeString, duration, flyToMode, EndTime, ModelBearing, DaeName(j), HeelArray(h), TrimArray(h), YawArray(h), index, ScaleData)
+                AddToTrack(BeginTime, CoordinateString, LongPos, LatPos, altitudes(0), OrientationString, TiltString, RangeString, index)
 
+                'indexForPlacemarkData = indexForPlacemarkData + 1
+                'i = i + 1
+                'i = (((h - 1) * 8) + i)
+                'index = index + 1
+                'index = (((h - 1) * Resolution) + i)
+                'index = IndexArray(h - 1) + i + 1
 
-                AddToTrack(BeginTime, CoordinateString, OutputLongDeg, OutputLatDeg, altitudes(0), OrientationString, TiltString, RangeString, index)
-
-                i = i + TimeIncrementText
                 index = index + 1
 
-            End While
+                'End While
+            Next
         Next
 
-        XPlacemark_Data.Save("C:\Google Earth Tour\PlacemarkData" & Hour(Now) & Minute(Now) & Second(Now) & ".kml")
+            XPlacemark_Data.Save("C:\Google Earth Tour\PlacemarkData" & Hour(Now) & Minute(Now) & Second(Now) & ".kml")
         XTrack.Save("C:\Google Earth Tour\Track" & Hour(Now) & Minute(Now) & Second(Now) & ".kml")
         XAnimateModel.Save("C:\Google Earth Tour\Model" & Hour(Now) & Minute(Now) & Second(Now) & ".kml")
 
-        ProgressBar1.Value = ProgressBar1.Minimum
+        'ProgressBar1.Value = ProgressBar1.Minimum
 
     End Sub
-    Private Function DistBetweenPlacemarks(latitudes As Double(), longitudes As Double()) As Double()
-        Dim lat1 As Double
-        Dim lat2 As Double
-        Dim lon1 As Double
-        Dim lon2 As Double
-        Dim ArrayHolder(500) As Double
-        For g = 0 To NPlacemarks
-            lat1 = latitudes(0)
-            lat2 = latitudes(g)
-            lon1 = longitudes(0)
-            lon2 = longitudes(g)
-            ArrayHolder(g) = Math.Acos(Math.Sin(lat1) * Math.Sin(lat2) + Math.Cos(lat1) * Math.Cos(lat2) * Math.Cos(lon2 - lon1)) * EarthRadius
-        Next
-        Return ArrayHolder
-    End Function
-
-    Private Function GlobalBearingBetweenPlacemarks(latitudes As Double(), longitudes As Double()) As Double()
-        Dim lat1 As Double
-        Dim lat2 As Double
-        Dim lon1 As Double
-        Dim lon2 As Double
-        Dim y As Double
-        Dim x As Double
-        Dim ArrayHolder(500) As Double
-        For g = 1 To NPlacemarks
-            lat1 = latitudes(0)
-            lat2 = latitudes(g)
-            lon1 = longitudes(0)
-            lon2 = longitudes(g)
-            y = Math.Sin(lon2 - lon1) * Math.Cos(lat2)
-            x = Math.Cos(lat1) * Math.Sin(lat2) - Math.Sin(lat1) * Math.Cos(lat2) * Math.Cos(lon2 - lon1)
-            ArrayHolder(g) = Math.Atan2(y, x)
-        Next
-        Return ArrayHolder
-    End Function
-    Private Function LocalBearingBetweenPlacemarks(XArray As Double(), YArray As Double()) As Double()
-        Dim x1 As Double
-        Dim x2 As Double
-        Dim y1 As Double
-        Dim y2 As Double
-        Dim y As Double
-        Dim x As Double
-        Dim ArrayHolder(500) As Double
-        For g = 1 To NPlacemarks
-            x1 = XArray(g - 1)
-            x2 = XArray(g)
-            y1 = YArray(g - 1)
-            y2 = YArray(g)
-            y = (y2 - y1)
-            x = (x2 - x1)
-            ArrayHolder(g) = Math.Atan2(y, x)
-        Next
-        ArrayHolder(0) = ArrayHolder(1)
-        Return ArrayHolder
-    End Function
-    Private Function xarrayfromdistbearing(DistanceArray As Double(), BearingArray As Double()) As Double()
-        Dim ArrayHolder(500) As Double
-        For g = 0 To NPlacemarks
-            ArrayHolder(g) = Math.Sin(BearingArray(g)) * DistanceArray(g)
-        Next
-        Return ArrayHolder
-    End Function
-    Private Function yarrayfromdistbearing(DistanceArray As Double(), BearingArray As Double()) As Double()
-        Dim ArrayHolder(500) As Double
-        For g = 0 To NPlacemarks
-            ArrayHolder(g) = Math.Cos(BearingArray(g)) * DistanceArray(g)
-        Next
-        Return ArrayHolder
-    End Function
-
-    Private Function TimeArrayfromDistanceArray(DistanceArray As Double(), SpeedArray As Double()) As Double()
-        Dim ArrayHolder(500) As Double
-        ArrayHolder(0) = DistanceArray(0) * TimeFactor.Text 'DistanceArray(0) / SpeedArray(0)
-
-        For g = 1 To NPlacemarks
-            ArrayHolder(g) = DistanceArray(g) * TimeFactor.Text + ArrayHolder(g - 1) 'DistanceArray(k) / SpeedArray(k) + ArrayHolder(k - 1)
-        Next
-
-        Return ArrayHolder
-    End Function
-    Private Function VxArrayfromLocalBearingAndSpeed(LocalBearingArray As Double(), SpeedArray As Double()) As Double()
-        Dim ArrayHolder(500) As Double
-
-        For g = 0 To NPlacemarks
-            ArrayHolder(g) = SpeedArray(g) * Math.Cos(LocalBearingArray(g))
-            'MsgBox(ArrayHolder(k))
-        Next
-        Return ArrayHolder
-    End Function
-    Private Function VyArrayfromLocalBearingAndSpeed(LocalBearingArray As Double(), SpeedArray As Double()) As Double()
-        Dim ArrayHolder(500) As Double
-
-        For g = 0 To NPlacemarks
-            ArrayHolder(g) = SpeedArray(g) * Math.Sin(LocalBearingArray(g))
-        Next
-        Return ArrayHolder
-    End Function
-    Private Function AArrayfromPositionTimeSpeed(XYArray As Double(), TimeArray As Double(), VxyArray As Double()) As Double()
-        Dim ArrayHolder(500) As Double
-
-        For g = 1 To NPlacemarks
-            ArrayHolder(g) = 6 * ((VxyArray(g) + VxyArray(g - 1)) * (TimeArray(g) - TimeArray(g - 1)) - 2 * (XYArray(g) - XYArray(g - 1))) / (TimeArray(g) - TimeArray(g - 1)) ^ 3
-        Next
-        Return ArrayHolder
-    End Function
-    Private Function BArrayfromPositionTimeSpeed(XYArray As Double(), TimeArray As Double(), VxyArray As Double()) As Double()
-        Dim ArrayHolder(500) As Double
-
-        For g = 1 To NPlacemarks
-            ArrayHolder(g) = -2 * ((VxyArray(g) + 2 * VxyArray(g - 1)) * (TimeArray(g) - TimeArray(g - 1)) - 3 * (XYArray(g) - XYArray(g - 1))) / (TimeArray(g) - TimeArray(g - 1)) ^ 2
-
-        Next
-        Return ArrayHolder
-    End Function
-    Private Sub CreateRadiusReference_Click(sender As Object, e As EventArgs) Handles CreateRadiusReference.Click
-
-        NPlacemarks = 0
-
-        Dim LonLatAlt(3)
-
-        LonLatAlt = LoadPlacemarks(RadiusCenter.Text)
-
-        ' NOT COMPLETE
-
-    End Sub
+    '
     Private Function LoadPlacemarks(p1 As String) As Object
 
         'For pm = 0 To NPlacemarks
@@ -733,9 +324,9 @@ Public Class Form1
 
         XPlaceMark(0) = XElement.Load(p1)
 
-        Dim coordinates(500) As String
-        Dim TimeDataArray(500) As String
-        Dim HeadingDataArray(500) As Double
+        Dim coordinates(5000) As String
+        Dim TimeDataArray(5000) As String
+        Dim HeadingDataArray(5000) As Double
 
         'If (XPlaceMark(0).Descendants(k + "Placemark").Count) > 0 Then
         'NPlacemarks = XPlaceMark(0).Elements(k + "Document").Elements(k + "Folder").Elements(k + "Placemark").Count - 1
@@ -757,15 +348,9 @@ Public Class Form1
 
             'MsgBox(coordinates(pm))
         Next
-        'Else
-        '    NPlacemarks = 0
-        '    'coordinates(0) = (XPlaceMark(0).Elements(k + "Document").Elements(k + "Placemark").Elements(k + "Point").Elements(k + "coordinates").FirstOrDefault)
 
-        '    coordinates(0) = (XPlaceMark(0).Descendants(k + "Placemark")(0).Elements(k + "Point").Elements(k + "coordinates").FirstOrDefault)
 
-        'End If
-
-        Dim firstcomma(500) As Integer
+        Dim firstcomma(5000) As Integer
 
         For pm = 0 To NPlacemarks
 
@@ -773,7 +358,7 @@ Public Class Form1
 
         Next
 
-        Dim longitudes(500) As Double
+        Dim longitudes(5000) As Double
 
         For pm = 0 To NPlacemarks
             longitudes(pm) = Microsoft.VisualBasic.Left(coordinates(pm), firstcomma(pm) - 1) * pi / 180
@@ -787,13 +372,13 @@ Public Class Form1
             firstcomma(pm) = (InStr(coordinates(pm), ","))
         Next
 
-        Dim latitudes(500) As Double
+        Dim latitudes(5000) As Double
 
         For pm = 0 To NPlacemarks
             latitudes(pm) = Microsoft.VisualBasic.Left(coordinates(pm), firstcomma(pm) - 1) * pi / 180
         Next
 
-        Dim altitudes(500) As Double
+        Dim altitudes(5000) As Double
 
         For pm = 0 To NPlacemarks
             altitudes(pm) = Microsoft.VisualBasic.Right(coordinates(pm), Len(coordinates(pm)) - firstcomma(pm))
@@ -811,140 +396,8 @@ Public Class Form1
             DaeNameSteps = DaeNameSteps + 1
         Next
     End Sub
-    Private MouseIsDown As Boolean = False
-    Private Sub PmFolderListBox_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles PmFolderListBox.DragEnter
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            e.Effect = DragDropEffects.All
-        End If
-    End Sub
-    Private Sub PmFolderListBox_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles PmFolderListBox.DragDrop
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            Dim MyFiles() As String
-            Dim i As Integer
 
-            ' Assign the files to an array.
-            MyFiles = e.Data.GetData(DataFormats.FileDrop)
-            ' Loop through the array and add the files to the list.
-            For i = 0 To MyFiles.Length - 1
-                PmFolderListBox.Items.Add(MyFiles(i))
-            Next
-        End If
-    End Sub
-    Private Sub DaeModelListBox_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles DaeModelListBox.DragEnter
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            e.Effect = DragDropEffects.All
-        End If
-    End Sub
-    Private Sub DaeModelListBox_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles DaeModelListBox.DragDrop
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            Dim MyFiles() As String
-            Dim i As Integer
 
-            ' Assign the files to an array.
-            MyFiles = e.Data.GetData(DataFormats.FileDrop)
-            ' Loop through the array and add the files to the list.
-            For i = 0 To MyFiles.Length - 1
-                DaeModelListBox.Items.Add(MyFiles(i))
-            Next
-        End If
-    End Sub
-    Private Sub PmReferenceTextBox_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles PmReferenceTextBox.DragEnter
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            e.Effect = DragDropEffects.All
-        End If
-    End Sub
-    Private Sub PmReferenceTextBox_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles PmReferenceTextBox.DragDrop
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            Dim MyFiles() As String
-            Dim i As Integer
-
-            ' Assign the files to an array.
-            MyFiles = e.Data.GetData(DataFormats.FileDrop)
-            ' Loop through the array and add the files to the list.
-            For i = 0 To MyFiles.Length - 1
-                PmReferenceTextBox.Text = MyFiles(i)
-            Next
-        End If
-    End Sub
-    Private Sub ExcelSeriesTextBox_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ExcelSeriesTextBox.DragEnter
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            e.Effect = DragDropEffects.All
-        End If
-    End Sub
-    Private Sub ExcelSeriesTextBox_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ExcelSeriesTextBox.DragDrop
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            Dim MyFiles() As String
-            Dim i As Integer
-
-            ' Assign the files to an array.
-            MyFiles = e.Data.GetData(DataFormats.FileDrop)
-            ' Loop through the array and add the files to the list.
-            For i = 0 To MyFiles.Length - 1
-                ExcelSeriesTextBox.Text = MyFiles(i)
-            Next
-        End If
-    End Sub
-    Private Sub RadiusCenter_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles RadiusCenter.DragEnter
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            e.Effect = DragDropEffects.All
-        End If
-    End Sub
-    Private Sub RadiusCenter_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles RadiusCenter.DragDrop
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            Dim MyFiles() As String
-            Dim i As Integer
-
-            ' Assign the files to an array.
-            MyFiles = e.Data.GetData(DataFormats.FileDrop)
-            ' Loop through the array and add the files to the list.
-            For i = 0 To MyFiles.Length - 1
-                RadiusCenter.Text = MyFiles(i)
-            Next
-        End If
-    End Sub
-    Private Sub CyclicalHeadingOption_CheckedChanged(sender As Object, e As EventArgs) Handles CyclicalHeadingOption.CheckedChanged
-        LinearHeadingOption.Checked = False
-    End Sub
-    Private Sub CyclicalPitchOption_CheckedChanged(sender As Object, e As EventArgs) Handles CyclicalPitchOption.CheckedChanged
-        LinearPitchOption.Checked = False
-    End Sub
-    Private Sub CyclicalRollOption_CheckedChanged_1(sender As Object, e As EventArgs) Handles CyclicalRollOption.CheckedChanged
-        LinearRollOption.Checked = False
-    End Sub
-    Private Sub ClearPlacemarks_Click(sender As Object, e As EventArgs) Handles ClearPlacemarks.Click
-        PmFolderListBox.Items.Clear()
-    End Sub
-    Private Sub ClearModels_Click(sender As Object, e As EventArgs) Handles ClearModels.Click
-        DaeModelListBox.Items.Clear()
-    End Sub
-    'Private Function DistBetweenPlacemarks(lat1 As String, lon1 As String, lat2 As String, lon2 As String) As Object
-
-    '    lat1 = lat1 * pi / 180
-    '    lat2 = lat2 * pi / 180
-    '    lon1 = lon1 * pi / 180
-    '    lon2 = lon2 * pi / 180
-
-    '    DistBetweenPlacemarks = Math.Acos(Math.Sin(lat1) * Math.Sin(lat2) + Math.Cos(lat1) * Math.Cos(lat2) * Math.Cos(lon2 - lon1)) * EarthRadius
-    'End Function
-    'Private Function BearingBetweenPlacemarks(lat1 As String, lon1 As String, lat2 As String, lon2 As String) As Object
-
-    '    lat1 = lat1 * pi / 180
-    '    lat2 = lat2 * pi / 180
-    '    lon1 = lon1 * pi / 180
-    '    lon2 = lon2 * pi / 180
-
-    '    Dim y = Math.Sin(lon2 - lon1) * Math.Cos(lat2)
-    '    Dim x = Math.Cos(lat1) * Math.Sin(lat2) - Math.Sin(lat1) * Math.Cos(lat2) * Math.Cos(lon2 - lon1)
-    '    BearingBetweenPlacemarks = Math.Atan2(y, x) * 180 / pi
-
-    'End Function
-    'Private Function xfromdistbearing(dist As Object, bearing As Object) As Object
-    '    xfromdistbearing = Math.Sin(bearing * pi / 180) * dist
-    'End Function
-    'Private Function yfromdistbearing(dist As Object, bearing As Object) As Object
-
-    '    yfromdistbearing = Math.Cos(bearing * pi / 180) * dist
-    'End Function
 
     Private Sub AddToPlacemarkData(HeadingString As String, BeginTime As String, EndTime As String, OutputString As String, OutputLongDeg As Double, OutputLatDeg As Double, altitudes As Double, OrientationString As String, TiltString As String, RangeString As String, index As Integer)
 
@@ -1160,207 +613,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub ExcelReaderTextbox_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ExcelReaderTextbox.DragEnter
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            e.Effect = DragDropEffects.All
-        End If
-    End Sub
-    Private Sub ExcelReaderTextbox_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles ExcelReaderTextbox.DragDrop
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            Dim MyFiles() As String
-            Dim i As Integer
 
-            ' Assign the files to an array.
-            MyFiles = e.Data.GetData(DataFormats.FileDrop)
-            ' Loop through the array and add the files to the list.
-            For i = 0 To MyFiles.Length - 1
-                ExcelReaderTextbox.Text = MyFiles(i)
-            Next
-        End If
-    End Sub
-
-
-    Private Sub TrackAndHeadingButton_Click(sender As Object, e As EventArgs) Handles TrackAndHeadingButton.Click
-        ' Write to Excel
-
-        Dim XTrackAndHeading As XElement
-        XTrackAndHeading = XElement.Load("C:\Users\kjcjwc\Documents\GitHub\GoogleTour\TrackAndHeadingTemplate.xml")
-
-
-        Dim XTrackAdd As XElement
-
-        Dim TimeArray(30000) As Double
-        Dim LatArray(30000) As Double
-        Dim LongArray(30000) As Double
-        Dim HeadingArray(30000) As Double
-
-        Dim HeadingValue As Double
-        Dim HeadingValueBuffer(100) As Double
-
-        Dim MyLogFile(30000) As String
-        Dim LogFileLine As String
-        Dim MyArray(30000, 3) As Double
-        Dim i As Integer
-        Dim j As Integer
-        Dim LogFileLineParts() As String
-#Disable Warning BC42024 ' Unused local variable
-        Dim TimeStamp1 As Date
-#Enable Warning BC42024 ' Unused local variable
-        Dim TimeStamp2 As Date
-        Dim BeginTime As String
-        Dim EndTime As String
-        Dim Flag As Integer
-
-        Dim xInitialLookAt As XElement
-        i = 0
-
-        HeadingValue = 0
-
-        'MyLogFile = ExcelReaderTextbox.Text
-
-        Dim FILE_NAME As String = ExcelReaderTextbox.Text
-
-        'Dim TextLine As String
-
-        If System.IO.File.Exists(FILE_NAME) = True Then
-
-            Dim objReader As New System.IO.StreamReader(FILE_NAME)
-
-            Do While objReader.Peek() <> -1
-
-                LogFileLine = objReader.ReadLine()
-                LogFileLineParts = Split(LogFileLine, ",")
-
-                If Microsoft.VisualBasic.Left(LogFileLine, 1) = "#" Or LogFileLine = "" Then
-                Else
-
-                    MyArray(i, 0) = LogFileLineParts(0)
-                    MyArray(i, 1) = LogFileLineParts(1)
-                    MyArray(i, 2) = LogFileLineParts(2)
-                    MyArray(i, 3) = LogFileLineParts(3)
-
-                    i = i + 1
-
-                End If
-
-            Loop
-
-            BubbleSort(MyArray, 0, i - 1)
-            j = 0
-
-            For n = 0 To i - 1
-
-                Flag = MyArray(n, 1)
-
-                If Flag = 1 Then
-
-                    HeadingArray(j) = HeadingValue
-                    LongArray(j) = MyArray(n, 3)
-                    LatArray(j) = MyArray(n, 2)
-                    TimeArray(j) = MyArray(n, 0)
-                    j = j + 1
-
-                ElseIf Flag = 2 Then
-                    HeadingValue = MyArray(n, 2)
-                    'HeadingValueBuffer(j) = MyArray(n, 2)
-                    'If j = 100 Then j = 0 Else j = j + 1
-                    'For h = 0 To 100
-                    '    HeadingValue = HeadingValue + HeadingValueBuffer(h) / 101
-                    'Next
-                    'MsgBox(HeadingValue)
-
-                End If
-
-
-            Next
-
-        Else
-
-            MsgBox("File Does Not Exist")
-
-        End If
-
-
-        Dim LongLatAltString As String
-        Dim m3 As Date
-        Dim m2 As Date
-        Dim m1 As Date
-
-        m2 = #1/1/1970 12:00:01 AM#
-        m3 = Now()
-
-        For n = 0 To j - 1
-
-            LongLatAltString = LongArray(n) & "," & LatArray(n) & "," & 0
-
-            'MsgBox(LongLatAltString)
-
-
-
-            'TimeStamp1 = Date.FromOADate(CDbl(m3.ToOADate()) + (TimeArray(n) - TimeArray(0)) / 60 / 60 / 24)
-
-            'TimeStamp1 = Date.FromOADate(CDbl(m2.ToOADate()) + (TimeArray(n)) / 60 / 60 / 24 / 1000)
-            'TimeStamp1 = Date.FromOADate((TimeArray(n)) / 60 / 60 / 24 / 1000)
-            m1 = DateAdd(DateInterval.Second, TimeArray(n) / 1000, m2)
-            'MsgBox(TimeStamp1)
-            'BeginTime = Year(TimeStamp1) & "-" & Format(Month(TimeStamp1), "00") & "-" & Format(Day(TimeStamp1), "00") & "T" & Format(Hour(TimeStamp1), "00") & ":" & Format(Minute(TimeStamp1), "00") & ":" & Format(Second(TimeStamp1), "00") & "Z"
-
-            BeginTime = Year(m1) & "-" & Format(Month(m1), "00") & "-" & Format(Day(m1), "00") & "T" & Format(Hour(m1), "00") & ":" & Format(Minute(m1), "00") & ":" & Format(Second(m1), "00")
-            'BeginTime = BeginTime & "Z"
-            BeginTime = BeginTime & "." & Microsoft.VisualBasic.Right(TimeArray(n), 3) & "Z"
-
-            If n <> j - 1 Then
-                'TimeStamp2 = Date.FromOADate(CDbl(m3.ToOADate()) + (TimeArray(n + 1) - TimeArray(0)) / 60 / 60 / 24)
-                'TimeStamp2 = Date.FromOADate(CDbl(m2.ToOADate()) + (TimeArray(n + 1)) / 60 / 60 / 24 / 1000)
-                TimeStamp2 = Date.FromOADate((TimeArray(n + 1)) / 60 / 60 / 24 / 1000)
-                m1 = DateAdd(DateInterval.Second, TimeArray(n + 1) / 1000, m2)
-            Else
-
-            End If
-
-            EndTime = Year(m1) & "-" & Format(Month(m1), "00") & "-" & Format(Day(m1), "00") & "T" & Format(Hour(m1), "00") & ":" & Format(Minute(m1), "00") & ":" & Format(Second(m1), "00")
-            'EndTime = EndTime & "Z"
-            EndTime = EndTime & "." & Microsoft.VisualBasic.Right(TimeArray(n + 1), 3) & "Z"
-
-            'MsgBox(BeginTime & " " & EndTime)
-
-
-            XTrackAdd = MakeKML(BeginTime, EndTime, LongLatAltString, HeadingArray(n) + 180 Mod 360, n)
-
-
-
-            If n = 0 Then
-                'XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document")(n).ReplaceWith(XTrackAdd)
-
-
-
-                xInitialLookAt = <ns1:kml xmlns:ns1="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.google.com/kml/ext/2.2">
-                                     <ns2:TimeStamp>
-                                         <ns1:when><%= BeginTime %></ns1:when>
-                                     </ns2:TimeStamp>
-                                     <ns1:longitude><%= LongArray(n) %></ns1:longitude>
-                                     <ns1:latitude><%= LatArray(n) %></ns1:latitude>
-                                     <ns1:altitude><%= 0 %></ns1:altitude>
-                                     <ns1:heading><%= 10 %></ns1:heading>
-                                     <ns1:tilt><%= 10 %></ns1:tilt>
-                                     <ns1:range><%= 10 %></ns1:range>
-                                     <ns2:altitudeMode>relativeToGround</ns2:altitudeMode>
-                                 </ns1:kml>
-                'MsgBox(XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Elements(kk + "LookAt").Count)
-                'MsgBox(XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Elements(k + "StyleMap").Count)
-                XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Elements(k + "LookAt")(n).ReplaceWith(xInitialLookAt)
-                'MsgBox(XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Count)
-            Else
-                XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document")(n - 1).AddAfterSelf(XTrackAdd)
-                'MsgBox(XTrackAndHeading.Elements(k + "Folder").Elements(k + "Document").Count)
-            End If
-
-        Next
-
-        XTrackAndHeading.Save("C:\Google Earth Tour\TrackAndHeading" & Hour(Now) & Minute(Now) & Second(Now) & ".kml")
-
-
-    End Sub
 
     Private Function MakeKML(TimeArray1 As String, TimeArray2 As String, LongLatAltString As String, HeadingArray As Double, n As Integer) As XElement
 
@@ -1500,76 +753,26 @@ Public Class Form1
     End Sub
 
 
-    Private Function Bezier(x As Double, XVector() As Double, YVector() As Double)
-        Dim y As Double
-        Dim VectorCount As Integer = XVector.Length - 1
-        Dim index As Integer = 1
-
-        While x >= XVector(index)
-            index = index + 1
-
-
-        End While
-
-        Dim xk1 As Double = XVector(index - 1)
-        Dim xk2 As Double = XVector(index)
-        Dim xk3 As Double = XVector(Math.Min(index + 1, VectorCount))
-#Disable Warning BC42024 ' Unused local variable
-        Dim xk4 As Double
-#Enable Warning BC42024 ' Unused local variable
-
-        Dim t As Double = (x - xk1) / (xk2 - xk1)
-        Dim pk1 As Double = YVector(index - 1)
-        Dim pk2 As Double = YVector(index)
-        Dim pk3 As Double = YVector(Math.Min(index + 1, VectorCount))
-#Disable Warning BC42024 ' Unused local variable
-        Dim pk4 As Double
-#Enable Warning BC42024 ' Unused local variable
-
-
-        Dim mk1 As Double = (pk2 - pk1) / (xk2 - xk1)
-        Dim mk2 As Double = (pk3 - pk2) / (xk3 - xk2)
-#Disable Warning BC42024 ' Unused local variable
-        Dim mk3 As Double
-#Enable Warning BC42024 ' Unused local variable
-
-        'If index + 2 <> VectorCount Then
-        '    xk4 = XVector(Math.Min(index + 2, VectorCount))
-        '    pk4 = YVector(Math.Min(index + 2, VectorCount))
-        '    mk3 = (pk4 - pk3) / (xk4 - xk3)
-        '    mk1 = mk1 / 2 + mk2 / 2
-        '    mk2 = mk2 / 2 + mk3 / 2
-        'End If
-
-        y = h00(t) * pk1 + h10(t) * (xk2 - xk1) * mk1 + h01(t) * pk2 + h11(t) * (xk2 - xk1) * mk2
-
-        'MsgBox(x & " " & y & " " & XVector(index) & " " & YVector(index))
-
-        'MsgBox(index & "," & x & "," & xk1 & "," & xk2 & "," & t & "," & pk1 & "," & mk1 & "," & y)
-
-        Return y
-    End Function
-
     Private Function h00(t As Double) As Double
         Return (2 * t ^ 3 - 3 * t ^ 2 + 1)
     End Function
 
-    Private Function h10(t As Double) As Double
-        Return (t ^ 3 - 2 * t ^ 2 + t)
-    End Function
-
-    Private Function h01(t As Double) As Double
-        Return (-2 * t ^ 3 + 3 * t ^ 2)
-    End Function
-
-    Private Function h11(t As Double) As Double
-        Return (t ^ 3 - t ^ 2)
-    End Function
 
     Private Function kmlDate(m4 As Date) As String
-        Return Year(m4) & "-" & Format(Month(m4), "00") & "-" & Format(Day(m4), "00") & "T" & Format(Hour(m4), "00") & ":" & Format(Minute(m4), "00") & ":" & Format(Second(m4), "00") & "." & m4.Millisecond & "Z"
+        'MsgBox(FormatMilliseconds(m4))
+        'Return Year(m4) & "-" & Format(Month(m4), "00") & "-" & Format(Day(m4), "00") & "T" & Format(Hour(m4), "00") & ":" & Format(Minute(m4), "00") & ":" & Format(Second(m4), "00") & "." & m4.Millisecond & "Z"
+        Return Year(m4) & "-" & Format(Month(m4), "00") & "-" & Format(Day(m4), "00") & "T" & Format(Hour(m4), "00") & ":" & Format(Minute(m4), "00") & ":" & Format(Second(m4), "00") & "." & FormatMilliseconds(m4) & "Z"
 
     End Function
+
+    Function FormatMilliseconds(timeValue As Date, Optional formatString As String = "000") As String
+        Dim milliseconds As Integer
+        'milliseconds = (Hour(timeValue) * 3600 + Minute(timeValue) * 60 + Second(timeValue)) * 1000 + timeValue.Millisecond
+        milliseconds = timeValue.Millisecond
+
+        FormatMilliseconds = Format(milliseconds, formatString)
+    End Function
+
 
     '    Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, TrimString As String, HeelString As String, HeadingString As String, SpeedString As String, DraftString As String, YawString As String)
     Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, PassengerString As String, WeatherString As String, HeadingString As String, SpeedString As String, PowerString As String, BatteryString As String)
@@ -1591,9 +794,10 @@ Public Class Form1
         Dim FileName As String = "MyImage"
         Dim objGraphics As Graphics = Graphics.FromImage(objBitmap)
         Dim objFont As New Font(FontName, FontSize)
-        Dim objFont1 As New Font(FontName, 18)
+        Dim objFontTitle As New Font(FontName, 18, FontStyle.Bold)
 
         Dim obj0 As New PointF(10.0F, 20.0F)
+        Dim obj01 As New PointF(10.0F, 20.0F)
         Dim obj1 As New PointF(10.0F, 20.0F)
         Dim obj2 As New PointF(10.0F, 20.0F)
         Dim obj3 As New PointF(10.0F, 20.0F)
@@ -1642,6 +846,7 @@ Public Class Form1
         ' Draw myBitmap to the screen.
 
         obj0.X = 5
+        obj01.X = 5
         obj1.X = 15
         obj2.X = 15
         obj3.X = 15
@@ -1656,17 +861,18 @@ Public Class Form1
 
         Dim constpix As Integer = 30
 
-        obj0.Y = 10  'myBitmap.Height + 20
-        obj1.Y = 20 + constpix 'myBitmap.Height + 20
-        obj2.Y = 40 + constpix ' myBitmap.Height + 50
-        obj3.Y = 60 + constpix 'myBitmap.Height + 80
-        obj4.Y = 80 + constpix 'myBitmap.Height + 110
-        obj5.Y = 100 + constpix 'myBitmap.Height + 110
-        obj6.Y = 120 + constpix 'myBitmap.Height + 110
-        obj7.Y = 140 + constpix 'myBitmap.Height + 110
-        obj8.Y = 160 + constpix 'myBitmap.Height + 110
-        obj9.Y = 180 + constpix  'myBitmap.Height + 110
-        obj10.Y = 200 + constpix  'myBitmap.Height + 110
+        obj0.Y = 0  'myBitmap.Height + 20
+        obj01.Y = 15  'myBitmap.Height + 20
+        obj1.Y = 25 + constpix 'myBitmap.Height + 20
+        obj2.Y = 45 + constpix ' myBitmap.Height + 50
+        obj3.Y = 65 + constpix 'myBitmap.Height + 80
+        obj4.Y = 85 + constpix 'myBitmap.Height + 110
+        obj5.Y = 105 + constpix 'myBitmap.Height + 110
+        obj6.Y = 125 + constpix 'myBitmap.Height + 110
+        obj7.Y = 145 + constpix 'myBitmap.Height + 110
+        obj8.Y = 165 + constpix 'myBitmap.Height + 110
+        obj9.Y = 185 + constpix  'myBitmap.Height + 110
+        obj10.Y = 205 + constpix  'myBitmap.Height + 110
 
 
         myRectangle.X = 10
@@ -1695,7 +901,9 @@ Public Class Form1
         OrangePen.Alignment = Drawing2D.PenAlignment.Center
 
 
-        objGraphics.DrawString("SHIP DATA", objFont1, objBrushForeColor1, obj0)
+        objGraphics.DrawString("MORNING COMMUTE:", objFont, objBrushForeColor1, obj0)
+
+        objGraphics.DrawString("GIBSONS → VANCOUVER", objFontTitle, objBrushForeColor1, obj01)
 
         'objGraphics.DrawRectangle(OrangePen, myRectangle)
         objGraphics.FillRectangle(objBrushBackColor, myRectangle)
@@ -1712,7 +920,7 @@ Public Class Form1
 
 
 
-        'objGraphics.FillRectangle(Brushes.OldLace, myRectangle)
+
 
         objGraphics.DrawString("Date: " & Split(BeginTime, "T")(0), objFont, objBrushForeColor, obj1)
         'MsgBox(("Time: " & Split(BeginTime, "T")(1)))
@@ -1721,15 +929,13 @@ Public Class Form1
         objGraphics.DrawString("Longitude: " & OutputDegString(OutputLongDeg), objFont, objBrushForeColor, obj4)
         objGraphics.DrawString(HeadingString, objFont, objBrushForeColor, obj5)
         objGraphics.DrawString(SpeedString, objFont, objBrushForeColor, obj6)
-        'objGraphics.DrawString(TrimString, objFont, objBrushForeColor, obj7)
-        'objGraphics.DrawString(HeelString, objFont, objBrushForeColor, obj8)
-        'objGraphics.DrawString(YawString, objFont, objBrushForeColor, obj9)
-        'objGraphics.DrawString(DraftString, objFont, objBrushForeColor, obj10)
+
 
         objGraphics.DrawString(WeatherString, objFont, objBrushForeColor, obj7)
         objGraphics.DrawString(PassengerString, objFont, objBrushForeColor, obj8)
         objGraphics.DrawString(PowerString, objFont, objBrushForeColor, obj9)
         objGraphics.DrawString(BatteryString, objFont, objBrushForeColor, obj10)
+
 
 
 
@@ -1742,14 +948,15 @@ Public Class Form1
         'objGraphics.DrawImage(myBitmap, myBitmap.Width, 0, myBitmap.Width, myBitmap.Height)
 
 
-
-        objBitmap.Save("C:\Google Earth Tour\OverlayImages\" & FileName & indexForPlacemarkData.ToString & ".png", ImageFormat.Png)
+        If ReadoutCheckBox.Checked = True Then
+            objBitmap.Save("C:\Google Earth Tour\OverlayImages\" & FileName & indexForPlacemarkData.ToString & ".png", ImageFormat.Png)
+        End If
 
     End Sub
 
     Private Function OutputDegString(OutputLatDeg As Double) As String
-        Return Int(OutputLatDeg) & "°" & Int((OutputLatDeg - Int(OutputLatDeg)) / 24 * (24 * 60) Mod 60) & "'" & Math.Round((OutputLatDeg - Int(OutputLatDeg)) / 24 * (24 * 60 * 60) Mod 60, 2) & "'';"
-
+        'Return Int(OutputLatDeg) & "°" & Int((OutputLatDeg - Int(OutputLatDeg)) / 24 * (24 * 60) Mod 60) & "'" & Math.Round((OutputLatDeg - Int(OutputLatDeg)) / 24 * (24 * 60 * 60) Mod 60, 2) & "'';"
+        Return OutputLatDeg.ToString
     End Function
 
     Private Function ExtractLookAt(p1 As String) As Object
@@ -1777,7 +984,4 @@ Public Class Form1
     End Function
 
 
-
-
 End Class
-
