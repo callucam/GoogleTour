@@ -27,7 +27,6 @@ Partial Class Form1
         Me.TourName = New System.Windows.Forms.TextBox()
         Me.ns2horizFov = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.ns1heading = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ns1altitude = New System.Windows.Forms.TextBox()
@@ -54,7 +53,6 @@ Partial Class Form1
         Me.ns1headingMax = New System.Windows.Forms.TextBox()
         Me.ns1altitudeMax = New System.Windows.Forms.TextBox()
         Me.ns1latitudeMax = New System.Windows.Forms.TextBox()
-        Me.ns1when = New System.Windows.Forms.DateTimePicker()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.PlaceMarkName1 = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
@@ -75,14 +73,9 @@ Partial Class Form1
         Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
         Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
         Me.ExcelSeriesTextBox = New System.Windows.Forms.TextBox()
-        Me.PmReferenceTextBox = New System.Windows.Forms.TextBox()
         Me.FromXYRadioButton = New System.Windows.Forms.RadioButton()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.Label40 = New System.Windows.Forms.Label()
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.PlaceMarkName2 = New System.Windows.Forms.TextBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -102,16 +95,22 @@ Partial Class Form1
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
+        Me.ns1when = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
         Me.TabControl1.SuspendLayout()
         Me.HasYaw.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -151,16 +150,6 @@ Partial Class Form1
         Me.Label2.Size = New System.Drawing.Size(95, 20)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "ns2horizFov"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(26, 171)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 20)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "ns1when"
         '
         'ns1heading
         '
@@ -401,15 +390,6 @@ Partial Class Form1
         Me.ns1latitudeMax.TabIndex = 28
         Me.ns1latitudeMax.Text = "50.63394785"
         '
-        'ns1when
-        '
-        Me.ns1when.Location = New System.Drawing.Point(198, 166)
-        Me.ns1when.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ns1when.Name = "ns1when"
-        Me.ns1when.Size = New System.Drawing.Size(310, 26)
-        Me.ns1when.TabIndex = 34
-        Me.ns1when.Value = New Date(2026, 4, 1, 0, 0, 0, 0)
-        '
         'Label10
         '
         Me.Label10.AutoSize = True
@@ -587,11 +567,16 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label40)
+        Me.GroupBox1.Controls.Add(Me.Label39)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown2)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.ns1when)
         Me.GroupBox1.Controls.Add(Me.ReadoutCheckBox)
         Me.GroupBox1.Controls.Add(Me.HeadingInfoCheck)
         Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
         Me.GroupBox1.Controls.Add(Me.ExcelSeriesTextBox)
-        Me.GroupBox1.Controls.Add(Me.PmReferenceTextBox)
         Me.GroupBox1.Controls.Add(Me.FromXYRadioButton)
         Me.GroupBox1.Controls.Add(Me.Label28)
         Me.GroupBox1.Location = New System.Drawing.Point(4, 9)
@@ -641,22 +626,13 @@ Partial Class Form1
         'ExcelSeriesTextBox
         '
         Me.ExcelSeriesTextBox.AllowDrop = True
-        Me.ExcelSeriesTextBox.Location = New System.Drawing.Point(166, 100)
+        Me.ExcelSeriesTextBox.Location = New System.Drawing.Point(146, 56)
         Me.ExcelSeriesTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ExcelSeriesTextBox.Name = "ExcelSeriesTextBox"
         Me.ExcelSeriesTextBox.Size = New System.Drawing.Size(655, 26)
         Me.ExcelSeriesTextBox.TabIndex = 59
-        Me.ExcelSeriesTextBox.Text = "C:\Google Earth Tour\XYCoord.xlsx"
-        '
-        'PmReferenceTextBox
-        '
-        Me.PmReferenceTextBox.AllowDrop = True
-        Me.PmReferenceTextBox.Location = New System.Drawing.Point(166, 60)
-        Me.PmReferenceTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PmReferenceTextBox.Name = "PmReferenceTextBox"
-        Me.PmReferenceTextBox.Size = New System.Drawing.Size(655, 26)
-        Me.PmReferenceTextBox.TabIndex = 58
-        Me.PmReferenceTextBox.Text = "C:\Google Earth Tour\CentrePlacemark.kml"
+        Me.ExcelSeriesTextBox.Text = "G:\My Drive\Greenline Ferries\Routes & Terminals\Squamish\VoyageModel_Squamish.xl" &
+    "sx"
         '
         'FromXYRadioButton
         '
@@ -683,10 +659,6 @@ Partial Class Form1
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.Label40)
-        Me.TabPage3.Controls.Add(Me.Label39)
-        Me.TabPage3.Controls.Add(Me.NumericUpDown2)
-        Me.TabPage3.Controls.Add(Me.NumericUpDown1)
         Me.TabPage3.Controls.Add(Me.Label1)
         Me.TabPage3.Controls.Add(Me.Label7)
         Me.TabPage3.Controls.Add(Me.Label13)
@@ -710,8 +682,6 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.ns2horizFov)
         Me.TabPage3.Controls.Add(Me.ns1altitudeMax)
         Me.TabPage3.Controls.Add(Me.PlaceMarkName1)
-        Me.TabPage3.Controls.Add(Me.Label3)
-        Me.TabPage3.Controls.Add(Me.ns1when)
         Me.TabPage3.Location = New System.Drawing.Point(4, 29)
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage3.Name = "TabPage3"
@@ -720,42 +690,6 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Settings"
         Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'Label40
-        '
-        Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(790, 171)
-        Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(57, 20)
-        Me.Label40.TabIndex = 42
-        Me.Label40.Text = "Minute"
-        '
-        'Label39
-        '
-        Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(531, 171)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(44, 20)
-        Me.Label39.TabIndex = 41
-        Me.Label39.Text = "Hour"
-        '
-        'NumericUpDown2
-        '
-        Me.NumericUpDown2.Location = New System.Drawing.Point(854, 169)
-        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
-        Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(120, 26)
-        Me.NumericUpDown2.TabIndex = 38
-        Me.NumericUpDown2.Value = New Decimal(New Integer() {5, 0, 0, 0})
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(590, 166)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(120, 26)
-        Me.NumericUpDown1.TabIndex = 0
-        Me.NumericUpDown1.Value = New Decimal(New Integer() {9, 0, 0, 0})
         '
         'Label17
         '
@@ -940,6 +874,61 @@ Partial Class Form1
         Me.ProgressBar2.Size = New System.Drawing.Size(866, 35)
         Me.ProgressBar2.TabIndex = 51
         '
+        'ns1when
+        '
+        Me.ns1when.Location = New System.Drawing.Point(146, 93)
+        Me.ns1when.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ns1when.Name = "ns1when"
+        Me.ns1when.Size = New System.Drawing.Size(310, 26)
+        Me.ns1when.TabIndex = 63
+        Me.ns1when.Value = New Date(2026, 4, 1, 0, 0, 0, 0)
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(31, 98)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(73, 20)
+        Me.Label3.TabIndex = 64
+        Me.Label3.Text = "ns1when"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(346, 138)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(57, 20)
+        Me.Label40.TabIndex = 68
+        Me.Label40.Text = "Minute"
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(31, 138)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(44, 20)
+        Me.Label39.TabIndex = 67
+        Me.Label39.Text = "Hour"
+        '
+        'NumericUpDown2
+        '
+        Me.NumericUpDown2.Location = New System.Drawing.Point(410, 136)
+        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.NumericUpDown2.Name = "NumericUpDown2"
+        Me.NumericUpDown2.Size = New System.Drawing.Size(120, 26)
+        Me.NumericUpDown2.TabIndex = 66
+        Me.NumericUpDown2.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(146, 133)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(120, 26)
+        Me.NumericUpDown1.TabIndex = 65
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {7, 0, 0, 0})
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -962,12 +951,12 @@ Partial Class Form1
         Me.GroupBox1.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -975,7 +964,6 @@ Partial Class Form1
     Friend WithEvents TourName As System.Windows.Forms.TextBox
     Friend WithEvents ns2horizFov As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents ns1heading As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents ns1altitude As System.Windows.Forms.TextBox
@@ -1002,7 +990,6 @@ Partial Class Form1
     Friend WithEvents ns1headingMax As System.Windows.Forms.TextBox
     Friend WithEvents ns1altitudeMax As System.Windows.Forms.TextBox
     Friend WithEvents ns1latitudeMax As System.Windows.Forms.TextBox
-    Friend WithEvents ns1when As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents PlaceMarkName1 As System.Windows.Forms.TextBox
     Friend WithEvents OpenFileDialog2 As System.Windows.Forms.OpenFileDialog
@@ -1033,7 +1020,6 @@ Partial Class Form1
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents FromXYRadioButton As System.Windows.Forms.RadioButton
     Friend WithEvents ExcelSeriesTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents PmReferenceTextBox As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
     Friend WithEvents ExcelReaderTextbox As System.Windows.Forms.TextBox
     Friend WithEvents Label29 As System.Windows.Forms.Label
@@ -1044,10 +1030,12 @@ Partial Class Form1
     Friend WithEvents FixedLookAtCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents FixedLookAtTextBox As System.Windows.Forms.TextBox
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ProgressBar2 As ProgressBar
     Friend WithEvents Label40 As Label
     Friend WithEvents Label39 As Label
     Friend WithEvents NumericUpDown2 As NumericUpDown
     Friend WithEvents NumericUpDown1 As NumericUpDown
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ProgressBar2 As ProgressBar
+    Friend WithEvents Label3 As Label
+    Friend WithEvents ns1when As DateTimePicker
 End Class

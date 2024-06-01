@@ -58,11 +58,11 @@ Public Class Form1
         Dim latitudes(5000) As Double
         Dim altitudes(5000) As Double
 
-        LonLatAlt = LoadPlacemarks(PmReferenceTextBox.Text)
+        'LonLatAlt = LoadPlacemarks(PmReferenceTextBox.Text)
 
-        longitudes = LonLatAlt(0)
-        latitudes = LonLatAlt(1)
-        altitudes = LonLatAlt(2)
+        'longitudes = LonLatAlt(0)
+        'latitudes = LonLatAlt(1)
+        'altitudes = LonLatAlt(2)
 
         LoadModel()
 
@@ -129,7 +129,8 @@ Public Class Form1
         Dim m4 As Date
         Dim m5 As Date
 
-
+        Dim ReadoutSubTitleString As String
+        Dim ReadoutTitleString As String
 
 
         oXL = New Excel.Application
@@ -137,6 +138,10 @@ Public Class Form1
         oWBs = oXL.Workbooks
         oWB2 = oWBs.Open(ExcelSeriesTextBox.Text)
         Sheet1 = oWB2.Worksheets(1)
+
+        ReadoutSubTitleString = Sheet1.Range("b6").Offset(0, 0).Value
+        ReadoutTitleString = Sheet1.Range("b7").Offset(0, 0).Value
+
         NPlacemarks = Sheet1.Range("b2").Offset(0, 0).Value - 1
         ProgressBar1.Minimum = 0
         ProgressBar1.Maximum = NPlacemarks
@@ -288,7 +293,7 @@ Public Class Form1
                 'MsgBox(OutputLongDeg & " " & OutputLatDeg & " " & LongArray(h) & " " & LatArray(h))
 
                 If ReadoutCheckBox.Checked = True Then
-                    CreateImageReadout(BeginTime, VeryEndTime, LongPos, LatPos, OrientationString, TiltString, RangeString, index, String5(h), String4(h), String2(h), String3(h), String6(h), String7(h))
+                    CreateImageReadout(BeginTime, VeryEndTime, LongPos, LatPos, OrientationString, TiltString, RangeString, index, String5(h), String4(h), String2(h), String3(h), String6(h), String7(h), ReadoutTitleString, ReadoutSubTitleString)
                 End If
 
                 AddToPlacemarkData(ReadoutString, BeginTime, EndTime, OutputString, LongPos, LatPos, LatPos, OrientationString, TiltString, RangeString, index)
@@ -775,7 +780,7 @@ Public Class Form1
 
 
     '    Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, TrimString As String, HeelString As String, HeadingString As String, SpeedString As String, DraftString As String, YawString As String)
-    Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, PassengerString As String, WeatherString As String, HeadingString As String, SpeedString As String, PowerString As String, BatteryString As String)
+    Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, PassengerString As String, WeatherString As String, HeadingString As String, SpeedString As String, PowerString As String, BatteryString As String, ReadoutTitleString As String, ReadoutSubTitleString As String)
         'MsgBox(BeginTime)
         Dim FontColor As Color = Color.White
         Dim BackColor As Color = Color.FromArgb(128, Color.Black) 'transparent
@@ -901,9 +906,11 @@ Public Class Form1
         OrangePen.Alignment = Drawing2D.PenAlignment.Center
 
 
-        objGraphics.DrawString("MORNING COMMUTE:", objFont, objBrushForeColor1, obj0)
+        objGraphics.DrawString(ReadoutSubTitleString, objFont, objBrushForeColor1, obj0)
 
-        objGraphics.DrawString("GIBSONS → VANCOUVER", objFontTitle, objBrushForeColor1, obj01)
+        'objGraphics.DrawString("GIBSONS → VANCOUVER", objFontTitle, objBrushForeColor1, obj01)
+        objGraphics.DrawString(ReadoutTitleString, objFontTitle, objBrushForeColor1, obj01)
+
 
         'objGraphics.DrawRectangle(OrangePen, myRectangle)
         objGraphics.FillRectangle(objBrushBackColor, myRectangle)
