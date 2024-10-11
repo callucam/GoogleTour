@@ -33,7 +33,14 @@ Public Class Form1
         Dim ESS = 3500
         XPlacemark_Data = XElement.Load("C:\Google Earth Tour\PlacemarkDataTemplate.xml")
         XAnimateModel = XElement.Load("C:\Google Earth Tour\AnimateModelTemplate.xml")
-        XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplate.xml")
+
+        'XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplate.xml")
+
+        If VesselID.Text = "VESSEL 1" Then
+            XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplateGreen.xml")
+        ElseIf VesselID.Text = "VESSEL 2" Then
+            XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplateYellow.xml")
+        End If
 
         ' Set view properties
 
@@ -133,14 +140,22 @@ Public Class Form1
         Dim ReadoutTitleString As String
 
 
+
         oXL = New Excel.Application
         oXL.Visible = False
         oWBs = oXL.Workbooks
-        oWB2 = oWBs.Open(ExcelSeriesTextBox.Text)
+        oWB2 = oWBs.Open(ExcelSeriesComboBox.Text)
         Sheet1 = oWB2.Worksheets(1)
 
-        ReadoutSubTitleString = Sheet1.Range("b6").Offset(0, 0).Value
+        'ReadoutSubTitleString = Sheet1.Range("b6").Offset(0, 0).Value
+        ReadoutSubTitleString = VesselID.Text
+
         ReadoutTitleString = Sheet1.Range("b7").Offset(0, 0).Value
+
+        Sheet1.Range("b8").Offset(0, 0).Value = BeginSOC.Value / 100
+
+        oWB2.Save()
+
 
         NPlacemarks = Sheet1.Range("b2").Offset(0, 0).Value - 1
         ProgressBar1.Minimum = 0
@@ -276,7 +291,9 @@ Public Class Form1
 
                 'PowerString = "Power"
                 'BatteryString = "Battery" & i
-                ScaleData = 1
+                'ScaleData = 1
+                ScaleData = TextBox1.Text
+
 
                 'PowerData = If(SpeedData = 0, 0, Math.Round(164.85 * Math.Exp(0.1616 * SpeedData), 0))
                 'ESS = ESS - PowerData / 60 / 60
@@ -442,20 +459,37 @@ Public Class Form1
 
         OverlayFilename = "C:\Google Earth Tour\OverlayImages\MyImage" & index & ".png"
 
-        xAddScreenOverlay = <ns1:ScreenOverlay xmlns:ns1="http://www.opengis.net/kml/2.2">
-                                <ns1:name><%= BeginTime %></ns1:name>
-                                <ns1:Icon>
-                                    <ns1:href><%= OverlayFilename %></ns1:href>
-                                </ns1:Icon>
-                                <ns1:overlayXY x="0" y="-0.5" xunits="fraction" yunits="fraction"/>
-                                <ns1:screenXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-                                <ns1:rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
-                                <ns1:size x="0" y="0" xunits="fraction" yunits="fraction"/>
-                                <ns1:TimeSpan>
-                                    <ns1:begin><%= BeginTime %></ns1:begin>
-                                    <ns1:end><%= EndTime %></ns1:end>
-                                </ns1:TimeSpan>
-                            </ns1:ScreenOverlay>
+        If VesselID.Text = "VESSEL 1" Then
+            xAddScreenOverlay = <ns1:ScreenOverlay xmlns:ns1="http://www.opengis.net/kml/2.2">
+                                    <ns1:name><%= BeginTime %></ns1:name>
+                                    <ns1:Icon>
+                                        <ns1:href><%= OverlayFilename %></ns1:href>
+                                    </ns1:Icon>
+                                    <ns1:overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                    <ns1:screenXY x=".05" y=".4" xunits="fraction" yunits="fraction"/>
+                                    <ns1:rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                    <ns1:size x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                    <ns1:TimeSpan>
+                                        <ns1:begin><%= BeginTime %></ns1:begin>
+                                        <ns1:end><%= EndTime %></ns1:end>
+                                    </ns1:TimeSpan>
+                                </ns1:ScreenOverlay>
+        ElseIf VesselID.Text = "VESSEL 2" Then
+            xAddScreenOverlay = <ns1:ScreenOverlay xmlns:ns1="http://www.opengis.net/kml/2.2">
+                                    <ns1:name><%= BeginTime %></ns1:name>
+                                    <ns1:Icon>
+                                        <ns1:href><%= OverlayFilename %></ns1:href>
+                                    </ns1:Icon>
+                                    <ns1:overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                    <ns1:screenXY x=".05" y=".1" xunits="fraction" yunits="fraction"/>
+                                    <ns1:rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                    <ns1:size x="0" y="0" xunits="fraction" yunits="fraction"/>
+                                    <ns1:TimeSpan>
+                                        <ns1:begin><%= BeginTime %></ns1:begin>
+                                        <ns1:end><%= EndTime %></ns1:end>
+                                    </ns1:TimeSpan>
+                                </ns1:ScreenOverlay>
+        End If
 
 
 
@@ -562,7 +596,7 @@ Public Class Form1
                                       <ns1:Scale>
                                           <ns1:x><%= ScaleData %></ns1:x>
                                           <ns1:y><%= ScaleData %></ns1:y>
-                                          <ns1:z>1</ns1:z>
+                                          <ns1:z><%= ScaleData %></ns1:z>
                                       </ns1:Scale>
                                       <ns1:Link>
                                           <ns1:href><%= DaeName %></ns1:href>
@@ -783,11 +817,15 @@ Public Class Form1
     Private Sub CreateImageReadout(BeginTime As String, VeryEndTime As String, OutputLongDeg As Double, OutputLatDeg As Double, OrientationString As String, TiltString As String, RangeString As String, indexForPlacemarkData As Integer, PassengerString As String, WeatherString As String, HeadingString As String, SpeedString As String, PowerString As String, BatteryString As String, ReadoutTitleString As String, ReadoutSubTitleString As String)
         'MsgBox(BeginTime)
         Dim FontColor As Color = Color.White
-        Dim BackColor As Color = Color.FromArgb(128, Color.Black) 'transparent
+
+        Dim BackColor1 As Color = Color.FromArgb(128, Color.Black) 'transparent
+        Dim BackColor2 As Color = Color.FromArgb(0, 114, 183, 67) 'GREEN
+        Dim BackColor3 As Color = Color.FromArgb(0, 255, 192, 0) 'YELLOW
+
         Dim FontName As String = "montserrat" 'courier
-        Dim FontSize As Integer = 12
+        Dim FontSize As Integer = 13
         Dim Height As Integer = 270
-        Dim Width As Integer = 400
+        Dim Width As Integer = 800
         Dim objBitmap As New Bitmap(Width, Height)
 
         'Dim myBitmap As New Bitmap("C:\Google Earth Tour\callum logo transparent background.png")
@@ -798,8 +836,9 @@ Public Class Form1
 
         Dim FileName As String = "MyImage"
         Dim objGraphics As Graphics = Graphics.FromImage(objBitmap)
-        Dim objFont As New Font(FontName, FontSize)
-        Dim objFontTitle As New Font(FontName, 18, FontStyle.Bold)
+        Dim objFont As New Font(FontName, FontSize, FontStyle.Bold)
+        Dim objFontSubTitle As New Font(FontName, 14)
+        Dim objFontTitle As New Font(FontName, 14, FontStyle.Bold)
 
         Dim obj0 As New PointF(10.0F, 20.0F)
         Dim obj01 As New PointF(10.0F, 20.0F)
@@ -819,8 +858,15 @@ Public Class Form1
         Dim objBrushForeColor As New SolidBrush(FontColor)
 
         Dim objBrushForeColor1 As New SolidBrush(Color.White) 'DarkOrange
+        'Dim objBrushForeColor2 As New SolidBrush(Color.FromArgb(114, 183, 67)) ' Greenline Green
+        'Dim objBrushForeColor3 As New SolidBrush(Color.FromArgb(255, 192, 0)) ' Greenline Orange
 
-        Dim objBrushBackColor As New SolidBrush(BackColor)
+
+        Dim objBrushBackColor1 As New SolidBrush(BackColor3)
+
+        Dim objBrushBackColor2 As New SolidBrush(BackColor2)
+
+        Dim objBrushBackColor3 As New SolidBrush(BackColor3)
 
 
         'objBitmap.MakeTransparent()
@@ -867,21 +913,21 @@ Public Class Form1
         Dim constpix As Integer = 30
 
         obj0.Y = 0  'myBitmap.Height + 20
-        obj01.Y = 15  'myBitmap.Height + 20
-        obj1.Y = 25 + constpix 'myBitmap.Height + 20
-        obj2.Y = 45 + constpix ' myBitmap.Height + 50
-        obj3.Y = 65 + constpix 'myBitmap.Height + 80
-        obj4.Y = 85 + constpix 'myBitmap.Height + 110
-        obj5.Y = 105 + constpix 'myBitmap.Height + 110
-        obj6.Y = 125 + constpix 'myBitmap.Height + 110
-        obj7.Y = 145 + constpix 'myBitmap.Height + 110
-        obj8.Y = 165 + constpix 'myBitmap.Height + 110
-        obj9.Y = 185 + constpix  'myBitmap.Height + 110
-        obj10.Y = 205 + constpix  'myBitmap.Height + 110
+        obj01.Y = 20  'myBitmap.Height + 20
+        obj1.Y = 30 + constpix 'myBitmap.Height + 20
+        obj2.Y = 50 + constpix ' myBitmap.Height + 50
+        obj3.Y = 70 + constpix 'myBitmap.Height + 80
+        obj4.Y = 90 + constpix 'myBitmap.Height + 110
+        obj5.Y = 110 + constpix 'myBitmap.Height + 110
+        obj6.Y = 130 + constpix 'myBitmap.Height + 110
+        obj7.Y = 150 + constpix 'myBitmap.Height + 110
+        obj8.Y = 170 + constpix 'myBitmap.Height + 110
+        obj9.Y = 190 + constpix  'myBitmap.Height + 110
+        obj10.Y = 210 + constpix  'myBitmap.Height + 110
 
 
         myRectangle.X = 10
-        myRectangle.Y = 10 + constpix ' myBitmap.Height + 10
+        myRectangle.Y = 20 + constpix ' myBitmap.Height + 10
         myRectangle.Height = 220
         myRectangle.Width = 320 ' myBitmap.Width - 15
 
@@ -906,14 +952,16 @@ Public Class Form1
         OrangePen.Alignment = Drawing2D.PenAlignment.Center
 
 
-        objGraphics.DrawString(ReadoutSubTitleString, objFont, objBrushForeColor1, obj0)
 
-        'objGraphics.DrawString("GIBSONS → VANCOUVER", objFontTitle, objBrushForeColor1, obj01)
+        objGraphics.DrawString(ReadoutSubTitleString, objFontSubTitle, objBrushForeColor1, obj0)
         objGraphics.DrawString(ReadoutTitleString, objFontTitle, objBrushForeColor1, obj01)
 
 
-        'objGraphics.DrawRectangle(OrangePen, myRectangle)
-        objGraphics.FillRectangle(objBrushBackColor, myRectangle)
+        If VesselID.Text = "VESSEL 1" Then
+            objGraphics.FillRectangle(objBrushBackColor2, myRectangle)
+        ElseIf VesselID.Text = "VESSEL 2" Then
+            objGraphics.FillRectangle(objBrushBackColor3, myRectangle)
+        End If
 
 
         'objGraphics.DrawRectangle(OrangePen, myRectangle1)
@@ -929,19 +977,24 @@ Public Class Form1
 
 
 
-        objGraphics.DrawString("Date: " & Split(BeginTime, "T")(0), objFont, objBrushForeColor, obj1)
+        objGraphics.DrawString("DATE:   " & Split(BeginTime, "T")(0), objFont, objBrushForeColor, obj1)
         'MsgBox(("Time: " & Split(BeginTime, "T")(1)))
-        objGraphics.DrawString("Time: " & Split(BeginTime, "T")(1), objFont, objBrushForeColor, obj2)
-        objGraphics.DrawString("Latitude: " & OutputDegString(OutputLatDeg), objFont, objBrushForeColor, obj3)
-        objGraphics.DrawString("Longitude: " & OutputDegString(OutputLongDeg), objFont, objBrushForeColor, obj4)
+        objGraphics.DrawString("TIME:   " & Split(BeginTime, "T")(1), objFont, objBrushForeColor, obj2)
+        objGraphics.DrawString("LATITUDE:   " & Math.Round(OutputLatDeg, 6), objFont, objBrushForeColor, obj3)
+        objGraphics.DrawString("LONGITUDE:   " & Math.Round(OutputLongDeg, 6), objFont, objBrushForeColor, obj4)
         objGraphics.DrawString(HeadingString, objFont, objBrushForeColor, obj5)
         objGraphics.DrawString(SpeedString, objFont, objBrushForeColor, obj6)
 
 
-        objGraphics.DrawString(WeatherString, objFont, objBrushForeColor, obj7)
-        objGraphics.DrawString(PassengerString, objFont, objBrushForeColor, obj8)
-        objGraphics.DrawString(PowerString, objFont, objBrushForeColor, obj9)
-        objGraphics.DrawString(BatteryString, objFont, objBrushForeColor, obj10)
+        'objGraphics.DrawString(WeatherString, objFont, objBrushForeColor, obj7)
+        'objGraphics.DrawString(PassengerString, objFont, objBrushForeColor, obj8)
+
+
+
+        objGraphics.DrawString("HOTEL LOAD:   55 kW/h", objFont, objBrushForeColor, obj7)
+        objGraphics.DrawString(PowerString, objFont, objBrushForeColor, obj8)
+        objGraphics.DrawString(BatteryString, objFont, objBrushForeColor, obj9)
+
 
 
 
