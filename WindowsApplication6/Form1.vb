@@ -474,7 +474,7 @@ Public Class Form1
                                         <ns1:end><%= EndTime %></ns1:end>
                                     </ns1:TimeSpan>
                                 </ns1:ScreenOverlay>
-        ElseIf VesselID.Text = "VESSEL 2" Then
+        Else
             xAddScreenOverlay = <ns1:ScreenOverlay xmlns:ns1="http://www.opengis.net/kml/2.2">
                                     <ns1:name><%= BeginTime %></ns1:name>
                                     <ns1:Icon>

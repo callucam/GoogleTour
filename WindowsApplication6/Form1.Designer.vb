@@ -71,8 +71,7 @@ Partial Class Form1
         Me.DaeModelListBox = New System.Windows.Forms.ListBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
+        Me.ExcelSeriesComboBox = New System.Windows.Forms.ComboBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -109,13 +108,11 @@ Partial Class Form1
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
-        Me.ExcelSeriesComboBox = New System.Windows.Forms.ComboBox()
         Me.TabControl1.SuspendLayout()
         Me.HasYaw.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BeginSOC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,170 +124,190 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(17, 23)
+        Me.Label1.Location = New System.Drawing.Point(26, 35)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(57, 13)
+        Me.Label1.Size = New System.Drawing.Size(83, 20)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "TourName"
         '
         'TourName
         '
-        Me.TourName.Location = New System.Drawing.Point(132, 20)
+        Me.TourName.Location = New System.Drawing.Point(198, 31)
+        Me.TourName.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TourName.Name = "TourName"
-        Me.TourName.Size = New System.Drawing.Size(208, 20)
+        Me.TourName.Size = New System.Drawing.Size(310, 26)
         Me.TourName.TabIndex = 1
         Me.TourName.Text = "TourFromPlacemarkName"
         '
         'ns2horizFov
         '
-        Me.ns2horizFov.Location = New System.Drawing.Point(132, 134)
+        Me.ns2horizFov.Location = New System.Drawing.Point(198, 206)
+        Me.ns2horizFov.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns2horizFov.Name = "ns2horizFov"
-        Me.ns2horizFov.Size = New System.Drawing.Size(208, 20)
+        Me.ns2horizFov.Size = New System.Drawing.Size(310, 26)
         Me.ns2horizFov.TabIndex = 3
         Me.ns2horizFov.Text = "60"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(17, 137)
+        Me.Label2.Location = New System.Drawing.Point(26, 211)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(64, 13)
+        Me.Label2.Size = New System.Drawing.Size(95, 20)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "ns2horizFov"
         '
         'ns1heading
         '
-        Me.ns1heading.Location = New System.Drawing.Point(155, 15)
+        Me.ns1heading.Location = New System.Drawing.Point(232, 23)
+        Me.ns1heading.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1heading.Name = "ns1heading"
-        Me.ns1heading.Size = New System.Drawing.Size(45, 20)
+        Me.ns1heading.Size = New System.Drawing.Size(66, 26)
         Me.ns1heading.TabIndex = 11
         Me.ns1heading.Text = "270"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(7, 18)
+        Me.Label4.Location = New System.Drawing.Point(10, 28)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(62, 13)
+        Me.Label4.Size = New System.Drawing.Size(92, 20)
         Me.Label4.TabIndex = 10
         Me.Label4.Text = "ns1heading"
         '
         'ns1altitude
         '
-        Me.ns1altitude.Location = New System.Drawing.Point(132, 212)
+        Me.ns1altitude.Location = New System.Drawing.Point(198, 326)
+        Me.ns1altitude.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1altitude.Name = "ns1altitude"
-        Me.ns1altitude.Size = New System.Drawing.Size(208, 20)
+        Me.ns1altitude.Size = New System.Drawing.Size(310, 26)
         Me.ns1altitude.TabIndex = 9
         Me.ns1altitude.Text = "0"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(17, 215)
+        Me.Label5.Location = New System.Drawing.Point(26, 331)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(58, 13)
+        Me.Label5.Size = New System.Drawing.Size(87, 20)
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "ns1altitude"
         '
         'ns1latitude
         '
-        Me.ns1latitude.Location = New System.Drawing.Point(132, 186)
+        Me.ns1latitude.Location = New System.Drawing.Point(198, 286)
+        Me.ns1latitude.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1latitude.Name = "ns1latitude"
-        Me.ns1latitude.Size = New System.Drawing.Size(208, 20)
+        Me.ns1latitude.Size = New System.Drawing.Size(310, 26)
         Me.ns1latitude.TabIndex = 7
         Me.ns1latitude.Text = "50.63394785"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(17, 189)
+        Me.Label6.Location = New System.Drawing.Point(26, 291)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(58, 13)
+        Me.Label6.Size = New System.Drawing.Size(87, 20)
         Me.Label6.TabIndex = 6
         Me.Label6.Text = "ns1latitude"
         '
         'ns2altitudeMode
         '
-        Me.ns2altitudeMode.Location = New System.Drawing.Point(132, 238)
+        Me.ns2altitudeMode.Location = New System.Drawing.Point(198, 366)
+        Me.ns2altitudeMode.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns2altitudeMode.Name = "ns2altitudeMode"
-        Me.ns2altitudeMode.Size = New System.Drawing.Size(208, 20)
+        Me.ns2altitudeMode.Size = New System.Drawing.Size(310, 26)
         Me.ns2altitudeMode.TabIndex = 17
         Me.ns2altitudeMode.Text = "relativeToGround"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(17, 241)
+        Me.Label7.Location = New System.Drawing.Point(26, 371)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(85, 13)
+        Me.Label7.Size = New System.Drawing.Size(127, 20)
         Me.Label7.TabIndex = 16
         Me.Label7.Text = "ns2altitudeMode"
         '
         'ns1range
         '
-        Me.ns1range.Location = New System.Drawing.Point(325, 43)
+        Me.ns1range.Location = New System.Drawing.Point(488, 66)
+        Me.ns1range.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1range.Name = "ns1range"
-        Me.ns1range.Size = New System.Drawing.Size(85, 20)
+        Me.ns1range.Size = New System.Drawing.Size(126, 26)
         Me.ns1range.TabIndex = 15
         Me.ns1range.Text = "70"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(257, 46)
+        Me.Label8.Location = New System.Drawing.Point(386, 71)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(51, 13)
+        Me.Label8.Size = New System.Drawing.Size(76, 20)
         Me.Label8.TabIndex = 14
         Me.Label8.Text = "ns1range"
         '
         'ns1tilt
         '
-        Me.ns1tilt.Location = New System.Drawing.Point(325, 17)
+        Me.ns1tilt.Location = New System.Drawing.Point(488, 26)
+        Me.ns1tilt.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1tilt.Name = "ns1tilt"
-        Me.ns1tilt.Size = New System.Drawing.Size(85, 20)
+        Me.ns1tilt.Size = New System.Drawing.Size(126, 26)
         Me.ns1tilt.TabIndex = 13
         Me.ns1tilt.Text = "80"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(257, 20)
+        Me.Label9.Location = New System.Drawing.Point(386, 31)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(34, 13)
+        Me.Label9.Size = New System.Drawing.Size(51, 20)
         Me.Label9.TabIndex = 12
         Me.Label9.Text = "ns1tilt"
         '
         'ns2flyToMode
         '
-        Me.ns2flyToMode.Location = New System.Drawing.Point(132, 290)
+        Me.ns2flyToMode.Location = New System.Drawing.Point(198, 446)
+        Me.ns2flyToMode.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns2flyToMode.Name = "ns2flyToMode"
-        Me.ns2flyToMode.Size = New System.Drawing.Size(208, 20)
+        Me.ns2flyToMode.Size = New System.Drawing.Size(310, 26)
         Me.ns2flyToMode.TabIndex = 21
         Me.ns2flyToMode.Text = "smooth"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(17, 293)
+        Me.Label11.Location = New System.Drawing.Point(26, 451)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(74, 13)
+        Me.Label11.Size = New System.Drawing.Size(108, 20)
         Me.Label11.TabIndex = 20
         Me.Label11.Text = "ns2flyToMode"
         '
         'ns2duration
         '
-        Me.ns2duration.Location = New System.Drawing.Point(132, 264)
+        Me.ns2duration.Location = New System.Drawing.Point(198, 406)
+        Me.ns2duration.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns2duration.Name = "ns2duration"
-        Me.ns2duration.Size = New System.Drawing.Size(208, 20)
+        Me.ns2duration.Size = New System.Drawing.Size(310, 26)
         Me.ns2duration.TabIndex = 19
         Me.ns2duration.Text = ".1"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(17, 267)
+        Me.Label12.Location = New System.Drawing.Point(26, 411)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(62, 13)
+        Me.Label12.Size = New System.Drawing.Size(93, 20)
         Me.Label12.TabIndex = 18
         Me.Label12.Text = "ns2duration"
         '
@@ -300,92 +317,103 @@ Partial Class Form1
         '
         'ns1longitude
         '
-        Me.ns1longitude.Location = New System.Drawing.Point(132, 160)
+        Me.ns1longitude.Location = New System.Drawing.Point(198, 246)
+        Me.ns1longitude.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1longitude.Name = "ns1longitude"
-        Me.ns1longitude.Size = New System.Drawing.Size(208, 20)
+        Me.ns1longitude.Size = New System.Drawing.Size(310, 26)
         Me.ns1longitude.TabIndex = 25
         Me.ns1longitude.Text = "-117.928613537859"
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(17, 163)
+        Me.Label13.Location = New System.Drawing.Point(26, 251)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(67, 13)
+        Me.Label13.Size = New System.Drawing.Size(100, 20)
         Me.Label13.TabIndex = 24
         Me.Label13.Text = "ns1longitude"
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(11, 9)
+        Me.Button2.Location = New System.Drawing.Point(16, 14)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(149, 23)
+        Me.Button2.Size = New System.Drawing.Size(224, 35)
         Me.Button2.TabIndex = 27
         Me.Button2.Text = "Create Tour"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'ns1longitudeMax
         '
-        Me.ns1longitudeMax.Location = New System.Drawing.Point(346, 160)
+        Me.ns1longitudeMax.Location = New System.Drawing.Point(519, 246)
+        Me.ns1longitudeMax.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1longitudeMax.Name = "ns1longitudeMax"
-        Me.ns1longitudeMax.Size = New System.Drawing.Size(208, 20)
+        Me.ns1longitudeMax.Size = New System.Drawing.Size(310, 26)
         Me.ns1longitudeMax.TabIndex = 33
         Me.ns1longitudeMax.Text = "-117.928613537859"
         '
         'ns1rangeMax
         '
-        Me.ns1rangeMax.Location = New System.Drawing.Point(416, 43)
+        Me.ns1rangeMax.Location = New System.Drawing.Point(624, 66)
+        Me.ns1rangeMax.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1rangeMax.Name = "ns1rangeMax"
-        Me.ns1rangeMax.Size = New System.Drawing.Size(85, 20)
+        Me.ns1rangeMax.Size = New System.Drawing.Size(126, 26)
         Me.ns1rangeMax.TabIndex = 32
         Me.ns1rangeMax.Text = "250"
         '
         'ns1tiltMax
         '
-        Me.ns1tiltMax.Location = New System.Drawing.Point(416, 17)
+        Me.ns1tiltMax.Location = New System.Drawing.Point(624, 26)
+        Me.ns1tiltMax.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1tiltMax.Name = "ns1tiltMax"
-        Me.ns1tiltMax.Size = New System.Drawing.Size(85, 20)
+        Me.ns1tiltMax.Size = New System.Drawing.Size(126, 26)
         Me.ns1tiltMax.TabIndex = 31
         Me.ns1tiltMax.Text = "62"
         '
         'ns1headingMax
         '
-        Me.ns1headingMax.Location = New System.Drawing.Point(206, 15)
+        Me.ns1headingMax.Location = New System.Drawing.Point(309, 23)
+        Me.ns1headingMax.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1headingMax.Name = "ns1headingMax"
-        Me.ns1headingMax.Size = New System.Drawing.Size(45, 20)
+        Me.ns1headingMax.Size = New System.Drawing.Size(66, 26)
         Me.ns1headingMax.TabIndex = 30
         Me.ns1headingMax.Text = "125"
         '
         'ns1altitudeMax
         '
-        Me.ns1altitudeMax.Location = New System.Drawing.Point(346, 212)
+        Me.ns1altitudeMax.Location = New System.Drawing.Point(519, 326)
+        Me.ns1altitudeMax.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1altitudeMax.Name = "ns1altitudeMax"
-        Me.ns1altitudeMax.Size = New System.Drawing.Size(208, 20)
+        Me.ns1altitudeMax.Size = New System.Drawing.Size(310, 26)
         Me.ns1altitudeMax.TabIndex = 29
         Me.ns1altitudeMax.Text = "100"
         '
         'ns1latitudeMax
         '
-        Me.ns1latitudeMax.Location = New System.Drawing.Point(346, 186)
+        Me.ns1latitudeMax.Location = New System.Drawing.Point(519, 286)
+        Me.ns1latitudeMax.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1latitudeMax.Name = "ns1latitudeMax"
-        Me.ns1latitudeMax.Size = New System.Drawing.Size(208, 20)
+        Me.ns1latitudeMax.Size = New System.Drawing.Size(310, 26)
         Me.ns1latitudeMax.TabIndex = 28
         Me.ns1latitudeMax.Text = "50.63394785"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(17, 53)
+        Me.Label10.Location = New System.Drawing.Point(26, 82)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(88, 13)
+        Me.Label10.Size = New System.Drawing.Size(129, 20)
         Me.Label10.TabIndex = 2
         Me.Label10.Text = "Placemark Name"
         '
         'PlaceMarkName1
         '
-        Me.PlaceMarkName1.Location = New System.Drawing.Point(132, 50)
+        Me.PlaceMarkName1.Location = New System.Drawing.Point(198, 77)
+        Me.PlaceMarkName1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PlaceMarkName1.Name = "PlaceMarkName1"
-        Me.PlaceMarkName1.Size = New System.Drawing.Size(208, 20)
+        Me.PlaceMarkName1.Size = New System.Drawing.Size(310, 26)
         Me.PlaceMarkName1.TabIndex = 3
         '
         'OpenFileDialog2
@@ -399,10 +427,11 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Location = New System.Drawing.Point(13, 73)
+        Me.TabControl1.Location = New System.Drawing.Point(20, 112)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(740, 380)
+        Me.TabControl1.Size = New System.Drawing.Size(896, 585)
         Me.TabControl1.TabIndex = 36
         '
         'HasYaw
@@ -410,10 +439,11 @@ Partial Class Form1
         Me.HasYaw.Controls.Add(Me.GroupBox9)
         Me.HasYaw.Controls.Add(Me.GroupBox3)
         Me.HasYaw.Controls.Add(Me.GroupBox1)
-        Me.HasYaw.Location = New System.Drawing.Point(4, 22)
+        Me.HasYaw.Location = New System.Drawing.Point(4, 29)
+        Me.HasYaw.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.HasYaw.Name = "HasYaw"
-        Me.HasYaw.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.HasYaw.Size = New System.Drawing.Size(732, 354)
+        Me.HasYaw.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.HasYaw.Size = New System.Drawing.Size(888, 552)
         Me.HasYaw.TabIndex = 0
         Me.HasYaw.Text = "Animate from Placemarks"
         Me.HasYaw.UseVisualStyleBackColor = True
@@ -433,9 +463,11 @@ Partial Class Form1
         Me.GroupBox9.Controls.Add(Me.LinearHeadingOption)
         Me.GroupBox9.Controls.Add(Me.Label9)
         Me.GroupBox9.Controls.Add(Me.Label8)
-        Me.GroupBox9.Location = New System.Drawing.Point(5, 213)
+        Me.GroupBox9.Location = New System.Drawing.Point(8, 328)
+        Me.GroupBox9.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(513, 135)
+        Me.GroupBox9.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox9.Size = New System.Drawing.Size(770, 208)
         Me.GroupBox9.TabIndex = 60
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "View Parameters"
@@ -443,9 +475,10 @@ Partial Class Form1
         'FixedLookAtCheckBox
         '
         Me.FixedLookAtCheckBox.AutoSize = True
-        Me.FixedLookAtCheckBox.Location = New System.Drawing.Point(10, 94)
+        Me.FixedLookAtCheckBox.Location = New System.Drawing.Point(15, 145)
+        Me.FixedLookAtCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FixedLookAtCheckBox.Name = "FixedLookAtCheckBox"
-        Me.FixedLookAtCheckBox.Size = New System.Drawing.Size(85, 17)
+        Me.FixedLookAtCheckBox.Size = New System.Drawing.Size(124, 24)
         Me.FixedLookAtCheckBox.TabIndex = 75
         Me.FixedLookAtCheckBox.Text = "FixedLookAt"
         Me.FixedLookAtCheckBox.UseVisualStyleBackColor = True
@@ -453,18 +486,20 @@ Partial Class Form1
         'FixedLookAtTextBox
         '
         Me.FixedLookAtTextBox.AllowDrop = True
-        Me.FixedLookAtTextBox.Location = New System.Drawing.Point(101, 92)
+        Me.FixedLookAtTextBox.Location = New System.Drawing.Point(152, 142)
+        Me.FixedLookAtTextBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FixedLookAtTextBox.Name = "FixedLookAtTextBox"
-        Me.FixedLookAtTextBox.Size = New System.Drawing.Size(399, 20)
+        Me.FixedLookAtTextBox.Size = New System.Drawing.Size(596, 26)
         Me.FixedLookAtTextBox.TabIndex = 60
         Me.FixedLookAtTextBox.Text = "C:\Google Earth Tour\Lookat.kml"
         '
         'CyclicalHeadingOption
         '
         Me.CyclicalHeadingOption.AutoSize = True
-        Me.CyclicalHeadingOption.Location = New System.Drawing.Point(95, 41)
+        Me.CyclicalHeadingOption.Location = New System.Drawing.Point(142, 63)
+        Me.CyclicalHeadingOption.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CyclicalHeadingOption.Name = "CyclicalHeadingOption"
-        Me.CyclicalHeadingOption.Size = New System.Drawing.Size(61, 17)
+        Me.CyclicalHeadingOption.Size = New System.Drawing.Size(86, 24)
         Me.CyclicalHeadingOption.TabIndex = 52
         Me.CyclicalHeadingOption.Text = "Cyclical"
         Me.CyclicalHeadingOption.UseVisualStyleBackColor = True
@@ -473,9 +508,10 @@ Partial Class Form1
         '
         Me.LinearHeadingOption.AutoSize = True
         Me.LinearHeadingOption.Checked = True
-        Me.LinearHeadingOption.Location = New System.Drawing.Point(95, 18)
+        Me.LinearHeadingOption.Location = New System.Drawing.Point(142, 28)
+        Me.LinearHeadingOption.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.LinearHeadingOption.Name = "LinearHeadingOption"
-        Me.LinearHeadingOption.Size = New System.Drawing.Size(54, 17)
+        Me.LinearHeadingOption.Size = New System.Drawing.Size(78, 24)
         Me.LinearHeadingOption.TabIndex = 49
         Me.LinearHeadingOption.TabStop = True
         Me.LinearHeadingOption.Text = "Linear"
@@ -489,9 +525,11 @@ Partial Class Form1
         Me.GroupBox3.Controls.Add(Me.Label14)
         Me.GroupBox3.Controls.Add(Me.DaeModelListBox)
         Me.GroupBox3.Controls.Add(Me.Label20)
-        Me.GroupBox3.Location = New System.Drawing.Point(5, 133)
+        Me.GroupBox3.Location = New System.Drawing.Point(8, 205)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(731, 230)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox3.Size = New System.Drawing.Size(860, 422)
         Me.GroupBox3.TabIndex = 44
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Model Animation"
@@ -499,25 +537,28 @@ Partial Class Form1
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(496, 36)
+        Me.Label15.Location = New System.Drawing.Point(526, 97)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(66, 13)
+        Me.Label15.Size = New System.Drawing.Size(96, 20)
         Me.Label15.TabIndex = 76
         Me.Label15.Text = "Model Scale"
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(575, 34)
+        Me.TextBox1.Location = New System.Drawing.Point(644, 94)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(85, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(126, 26)
         Me.TextBox1.TabIndex = 76
         Me.TextBox1.Text = "0.001"
         '
         'ClearModels
         '
-        Me.ClearModels.Location = New System.Drawing.Point(366, 32)
+        Me.ClearModels.Location = New System.Drawing.Point(549, 49)
+        Me.ClearModels.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ClearModels.Name = "ClearModels"
-        Me.ClearModels.Size = New System.Drawing.Size(75, 23)
+        Me.ClearModels.Size = New System.Drawing.Size(112, 35)
         Me.ClearModels.TabIndex = 49
         Me.ClearModels.Text = "Clear"
         Me.ClearModels.UseVisualStyleBackColor = True
@@ -525,9 +566,10 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(0, 16)
+        Me.Label14.Location = New System.Drawing.Point(0, 25)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(271, 13)
+        Me.Label14.Size = New System.Drawing.Size(403, 20)
         Me.Label14.TabIndex = 42
         Me.Label14.Text = "Drag and Drop up to eight DAE models in the box below"
         '
@@ -535,25 +577,26 @@ Partial Class Form1
         '
         Me.DaeModelListBox.AllowDrop = True
         Me.DaeModelListBox.FormattingEnabled = True
+        Me.DaeModelListBox.ItemHeight = 20
         Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Model.dae"})
-        Me.DaeModelListBox.Location = New System.Drawing.Point(0, 32)
+        Me.DaeModelListBox.Location = New System.Drawing.Point(0, 49)
+        Me.DaeModelListBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DaeModelListBox.Name = "DaeModelListBox"
-        Me.DaeModelListBox.Size = New System.Drawing.Size(347, 43)
+        Me.DaeModelListBox.Size = New System.Drawing.Size(518, 64)
         Me.DaeModelListBox.TabIndex = 42
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(3, 87)
+        Me.Label20.Location = New System.Drawing.Point(4, 134)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(0, 13)
+        Me.Label20.Size = New System.Drawing.Size(0, 20)
         Me.Label20.TabIndex = 47
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.ExcelSeriesComboBox)
-        Me.GroupBox1.Controls.Add(Me.Label22)
-        Me.GroupBox1.Controls.Add(Me.NumericUpDown3)
         Me.GroupBox1.Controls.Add(Me.Label21)
         Me.GroupBox1.Controls.Add(Me.Label19)
         Me.GroupBox1.Controls.Add(Me.Label18)
@@ -570,133 +613,126 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
         Me.GroupBox1.Controls.Add(Me.FromXYRadioButton)
         Me.GroupBox1.Controls.Add(Me.Label28)
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 6)
+        Me.GroupBox1.Location = New System.Drawing.Point(4, 9)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(734, 120)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox1.Size = New System.Drawing.Size(864, 185)
         Me.GroupBox1.TabIndex = 42
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Path"
         '
-        'Label22
+        'ExcelSeriesComboBox
         '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(401, 94)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(67, 13)
-        Me.Label22.TabIndex = 75
-        Me.Label22.Text = "Charge Time"
-        '
-        'NumericUpDown3
-        '
-        Me.NumericUpDown3.Location = New System.Drawing.Point(475, 92)
-        Me.NumericUpDown3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.NumericUpDown3.Maximum = New Decimal(New Integer() {1200, 0, 0, 0})
-        Me.NumericUpDown3.Name = "NumericUpDown3"
-        Me.NumericUpDown3.Size = New System.Drawing.Size(59, 20)
-        Me.NumericUpDown3.TabIndex = 74
-        Me.NumericUpDown3.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.ExcelSeriesComboBox.FormattingEnabled = True
+        Me.ExcelSeriesComboBox.Items.AddRange(New Object() {"G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 1.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 2.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 3.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 4.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 5.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 6.xlsx"})
+        Me.ExcelSeriesComboBox.Location = New System.Drawing.Point(146, 57)
+        Me.ExcelSeriesComboBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ExcelSeriesComboBox.Name = "ExcelSeriesComboBox"
+        Me.ExcelSeriesComboBox.Size = New System.Drawing.Size(588, 28)
+        Me.ExcelSeriesComboBox.TabIndex = 76
+        Me.ExcelSeriesComboBox.Text = "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 2.xlsx"
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(364, 94)
+        Me.Label21.Location = New System.Drawing.Point(546, 145)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(15, 13)
+        Me.Label21.Size = New System.Drawing.Size(23, 20)
         Me.Label21.TabIndex = 73
         Me.Label21.Text = "%"
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(227, 94)
+        Me.Label19.Location = New System.Drawing.Point(340, 145)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(59, 13)
+        Me.Label19.Size = New System.Drawing.Size(88, 20)
         Me.Label19.TabIndex = 72
         Me.Label19.Text = "Begin SOC"
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(227, 66)
+        Me.Label18.Location = New System.Drawing.Point(340, 102)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(52, 13)
+        Me.Label18.Size = New System.Drawing.Size(78, 20)
         Me.Label18.TabIndex = 71
         Me.Label18.Text = "Vessel ID"
         '
         'BeginSOC
         '
-        Me.BeginSOC.Location = New System.Drawing.Point(300, 92)
-        Me.BeginSOC.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.BeginSOC.Location = New System.Drawing.Point(450, 142)
         Me.BeginSOC.Name = "BeginSOC"
-        Me.BeginSOC.Size = New System.Drawing.Size(59, 20)
+        Me.BeginSOC.Size = New System.Drawing.Size(88, 26)
         Me.BeginSOC.TabIndex = 70
         Me.BeginSOC.Value = New Decimal(New Integer() {67, 0, 0, 0})
         '
         'VesselID
         '
         Me.VesselID.FormattingEnabled = True
-        Me.VesselID.Items.AddRange(New Object() {"VESSEL 1", "VESSEL 2", "GIBSONS CHARGE BARGE", "SEYMOUR BAY CHARGE BARGE", "VANCOUVER CHARGE BARGE"})
-        Me.VesselID.Location = New System.Drawing.Point(300, 62)
-        Me.VesselID.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.VesselID.Items.AddRange(New Object() {"VESSEL 1", "VESSEL 2"})
+        Me.VesselID.Location = New System.Drawing.Point(450, 95)
         Me.VesselID.Name = "VesselID"
-        Me.VesselID.Size = New System.Drawing.Size(82, 21)
+        Me.VesselID.Size = New System.Drawing.Size(121, 28)
         Me.VesselID.TabIndex = 69
         Me.VesselID.Text = "VESSEL 1"
         '
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(117, 91)
-        Me.Label40.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label40.Location = New System.Drawing.Point(176, 140)
         Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(39, 13)
+        Me.Label40.Size = New System.Drawing.Size(57, 20)
         Me.Label40.TabIndex = 68
         Me.Label40.Text = "Minute"
         '
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(21, 90)
-        Me.Label39.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label39.Location = New System.Drawing.Point(32, 138)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(30, 13)
+        Me.Label39.Size = New System.Drawing.Size(44, 20)
         Me.Label39.TabIndex = 67
         Me.Label39.Text = "Hour"
         '
         'NumericUpDown2
         '
-        Me.NumericUpDown2.Location = New System.Drawing.Point(157, 90)
-        Me.NumericUpDown2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.NumericUpDown2.Location = New System.Drawing.Point(236, 138)
         Me.NumericUpDown2.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(53, 20)
+        Me.NumericUpDown2.Size = New System.Drawing.Size(80, 26)
         Me.NumericUpDown2.TabIndex = 66
         Me.NumericUpDown2.Value = New Decimal(New Integer() {5, 0, 0, 0})
         '
         'NumericUpDown1
         '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(55, 88)
-        Me.NumericUpDown1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.NumericUpDown1.Location = New System.Drawing.Point(82, 135)
         Me.NumericUpDown1.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
         Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(52, 20)
+        Me.NumericUpDown1.Size = New System.Drawing.Size(78, 26)
         Me.NumericUpDown1.TabIndex = 65
         Me.NumericUpDown1.Value = New Decimal(New Integer() {7, 0, 0, 0})
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(21, 64)
+        Me.Label3.Location = New System.Drawing.Point(32, 98)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(30, 13)
+        Me.Label3.Size = New System.Drawing.Size(44, 20)
         Me.Label3.TabIndex = 64
         Me.Label3.Text = "Date"
         '
         'ns1when
         '
-        Me.ns1when.Location = New System.Drawing.Point(55, 62)
+        Me.ns1when.Location = New System.Drawing.Point(82, 95)
+        Me.ns1when.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ns1when.Name = "ns1when"
-        Me.ns1when.Size = New System.Drawing.Size(157, 20)
+        Me.ns1when.Size = New System.Drawing.Size(234, 26)
         Me.ns1when.TabIndex = 63
         Me.ns1when.Value = New Date(2026, 4, 1, 0, 0, 0, 0)
         '
@@ -705,9 +741,10 @@ Partial Class Form1
         Me.ReadoutCheckBox.AutoSize = True
         Me.ReadoutCheckBox.Checked = True
         Me.ReadoutCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ReadoutCheckBox.Location = New System.Drawing.Point(578, 88)
+        Me.ReadoutCheckBox.Location = New System.Drawing.Point(604, 98)
+        Me.ReadoutCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ReadoutCheckBox.Name = "ReadoutCheckBox"
-        Me.ReadoutCheckBox.Size = New System.Drawing.Size(144, 17)
+        Me.ReadoutCheckBox.Size = New System.Drawing.Size(215, 24)
         Me.ReadoutCheckBox.TabIndex = 37
         Me.ReadoutCheckBox.Text = "Create Readout Images?"
         Me.ReadoutCheckBox.UseVisualStyleBackColor = True
@@ -715,9 +752,10 @@ Partial Class Form1
         'HeadingInfoCheck
         '
         Me.HeadingInfoCheck.AutoSize = True
-        Me.HeadingInfoCheck.Location = New System.Drawing.Point(578, 42)
+        Me.HeadingInfoCheck.Location = New System.Drawing.Point(604, 150)
+        Me.HeadingInfoCheck.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
-        Me.HeadingInfoCheck.Size = New System.Drawing.Size(115, 17)
+        Me.HeadingInfoCheck.Size = New System.Drawing.Size(168, 24)
         Me.HeadingInfoCheck.TabIndex = 62
         Me.HeadingInfoCheck.Text = "HeadingInfoCheck"
         Me.HeadingInfoCheck.UseVisualStyleBackColor = True
@@ -725,9 +763,10 @@ Partial Class Form1
         'TimeInfoCheck
         '
         Me.TimeInfoCheck.AutoSize = True
-        Me.TimeInfoCheck.Location = New System.Drawing.Point(578, 65)
+        Me.TimeInfoCheck.Location = New System.Drawing.Point(604, 123)
+        Me.TimeInfoCheck.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TimeInfoCheck.Name = "TimeInfoCheck"
-        Me.TimeInfoCheck.Size = New System.Drawing.Size(98, 17)
+        Me.TimeInfoCheck.Size = New System.Drawing.Size(142, 24)
         Me.TimeInfoCheck.TabIndex = 61
         Me.TimeInfoCheck.Text = "TimeInfoCheck"
         Me.TimeInfoCheck.UseVisualStyleBackColor = True
@@ -736,9 +775,10 @@ Partial Class Form1
         '
         Me.FromXYRadioButton.AutoSize = True
         Me.FromXYRadioButton.Checked = True
-        Me.FromXYRadioButton.Location = New System.Drawing.Point(17, 38)
+        Me.FromXYRadioButton.Location = New System.Drawing.Point(26, 58)
+        Me.FromXYRadioButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FromXYRadioButton.Name = "FromXYRadioButton"
-        Me.FromXYRadioButton.Size = New System.Drawing.Size(62, 17)
+        Me.FromXYRadioButton.Size = New System.Drawing.Size(93, 24)
         Me.FromXYRadioButton.TabIndex = 57
         Me.FromXYRadioButton.TabStop = True
         Me.FromXYRadioButton.Text = "FromXY"
@@ -747,9 +787,10 @@ Partial Class Form1
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(9, 22)
+        Me.Label28.Location = New System.Drawing.Point(14, 34)
+        Me.Label28.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(231, 13)
+        Me.Label28.Size = New System.Drawing.Size(346, 20)
         Me.Label28.TabIndex = 54
         Me.Label28.Text = "Drag and Drop an Excel File of X-Y Coordinates"
         '
@@ -778,10 +819,11 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.ns2horizFov)
         Me.TabPage3.Controls.Add(Me.ns1altitudeMax)
         Me.TabPage3.Controls.Add(Me.PlaceMarkName1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage3.Size = New System.Drawing.Size(732, 354)
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TabPage3.Size = New System.Drawing.Size(1102, 552)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Settings"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -789,17 +831,19 @@ Partial Class Form1
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(17, 80)
+        Me.Label17.Location = New System.Drawing.Point(26, 123)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(88, 13)
+        Me.Label17.Size = New System.Drawing.Size(129, 20)
         Me.Label17.TabIndex = 36
         Me.Label17.Text = "Placemark Name"
         '
         'PlaceMarkName2
         '
-        Me.PlaceMarkName2.Location = New System.Drawing.Point(132, 77)
+        Me.PlaceMarkName2.Location = New System.Drawing.Point(198, 118)
+        Me.PlaceMarkName2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PlaceMarkName2.Name = "PlaceMarkName2"
-        Me.PlaceMarkName2.Size = New System.Drawing.Size(208, 20)
+        Me.PlaceMarkName2.Size = New System.Drawing.Size(310, 26)
         Me.PlaceMarkName2.TabIndex = 37
         '
         'TabPage2
@@ -807,19 +851,21 @@ Partial Class Form1
         Me.TabPage2.Controls.Add(Me.TrackAndHeadingButton)
         Me.TabPage2.Controls.Add(Me.ExcelReaderTextbox)
         Me.TabPage2.Controls.Add(Me.Label29)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage2.Size = New System.Drawing.Size(732, 354)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TabPage2.Size = New System.Drawing.Size(1102, 552)
         Me.TabPage2.TabIndex = 3
         Me.TabPage2.Text = "Track Reader"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'TrackAndHeadingButton
         '
-        Me.TrackAndHeadingButton.Location = New System.Drawing.Point(490, 45)
+        Me.TrackAndHeadingButton.Location = New System.Drawing.Point(735, 69)
+        Me.TrackAndHeadingButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TrackAndHeadingButton.Name = "TrackAndHeadingButton"
-        Me.TrackAndHeadingButton.Size = New System.Drawing.Size(112, 23)
+        Me.TrackAndHeadingButton.Size = New System.Drawing.Size(168, 35)
         Me.TrackAndHeadingButton.TabIndex = 61
         Me.TrackAndHeadingButton.Text = "ReadTrackLogger"
         Me.TrackAndHeadingButton.UseVisualStyleBackColor = True
@@ -827,18 +873,20 @@ Partial Class Form1
         'ExcelReaderTextbox
         '
         Me.ExcelReaderTextbox.AllowDrop = True
-        Me.ExcelReaderTextbox.Location = New System.Drawing.Point(46, 47)
+        Me.ExcelReaderTextbox.Location = New System.Drawing.Point(69, 72)
+        Me.ExcelReaderTextbox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ExcelReaderTextbox.Name = "ExcelReaderTextbox"
-        Me.ExcelReaderTextbox.Size = New System.Drawing.Size(438, 20)
+        Me.ExcelReaderTextbox.Size = New System.Drawing.Size(655, 26)
         Me.ExcelReaderTextbox.TabIndex = 60
         Me.ExcelReaderTextbox.Text = "C:\Google Earth Tour\logRun.txt"
         '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(43, 31)
+        Me.Label29.Location = New System.Drawing.Point(64, 48)
+        Me.Label29.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(117, 13)
+        Me.Label29.Size = New System.Drawing.Size(174, 20)
         Me.Label29.TabIndex = 50
         Me.Label29.Text = "Drag and Drop Log File"
         '
@@ -851,88 +899,98 @@ Partial Class Form1
         Me.TabPage4.Controls.Add(Me.Label16)
         Me.TabPage4.Controls.Add(Me.Radius)
         Me.TabPage4.Controls.Add(Me.RadiusCenter)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage4.Size = New System.Drawing.Size(732, 354)
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TabPage4.Size = New System.Drawing.Size(1102, 552)
         Me.TabPage4.TabIndex = 4
         Me.TabPage4.Text = "Radius Maker"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
         'CreateRadiusReference
         '
-        Me.CreateRadiusReference.Location = New System.Drawing.Point(421, 163)
+        Me.CreateRadiusReference.Location = New System.Drawing.Point(632, 251)
+        Me.CreateRadiusReference.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CreateRadiusReference.Name = "CreateRadiusReference"
-        Me.CreateRadiusReference.Size = New System.Drawing.Size(75, 23)
+        Me.CreateRadiusReference.Size = New System.Drawing.Size(112, 35)
         Me.CreateRadiusReference.TabIndex = 6
         Me.CreateRadiusReference.Text = "Create"
         Me.CreateRadiusReference.UseVisualStyleBackColor = True
         '
         'RadiusLabel
         '
-        Me.RadiusLabel.Location = New System.Drawing.Point(133, 137)
+        Me.RadiusLabel.Location = New System.Drawing.Point(200, 211)
+        Me.RadiusLabel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RadiusLabel.Name = "RadiusLabel"
-        Me.RadiusLabel.Size = New System.Drawing.Size(363, 20)
+        Me.RadiusLabel.Size = New System.Drawing.Size(542, 26)
         Me.RadiusLabel.TabIndex = 5
         '
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(21, 140)
+        Me.Label27.Location = New System.Drawing.Point(32, 215)
+        Me.Label27.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(66, 13)
+        Me.Label27.Size = New System.Drawing.Size(98, 20)
         Me.Label27.TabIndex = 4
         Me.Label27.Text = "RadiusLabel"
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(21, 114)
+        Me.Label26.Location = New System.Drawing.Point(32, 175)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(40, 13)
+        Me.Label26.Size = New System.Drawing.Size(59, 20)
         Me.Label26.TabIndex = 3
         Me.Label26.Text = "Radius"
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(21, 88)
+        Me.Label16.Location = New System.Drawing.Point(32, 135)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(106, 13)
+        Me.Label16.Size = New System.Drawing.Size(158, 20)
         Me.Label16.TabIndex = 2
         Me.Label16.Text = "Placemark for Centre"
         '
         'Radius
         '
-        Me.Radius.Location = New System.Drawing.Point(133, 111)
+        Me.Radius.Location = New System.Drawing.Point(200, 171)
+        Me.Radius.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Radius.Name = "Radius"
-        Me.Radius.Size = New System.Drawing.Size(363, 20)
+        Me.Radius.Size = New System.Drawing.Size(542, 26)
         Me.Radius.TabIndex = 1
         '
         'RadiusCenter
         '
         Me.RadiusCenter.AllowDrop = True
-        Me.RadiusCenter.Location = New System.Drawing.Point(133, 85)
+        Me.RadiusCenter.Location = New System.Drawing.Point(200, 131)
+        Me.RadiusCenter.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RadiusCenter.Name = "RadiusCenter"
-        Me.RadiusCenter.Size = New System.Drawing.Size(363, 20)
+        Me.RadiusCenter.Size = New System.Drawing.Size(542, 26)
         Me.RadiusCenter.TabIndex = 0
         Me.RadiusCenter.Text = "C:\Google Earth Tour\CentrePlacemark.kml"
         '
         'TabPage1
         '
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.TabPage1.Size = New System.Drawing.Size(732, 354)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TabPage1.Size = New System.Drawing.Size(1102, 552)
         Me.TabPage1.TabIndex = 5
         Me.TabPage1.Text = "Simultaneous Elements"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(167, 9)
+        Me.ProgressBar1.Location = New System.Drawing.Point(250, 14)
+        Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(577, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(552, 35)
         Me.ProgressBar1.TabIndex = 50
         '
         'OpenFileDialog3
@@ -947,30 +1005,22 @@ Partial Class Form1
         '
         'ProgressBar2
         '
-        Me.ProgressBar2.Location = New System.Drawing.Point(167, 38)
+        Me.ProgressBar2.Location = New System.Drawing.Point(250, 58)
+        Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ProgressBar2.Name = "ProgressBar2"
-        Me.ProgressBar2.Size = New System.Drawing.Size(577, 23)
+        Me.ProgressBar2.Size = New System.Drawing.Size(552, 35)
         Me.ProgressBar2.TabIndex = 51
-        '
-        'ExcelSeriesComboBox
-        '
-        Me.ExcelSeriesComboBox.FormattingEnabled = True
-        Me.ExcelSeriesComboBox.Items.AddRange(New Object() {"G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 1.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 2.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 3.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 4.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 5.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 6.xlsx"})
-        Me.ExcelSeriesComboBox.Location = New System.Drawing.Point(97, 37)
-        Me.ExcelSeriesComboBox.Name = "ExcelSeriesComboBox"
-        Me.ExcelSeriesComboBox.Size = New System.Drawing.Size(393, 21)
-        Me.ExcelSeriesComboBox.TabIndex = 76
-        Me.ExcelSeriesComboBox.Text = "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 2.xlsx"
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(761, 508)
+        Me.ClientSize = New System.Drawing.Size(922, 782)
         Me.Controls.Add(Me.ProgressBar2)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ProgressBar1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "Form1"
         Me.Text = "Create Tour From Placemark"
         Me.TabControl1.ResumeLayout(False)
@@ -981,7 +1031,6 @@ Partial Class Form1
         Me.GroupBox3.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BeginSOC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1078,7 +1127,5 @@ Partial Class Form1
     Friend WithEvents BeginSOC As NumericUpDown
     Friend WithEvents Label21 As Label
     Friend WithEvents Label19 As Label
-    Friend WithEvents Label22 As Label
-    Friend WithEvents NumericUpDown3 As NumericUpDown
     Friend WithEvents ExcelSeriesComboBox As ComboBox
 End Class
