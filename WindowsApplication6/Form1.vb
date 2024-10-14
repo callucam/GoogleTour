@@ -36,11 +36,25 @@ Public Class Form1
 
         'XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplate.xml")
 
-        If VesselID.Text = "VESSEL 1" Then
-            XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplateGreen.xml")
-        ElseIf VesselID.Text = "VESSEL 2" Then
-            XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplateYellow.xml")
+
+
+        If ChargingCheck.Checked = True Then
+            If VesselID.Text = "VESSEL 1" Then
+                XTrack = XElement.Load("C:\Google Earth Tour\ChargeTemplateGreen.xml")
+            ElseIf VesselID.Text = "VESSEL 2" Then
+                XTrack = XElement.Load("C:\Google Earth Tour\ChargeTemplateYellow.xml")
+            End If
+        Else
+
+            If VesselID.Text = "VESSEL 1" Then
+                XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplateGreen.xml")
+            ElseIf VesselID.Text = "VESSEL 2" Then
+                XTrack = XElement.Load("C:\Google Earth Tour\TrackTemplateYellow.xml")
+            End If
+
         End If
+
+
 
         ' Set view properties
 
@@ -156,8 +170,16 @@ Public Class Form1
 
         oWB2.Save()
 
+        If ChargingCheck.Checked = False Then
+            NPlacemarks = Sheet1.Range("b2").Offset(0, 0).Value - 1
+        Else
+            NPlacemarks = ChargeTime.Value / 2 * 60
 
-        NPlacemarks = Sheet1.Range("b2").Offset(0, 0).Value - 1
+        End If
+
+
+
+
         ProgressBar1.Minimum = 0
         ProgressBar1.Maximum = NPlacemarks
         m3 = DateAdd(DateInterval.Second, Sheet1.Range("a11").Offset(0, 0).Value, ns1when.Value)

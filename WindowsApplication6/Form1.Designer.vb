@@ -70,24 +70,6 @@ Partial Class Form1
         Me.Label14 = New System.Windows.Forms.Label()
         Me.DaeModelListBox = New System.Windows.Forms.ListBox()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.ExcelSeriesComboBox = New System.Windows.Forms.ComboBox()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.BeginSOC = New System.Windows.Forms.NumericUpDown()
-        Me.VesselID = New System.Windows.Forms.ComboBox()
-        Me.Label40 = New System.Windows.Forms.Label()
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
-        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.ns1when = New System.Windows.Forms.DateTimePicker()
-        Me.ReadoutCheckBox = New System.Windows.Forms.CheckBox()
-        Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
-        Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
-        Me.FromXYRadioButton = New System.Windows.Forms.RadioButton()
-        Me.Label28 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.PlaceMarkName2 = New System.Windows.Forms.TextBox()
@@ -108,17 +90,44 @@ Partial Class Form1
         Me.OpenFileDialog3 = New System.Windows.Forms.OpenFileDialog()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.FromXYRadioButton = New System.Windows.Forms.RadioButton()
+        Me.TimeInfoCheck = New System.Windows.Forms.CheckBox()
+        Me.HeadingInfoCheck = New System.Windows.Forms.CheckBox()
+        Me.ReadoutCheckBox = New System.Windows.Forms.CheckBox()
+        Me.ns1when = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.NumericUpDown1 = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDown2 = New System.Windows.Forms.NumericUpDown()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.VesselID = New System.Windows.Forms.ComboBox()
+        Me.BeginSOC = New System.Windows.Forms.NumericUpDown()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.ExcelSeriesComboBox = New System.Windows.Forms.ComboBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ChargingCheck = New System.Windows.Forms.CheckBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.ChargeTime = New System.Windows.Forms.NumericUpDown()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.EndSOC = New System.Windows.Forms.NumericUpDown()
         Me.TabControl1.SuspendLayout()
         Me.HasYaw.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        CType(Me.BeginSOC, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage4.SuspendLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BeginSOC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        CType(Me.ChargeTime, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EndSOC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -431,19 +440,18 @@ Partial Class Form1
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(896, 585)
+        Me.TabControl1.Size = New System.Drawing.Size(896, 646)
         Me.TabControl1.TabIndex = 36
         '
         'HasYaw
         '
-        Me.HasYaw.Controls.Add(Me.GroupBox9)
         Me.HasYaw.Controls.Add(Me.GroupBox3)
         Me.HasYaw.Controls.Add(Me.GroupBox1)
         Me.HasYaw.Location = New System.Drawing.Point(4, 29)
         Me.HasYaw.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.HasYaw.Name = "HasYaw"
         Me.HasYaw.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.HasYaw.Size = New System.Drawing.Size(888, 552)
+        Me.HasYaw.Size = New System.Drawing.Size(888, 613)
         Me.HasYaw.TabIndex = 0
         Me.HasYaw.Text = "Animate from Placemarks"
         Me.HasYaw.UseVisualStyleBackColor = True
@@ -463,7 +471,7 @@ Partial Class Form1
         Me.GroupBox9.Controls.Add(Me.LinearHeadingOption)
         Me.GroupBox9.Controls.Add(Me.Label9)
         Me.GroupBox9.Controls.Add(Me.Label8)
-        Me.GroupBox9.Location = New System.Drawing.Point(8, 328)
+        Me.GroupBox9.Location = New System.Drawing.Point(4, 148)
         Me.GroupBox9.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox9.Name = "GroupBox9"
         Me.GroupBox9.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -519,17 +527,18 @@ Partial Class Form1
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.GroupBox9)
         Me.GroupBox3.Controls.Add(Me.Label15)
         Me.GroupBox3.Controls.Add(Me.TextBox1)
         Me.GroupBox3.Controls.Add(Me.ClearModels)
         Me.GroupBox3.Controls.Add(Me.Label14)
         Me.GroupBox3.Controls.Add(Me.DaeModelListBox)
         Me.GroupBox3.Controls.Add(Me.Label20)
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 205)
+        Me.GroupBox3.Location = New System.Drawing.Point(8, 245)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox3.Size = New System.Drawing.Size(860, 422)
+        Me.GroupBox3.Size = New System.Drawing.Size(860, 382)
         Me.GroupBox3.TabIndex = 44
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Model Animation"
@@ -537,7 +546,7 @@ Partial Class Form1
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(526, 97)
+        Me.Label15.Location = New System.Drawing.Point(526, 113)
         Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(96, 20)
@@ -546,7 +555,7 @@ Partial Class Form1
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(644, 94)
+        Me.TextBox1.Location = New System.Drawing.Point(644, 110)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(126, 26)
@@ -555,7 +564,7 @@ Partial Class Form1
         '
         'ClearModels
         '
-        Me.ClearModels.Location = New System.Drawing.Point(549, 49)
+        Me.ClearModels.Location = New System.Drawing.Point(549, 65)
         Me.ClearModels.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ClearModels.Name = "ClearModels"
         Me.ClearModels.Size = New System.Drawing.Size(112, 35)
@@ -566,7 +575,7 @@ Partial Class Form1
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(0, 25)
+        Me.Label14.Location = New System.Drawing.Point(0, 41)
         Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(403, 20)
@@ -579,7 +588,7 @@ Partial Class Form1
         Me.DaeModelListBox.FormattingEnabled = True
         Me.DaeModelListBox.ItemHeight = 20
         Me.DaeModelListBox.Items.AddRange(New Object() {"C:\Google Earth Tour\Model.dae"})
-        Me.DaeModelListBox.Location = New System.Drawing.Point(0, 49)
+        Me.DaeModelListBox.Location = New System.Drawing.Point(0, 65)
         Me.DaeModelListBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DaeModelListBox.Name = "DaeModelListBox"
         Me.DaeModelListBox.Size = New System.Drawing.Size(518, 64)
@@ -593,206 +602,6 @@ Partial Class Form1
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(0, 20)
         Me.Label20.TabIndex = 47
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.ExcelSeriesComboBox)
-        Me.GroupBox1.Controls.Add(Me.Label21)
-        Me.GroupBox1.Controls.Add(Me.Label19)
-        Me.GroupBox1.Controls.Add(Me.Label18)
-        Me.GroupBox1.Controls.Add(Me.BeginSOC)
-        Me.GroupBox1.Controls.Add(Me.VesselID)
-        Me.GroupBox1.Controls.Add(Me.Label40)
-        Me.GroupBox1.Controls.Add(Me.Label39)
-        Me.GroupBox1.Controls.Add(Me.NumericUpDown2)
-        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.ns1when)
-        Me.GroupBox1.Controls.Add(Me.ReadoutCheckBox)
-        Me.GroupBox1.Controls.Add(Me.HeadingInfoCheck)
-        Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
-        Me.GroupBox1.Controls.Add(Me.FromXYRadioButton)
-        Me.GroupBox1.Controls.Add(Me.Label28)
-        Me.GroupBox1.Location = New System.Drawing.Point(4, 9)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GroupBox1.Size = New System.Drawing.Size(864, 185)
-        Me.GroupBox1.TabIndex = 42
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Path"
-        '
-        'ExcelSeriesComboBox
-        '
-        Me.ExcelSeriesComboBox.FormattingEnabled = True
-        Me.ExcelSeriesComboBox.Items.AddRange(New Object() {"G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 1.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 2.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 3.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 4.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 5.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 6.xlsx"})
-        Me.ExcelSeriesComboBox.Location = New System.Drawing.Point(146, 57)
-        Me.ExcelSeriesComboBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ExcelSeriesComboBox.Name = "ExcelSeriesComboBox"
-        Me.ExcelSeriesComboBox.Size = New System.Drawing.Size(588, 28)
-        Me.ExcelSeriesComboBox.TabIndex = 76
-        Me.ExcelSeriesComboBox.Text = "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 2.xlsx"
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(546, 145)
-        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(23, 20)
-        Me.Label21.TabIndex = 73
-        Me.Label21.Text = "%"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(340, 145)
-        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(88, 20)
-        Me.Label19.TabIndex = 72
-        Me.Label19.Text = "Begin SOC"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(340, 102)
-        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(78, 20)
-        Me.Label18.TabIndex = 71
-        Me.Label18.Text = "Vessel ID"
-        '
-        'BeginSOC
-        '
-        Me.BeginSOC.Location = New System.Drawing.Point(450, 142)
-        Me.BeginSOC.Name = "BeginSOC"
-        Me.BeginSOC.Size = New System.Drawing.Size(88, 26)
-        Me.BeginSOC.TabIndex = 70
-        Me.BeginSOC.Value = New Decimal(New Integer() {67, 0, 0, 0})
-        '
-        'VesselID
-        '
-        Me.VesselID.FormattingEnabled = True
-        Me.VesselID.Items.AddRange(New Object() {"VESSEL 1", "VESSEL 2"})
-        Me.VesselID.Location = New System.Drawing.Point(450, 95)
-        Me.VesselID.Name = "VesselID"
-        Me.VesselID.Size = New System.Drawing.Size(121, 28)
-        Me.VesselID.TabIndex = 69
-        Me.VesselID.Text = "VESSEL 1"
-        '
-        'Label40
-        '
-        Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(176, 140)
-        Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(57, 20)
-        Me.Label40.TabIndex = 68
-        Me.Label40.Text = "Minute"
-        '
-        'Label39
-        '
-        Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(32, 138)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(44, 20)
-        Me.Label39.TabIndex = 67
-        Me.Label39.Text = "Hour"
-        '
-        'NumericUpDown2
-        '
-        Me.NumericUpDown2.Location = New System.Drawing.Point(236, 138)
-        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
-        Me.NumericUpDown2.Name = "NumericUpDown2"
-        Me.NumericUpDown2.Size = New System.Drawing.Size(80, 26)
-        Me.NumericUpDown2.TabIndex = 66
-        Me.NumericUpDown2.Value = New Decimal(New Integer() {5, 0, 0, 0})
-        '
-        'NumericUpDown1
-        '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(82, 135)
-        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
-        Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(78, 26)
-        Me.NumericUpDown1.TabIndex = 65
-        Me.NumericUpDown1.Value = New Decimal(New Integer() {7, 0, 0, 0})
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(32, 98)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(44, 20)
-        Me.Label3.TabIndex = 64
-        Me.Label3.Text = "Date"
-        '
-        'ns1when
-        '
-        Me.ns1when.Location = New System.Drawing.Point(82, 95)
-        Me.ns1when.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ns1when.Name = "ns1when"
-        Me.ns1when.Size = New System.Drawing.Size(234, 26)
-        Me.ns1when.TabIndex = 63
-        Me.ns1when.Value = New Date(2026, 4, 1, 0, 0, 0, 0)
-        '
-        'ReadoutCheckBox
-        '
-        Me.ReadoutCheckBox.AutoSize = True
-        Me.ReadoutCheckBox.Checked = True
-        Me.ReadoutCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ReadoutCheckBox.Location = New System.Drawing.Point(604, 98)
-        Me.ReadoutCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ReadoutCheckBox.Name = "ReadoutCheckBox"
-        Me.ReadoutCheckBox.Size = New System.Drawing.Size(215, 24)
-        Me.ReadoutCheckBox.TabIndex = 37
-        Me.ReadoutCheckBox.Text = "Create Readout Images?"
-        Me.ReadoutCheckBox.UseVisualStyleBackColor = True
-        '
-        'HeadingInfoCheck
-        '
-        Me.HeadingInfoCheck.AutoSize = True
-        Me.HeadingInfoCheck.Location = New System.Drawing.Point(604, 150)
-        Me.HeadingInfoCheck.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
-        Me.HeadingInfoCheck.Size = New System.Drawing.Size(168, 24)
-        Me.HeadingInfoCheck.TabIndex = 62
-        Me.HeadingInfoCheck.Text = "HeadingInfoCheck"
-        Me.HeadingInfoCheck.UseVisualStyleBackColor = True
-        '
-        'TimeInfoCheck
-        '
-        Me.TimeInfoCheck.AutoSize = True
-        Me.TimeInfoCheck.Location = New System.Drawing.Point(604, 123)
-        Me.TimeInfoCheck.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TimeInfoCheck.Name = "TimeInfoCheck"
-        Me.TimeInfoCheck.Size = New System.Drawing.Size(142, 24)
-        Me.TimeInfoCheck.TabIndex = 61
-        Me.TimeInfoCheck.Text = "TimeInfoCheck"
-        Me.TimeInfoCheck.UseVisualStyleBackColor = True
-        '
-        'FromXYRadioButton
-        '
-        Me.FromXYRadioButton.AutoSize = True
-        Me.FromXYRadioButton.Checked = True
-        Me.FromXYRadioButton.Location = New System.Drawing.Point(26, 58)
-        Me.FromXYRadioButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.FromXYRadioButton.Name = "FromXYRadioButton"
-        Me.FromXYRadioButton.Size = New System.Drawing.Size(93, 24)
-        Me.FromXYRadioButton.TabIndex = 57
-        Me.FromXYRadioButton.TabStop = True
-        Me.FromXYRadioButton.Text = "FromXY"
-        Me.FromXYRadioButton.UseVisualStyleBackColor = True
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(14, 34)
-        Me.Label28.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(346, 20)
-        Me.Label28.TabIndex = 54
-        Me.Label28.Text = "Drag and Drop an Excel File of X-Y Coordinates"
         '
         'TabPage3
         '
@@ -823,7 +632,7 @@ Partial Class Form1
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TabPage3.Size = New System.Drawing.Size(1102, 552)
+        Me.TabPage3.Size = New System.Drawing.Size(888, 552)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Settings"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -855,7 +664,7 @@ Partial Class Form1
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TabPage2.Size = New System.Drawing.Size(1102, 552)
+        Me.TabPage2.Size = New System.Drawing.Size(888, 552)
         Me.TabPage2.TabIndex = 3
         Me.TabPage2.Text = "Track Reader"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -903,7 +712,7 @@ Partial Class Form1
         Me.TabPage4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TabPage4.Size = New System.Drawing.Size(1102, 552)
+        Me.TabPage4.Size = New System.Drawing.Size(888, 552)
         Me.TabPage4.TabIndex = 4
         Me.TabPage4.Text = "Radius Maker"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -980,7 +789,7 @@ Partial Class Form1
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TabPage1.Size = New System.Drawing.Size(1102, 552)
+        Me.TabPage1.Size = New System.Drawing.Size(888, 552)
         Me.TabPage1.TabIndex = 5
         Me.TabPage1.Text = "Simultaneous Elements"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -1011,6 +820,280 @@ Partial Class Form1
         Me.ProgressBar2.Size = New System.Drawing.Size(552, 35)
         Me.ProgressBar2.TabIndex = 51
         '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(14, 34)
+        Me.Label28.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(346, 20)
+        Me.Label28.TabIndex = 54
+        Me.Label28.Text = "Drag and Drop an Excel File of X-Y Coordinates"
+        '
+        'FromXYRadioButton
+        '
+        Me.FromXYRadioButton.AutoSize = True
+        Me.FromXYRadioButton.Checked = True
+        Me.FromXYRadioButton.Location = New System.Drawing.Point(26, 58)
+        Me.FromXYRadioButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.FromXYRadioButton.Name = "FromXYRadioButton"
+        Me.FromXYRadioButton.Size = New System.Drawing.Size(93, 24)
+        Me.FromXYRadioButton.TabIndex = 57
+        Me.FromXYRadioButton.TabStop = True
+        Me.FromXYRadioButton.Text = "FromXY"
+        Me.FromXYRadioButton.UseVisualStyleBackColor = True
+        '
+        'TimeInfoCheck
+        '
+        Me.TimeInfoCheck.AutoSize = True
+        Me.TimeInfoCheck.Location = New System.Drawing.Point(604, 123)
+        Me.TimeInfoCheck.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TimeInfoCheck.Name = "TimeInfoCheck"
+        Me.TimeInfoCheck.Size = New System.Drawing.Size(142, 24)
+        Me.TimeInfoCheck.TabIndex = 61
+        Me.TimeInfoCheck.Text = "TimeInfoCheck"
+        Me.TimeInfoCheck.UseVisualStyleBackColor = True
+        '
+        'HeadingInfoCheck
+        '
+        Me.HeadingInfoCheck.AutoSize = True
+        Me.HeadingInfoCheck.Location = New System.Drawing.Point(604, 150)
+        Me.HeadingInfoCheck.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.HeadingInfoCheck.Name = "HeadingInfoCheck"
+        Me.HeadingInfoCheck.Size = New System.Drawing.Size(168, 24)
+        Me.HeadingInfoCheck.TabIndex = 62
+        Me.HeadingInfoCheck.Text = "HeadingInfoCheck"
+        Me.HeadingInfoCheck.UseVisualStyleBackColor = True
+        '
+        'ReadoutCheckBox
+        '
+        Me.ReadoutCheckBox.AutoSize = True
+        Me.ReadoutCheckBox.Checked = True
+        Me.ReadoutCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ReadoutCheckBox.Location = New System.Drawing.Point(604, 98)
+        Me.ReadoutCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ReadoutCheckBox.Name = "ReadoutCheckBox"
+        Me.ReadoutCheckBox.Size = New System.Drawing.Size(215, 24)
+        Me.ReadoutCheckBox.TabIndex = 37
+        Me.ReadoutCheckBox.Text = "Create Readout Images?"
+        Me.ReadoutCheckBox.UseVisualStyleBackColor = True
+        '
+        'ns1when
+        '
+        Me.ns1when.Location = New System.Drawing.Point(82, 95)
+        Me.ns1when.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ns1when.Name = "ns1when"
+        Me.ns1when.Size = New System.Drawing.Size(234, 26)
+        Me.ns1when.TabIndex = 63
+        Me.ns1when.Value = New Date(2026, 4, 1, 0, 0, 0, 0)
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(32, 98)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(44, 20)
+        Me.Label3.TabIndex = 64
+        Me.Label3.Text = "Date"
+        '
+        'NumericUpDown1
+        '
+        Me.NumericUpDown1.Location = New System.Drawing.Point(82, 135)
+        Me.NumericUpDown1.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
+        Me.NumericUpDown1.Name = "NumericUpDown1"
+        Me.NumericUpDown1.Size = New System.Drawing.Size(78, 26)
+        Me.NumericUpDown1.TabIndex = 65
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {7, 0, 0, 0})
+        '
+        'NumericUpDown2
+        '
+        Me.NumericUpDown2.Location = New System.Drawing.Point(236, 135)
+        Me.NumericUpDown2.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.NumericUpDown2.Name = "NumericUpDown2"
+        Me.NumericUpDown2.Size = New System.Drawing.Size(80, 26)
+        Me.NumericUpDown2.TabIndex = 66
+        Me.NumericUpDown2.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(32, 138)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(44, 20)
+        Me.Label39.TabIndex = 67
+        Me.Label39.Text = "Hour"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(175, 137)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(57, 20)
+        Me.Label40.TabIndex = 68
+        Me.Label40.Text = "Minute"
+        '
+        'VesselID
+        '
+        Me.VesselID.FormattingEnabled = True
+        Me.VesselID.Items.AddRange(New Object() {"VESSEL 1", "VESSEL 2"})
+        Me.VesselID.Location = New System.Drawing.Point(450, 95)
+        Me.VesselID.Name = "VesselID"
+        Me.VesselID.Size = New System.Drawing.Size(121, 28)
+        Me.VesselID.TabIndex = 69
+        Me.VesselID.Text = "VESSEL 1"
+        '
+        'BeginSOC
+        '
+        Me.BeginSOC.Location = New System.Drawing.Point(451, 135)
+        Me.BeginSOC.Name = "BeginSOC"
+        Me.BeginSOC.Size = New System.Drawing.Size(88, 26)
+        Me.BeginSOC.TabIndex = 70
+        Me.BeginSOC.Value = New Decimal(New Integer() {67, 0, 0, 0})
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(340, 102)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(78, 20)
+        Me.Label18.TabIndex = 71
+        Me.Label18.Text = "Vessel ID"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(340, 137)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(88, 20)
+        Me.Label19.TabIndex = 72
+        Me.Label19.Text = "Begin SOC"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(546, 137)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(23, 20)
+        Me.Label21.TabIndex = 73
+        Me.Label21.Text = "%"
+        '
+        'ExcelSeriesComboBox
+        '
+        Me.ExcelSeriesComboBox.FormattingEnabled = True
+        Me.ExcelSeriesComboBox.Items.AddRange(New Object() {"G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 1.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 2.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 3.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 4.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 5.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 6.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\ChargingModel Vancouver.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\ChargingModel Seymour.xlsx", "G:\My Drive\Greenline Ferries\Digital Twin\ChargingModel Gibsons.xlsx"})
+        Me.ExcelSeriesComboBox.Location = New System.Drawing.Point(146, 57)
+        Me.ExcelSeriesComboBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ExcelSeriesComboBox.Name = "ExcelSeriesComboBox"
+        Me.ExcelSeriesComboBox.Size = New System.Drawing.Size(588, 28)
+        Me.ExcelSeriesComboBox.TabIndex = 76
+        Me.ExcelSeriesComboBox.Text = "G:\My Drive\Greenline Ferries\Digital Twin\VoyageModel - Route 2.xlsx"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label24)
+        Me.GroupBox1.Controls.Add(Me.Label25)
+        Me.GroupBox1.Controls.Add(Me.EndSOC)
+        Me.GroupBox1.Controls.Add(Me.Label22)
+        Me.GroupBox1.Controls.Add(Me.Label23)
+        Me.GroupBox1.Controls.Add(Me.ChargeTime)
+        Me.GroupBox1.Controls.Add(Me.ChargingCheck)
+        Me.GroupBox1.Controls.Add(Me.ExcelSeriesComboBox)
+        Me.GroupBox1.Controls.Add(Me.Label21)
+        Me.GroupBox1.Controls.Add(Me.Label19)
+        Me.GroupBox1.Controls.Add(Me.Label18)
+        Me.GroupBox1.Controls.Add(Me.BeginSOC)
+        Me.GroupBox1.Controls.Add(Me.VesselID)
+        Me.GroupBox1.Controls.Add(Me.Label40)
+        Me.GroupBox1.Controls.Add(Me.Label39)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown2)
+        Me.GroupBox1.Controls.Add(Me.NumericUpDown1)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.ns1when)
+        Me.GroupBox1.Controls.Add(Me.ReadoutCheckBox)
+        Me.GroupBox1.Controls.Add(Me.HeadingInfoCheck)
+        Me.GroupBox1.Controls.Add(Me.TimeInfoCheck)
+        Me.GroupBox1.Controls.Add(Me.FromXYRadioButton)
+        Me.GroupBox1.Controls.Add(Me.Label28)
+        Me.GroupBox1.Location = New System.Drawing.Point(4, 9)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GroupBox1.Size = New System.Drawing.Size(864, 226)
+        Me.GroupBox1.TabIndex = 42
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Path"
+        '
+        'ChargingCheck
+        '
+        Me.ChargingCheck.AutoSize = True
+        Me.ChargingCheck.Location = New System.Drawing.Point(604, 175)
+        Me.ChargingCheck.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ChargingCheck.Name = "ChargingCheck"
+        Me.ChargingCheck.Size = New System.Drawing.Size(108, 24)
+        Me.ChargingCheck.TabIndex = 77
+        Me.ChargingCheck.Text = "Charging?"
+        Me.ChargingCheck.UseVisualStyleBackColor = True
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(238, 179)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(34, 20)
+        Me.Label22.TabIndex = 80
+        Me.Label22.Text = "min"
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(32, 179)
+        Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(111, 20)
+        Me.Label23.TabIndex = 79
+        Me.Label23.Text = "Charging Time"
+        '
+        'ChargeTime
+        '
+        Me.ChargeTime.Location = New System.Drawing.Point(143, 177)
+        Me.ChargeTime.Name = "ChargeTime"
+        Me.ChargeTime.Size = New System.Drawing.Size(88, 26)
+        Me.ChargeTime.TabIndex = 78
+        Me.ChargeTime.Value = New Decimal(New Integer() {20, 0, 0, 0})
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(546, 179)
+        Me.Label24.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(23, 20)
+        Me.Label24.TabIndex = 83
+        Me.Label24.Text = "%"
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(340, 179)
+        Me.Label25.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(76, 20)
+        Me.Label25.TabIndex = 82
+        Me.Label25.Text = "End SOC"
+        '
+        'EndSOC
+        '
+        Me.EndSOC.Location = New System.Drawing.Point(451, 177)
+        Me.EndSOC.Name = "EndSOC"
+        Me.EndSOC.Size = New System.Drawing.Size(88, 26)
+        Me.EndSOC.TabIndex = 81
+        Me.EndSOC.Value = New Decimal(New Integer() {67, 0, 0, 0})
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1029,17 +1112,19 @@ Partial Class Form1
         Me.GroupBox9.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        CType(Me.BeginSOC, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BeginSOC, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        CType(Me.ChargeTime, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EndSOC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1084,7 +1169,6 @@ Partial Class Form1
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents DaeModelListBox As System.Windows.Forms.ListBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents ClearModels As System.Windows.Forms.Button
@@ -1100,32 +1184,40 @@ Partial Class Form1
     Friend WithEvents Label26 As System.Windows.Forms.Label
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents CreateRadiusReference As System.Windows.Forms.Button
-    Friend WithEvents Label28 As System.Windows.Forms.Label
-    Friend WithEvents FromXYRadioButton As System.Windows.Forms.RadioButton
     Friend WithEvents GroupBox9 As System.Windows.Forms.GroupBox
     Friend WithEvents ExcelReaderTextbox As System.Windows.Forms.TextBox
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents TrackAndHeadingButton As System.Windows.Forms.Button
-    Friend WithEvents HeadingInfoCheck As System.Windows.Forms.CheckBox
-    Friend WithEvents TimeInfoCheck As System.Windows.Forms.CheckBox
-    Friend WithEvents ReadoutCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents FixedLookAtCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents FixedLookAtTextBox As System.Windows.Forms.TextBox
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ProgressBar2 As ProgressBar
+    Friend WithEvents Label15 As Label
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents ChargingCheck As CheckBox
+    Friend WithEvents ExcelSeriesComboBox As ComboBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents BeginSOC As NumericUpDown
+    Friend WithEvents VesselID As ComboBox
     Friend WithEvents Label40 As Label
     Friend WithEvents Label39 As Label
     Friend WithEvents NumericUpDown2 As NumericUpDown
     Friend WithEvents NumericUpDown1 As NumericUpDown
     Friend WithEvents Label3 As Label
     Friend WithEvents ns1when As DateTimePicker
-    Friend WithEvents Label15 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents VesselID As ComboBox
-    Friend WithEvents Label18 As Label
-    Friend WithEvents BeginSOC As NumericUpDown
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents ExcelSeriesComboBox As ComboBox
+    Friend WithEvents ReadoutCheckBox As CheckBox
+    Friend WithEvents HeadingInfoCheck As CheckBox
+    Friend WithEvents TimeInfoCheck As CheckBox
+    Friend WithEvents FromXYRadioButton As RadioButton
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label25 As Label
+    Friend WithEvents EndSOC As NumericUpDown
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label23 As Label
+    Friend WithEvents ChargeTime As NumericUpDown
 End Class
